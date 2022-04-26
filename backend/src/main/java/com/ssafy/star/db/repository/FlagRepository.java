@@ -9,5 +9,5 @@ public interface FlagRepository extends JpaRepository<Flag, Long> {
     @Override
     List<Flag> findAll();
 
-    List<Flag> findTop10ByOOrderByCreatedDate();
+    List<Flag> findTop10ByOrderByCreatedDate();
 }

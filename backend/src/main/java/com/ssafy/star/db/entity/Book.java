@@ -21,6 +21,6 @@ public class Book extends BaseTimeEntity{
     @Column(name = "book_title")
     private String title;
 
-    @Column(name = "book_content")
+    @Column(name = "book_content", columnDefinition = "TEXT")
     private String content;
 }
