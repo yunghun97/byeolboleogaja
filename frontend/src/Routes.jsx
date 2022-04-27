@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes as ReactRouterRoutes } from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import Vite from './pages/Vite';
-import NotFound from './pages/Page404';
+import MainPage from '@/pages/MainPage';
+import Vite from '@/pages/Vite';
+import NotFound from '@/pages/Page404';
 
-import World from './pages/World';
+import World from '@/pages/World';
 
 export default function Routes() {
   return (

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Box, Button, Container } from '@mui/material';
 
-import logoMain from '../assets/logo-main.png';
+import logoMain from '@/assets/logo-main.png';
 
 export default function MainPage() {
   return (

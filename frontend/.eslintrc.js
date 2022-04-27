@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 0,
+    'import/no-unresolved': '2*',
     'prettier/prettier': [
       'error',
       {
