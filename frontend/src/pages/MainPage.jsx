@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Button, Container } from '@mui/material';
+import { Box, Button, Container } from '@mui/material';
+
+import logoMain from '../assets/logo-main.png';
 
 export default function MainPage() {
   return (
@@ -14,6 +16,7 @@ export default function MainPage() {
       }}
     >
       <h2>Main Page</h2>
+      <Box component="img" src={logoMain} sx={{ height: '30vw' }} />
       <Button component={Link} to="/world" variant="contained">
         시작하기
       </Button>
