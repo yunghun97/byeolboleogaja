@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box,
@@ -17,6 +17,25 @@ import logoMain from '@/assets/logo-main.png';
 
 const MainContainer = () => {
   const [open, setOpen] = useState(false);
+  const [nickname, setNickname] = useState('');
+
+  useEffect(() => {
+    initNickname();
+  }, []);
+
+  const initNickname = () => {
+    setNickname(getRandomNickname);
+  };
+
+  const getRandomNickname = () => {
+    const a = '익명의';
+    const b = ['곰돌이', '낙타', '갱얼쥐', '호모사피엔스'][
+      Math.floor(Math.random() * 4)
+    ];
+    const c = Math.floor(Math.random() * 10000);
+
+    return `${a} ${b} #${c}`;
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -65,6 +84,7 @@ const MainContainer = () => {
             autoFocus
             id="name"
             label="닉네임"
+            defaultValue={nickname}
             variant="outlined"
             sx={{
               mt: 3,
