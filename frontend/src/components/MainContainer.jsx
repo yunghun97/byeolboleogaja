@@ -19,6 +19,16 @@ const MainContainer = () => {
   const [open, setOpen] = useState(false);
   const [nickname, setNickname] = useState('');
 
+  const [isNickname, setIsNickname] = useState(true);
+
+  useEffect(() => {
+    validateNickname();
+  }, [nickname]);
+
+  const validateNickname = () => {
+    setIsNickname(nickname !== '');
+  };
+
   const initNickname = () => {
     setNickname(getRandomNickname);
   };
@@ -31,6 +41,12 @@ const MainContainer = () => {
     const c = Math.floor(Math.random() * 10000);
 
     return `${a} ${b} #${c}`;
+  };
+
+  const handleJoinWorld = () => {
+    if (!isNickname) {
+      return;
+    }
   };
 
   const handleNicknameChange = (event) => {
@@ -92,10 +108,12 @@ const MainContainer = () => {
               display: 'flex',
             }}
             onChange={handleNicknameChange}
+            error={!isNickname}
+            helperText={!isNickname ? '닉네임은 공백일 수 없습니다.' : ''}
           />
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" onClick={handleClose}>
+          <Button variant="contained" onClick={handleJoinWorld}>
             입장하기
           </Button>
           <Button variant="outlined" onClick={handleClose}>
