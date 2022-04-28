@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useStore } from '@/store';
 import {
   Box,
   Button,
@@ -17,6 +18,7 @@ import logoMain from '@/assets/logo-main.png';
 
 const MainContainer = () => {
   const navigate = useNavigate();
+  const $setNickname = useStore((state) => state.setNickname);
 
   const [open, setOpen] = useState(false);
   const [nickname, setNickname] = useState('');
@@ -49,6 +51,8 @@ const MainContainer = () => {
     if (!isNickname) {
       return;
     }
+
+    $setNickname(nickname);
 
     navigate('/world');
   };
