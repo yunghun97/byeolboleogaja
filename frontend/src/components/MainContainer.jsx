@@ -1,9 +1,31 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, Container, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Typography,
+} from '@mui/material';
 
 import logoMain from '@/assets/logo-main.png';
 
 const MainContainer = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Container
       maxWidth="sm"
@@ -21,12 +43,7 @@ const MainContainer = () => {
           height: '50vh',
         }}
       />
-      <Button
-        component={Link}
-        to="/world"
-        variant="contained"
-        sx={{ mt: '5vh' }}
-      >
+      <Button variant="contained" sx={{ mt: '5vh' }} onClick={handleClickOpen}>
         <Typography
           sx={{
             fontSize: '2rem',
@@ -37,6 +54,33 @@ const MainContainer = () => {
           별 보러 가기
         </Typography>
       </Button>
+      <Dialog maxWidth="xs" open={open} onClose={handleClose}>
+        <DialogTitle>닉네임 입력하기</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            별보러가자에서는 입장 시 입력한 닉네임을 바탕으로 소통합니다! 멋진
+            닉네임으로 입장해주세요!
+          </DialogContentText>
+          <TextField
+            autoFocus
+            id="name"
+            label="닉네임"
+            variant="outlined"
+            sx={{
+              mt: 3,
+              display: 'flex',
+            }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button variant="contained" onClick={handleClose}>
+            입장하기
+          </Button>
+          <Button variant="outlined" onClick={handleClose}>
+            돌아가기
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };
