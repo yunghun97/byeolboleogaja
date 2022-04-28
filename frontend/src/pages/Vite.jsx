@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useStore } from '@/store';
 import logo from '@/logo.svg';
 
 function Vite() {
-  const [count, setCount] = useState(0);
+  const count = useStore((state) => state.count);
+  const increase = useStore((state) => state.increase);
 
   return (
     <div className="App">
@@ -10,7 +11,7 @@ function Vite() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
-          <button type="button" onClick={() => setCount((cnt) => cnt + 1)}>
+          <button type="button" onClick={increase}>
             count is: {count}
           </button>
         </p>
