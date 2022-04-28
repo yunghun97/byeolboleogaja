@@ -19,10 +19,6 @@ const MainContainer = () => {
   const [open, setOpen] = useState(false);
   const [nickname, setNickname] = useState('');
 
-  useEffect(() => {
-    initNickname();
-  }, []);
-
   const initNickname = () => {
     setNickname(getRandomNickname);
   };
@@ -37,7 +33,12 @@ const MainContainer = () => {
     return `${a} ${b} #${c}`;
   };
 
+  const handleNicknameChange = (event) => {
+    setNickname(event.target.value);
+  };
+
   const handleClickOpen = () => {
+    initNickname();
     setOpen(true);
   };
 
@@ -90,6 +91,7 @@ const MainContainer = () => {
               mt: 3,
               display: 'flex',
             }}
+            onChange={handleNicknameChange}
           />
         </DialogContent>
         <DialogActions>
