@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -16,6 +16,8 @@ import {
 import logoMain from '@/assets/logo-main.png';
 
 const MainContainer = () => {
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
   const [nickname, setNickname] = useState('');
 
@@ -47,6 +49,8 @@ const MainContainer = () => {
     if (!isNickname) {
       return;
     }
+
+    navigate('/world');
   };
 
   const handleNicknameChange = (event) => {
