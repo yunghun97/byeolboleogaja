@@ -17,5 +17,15 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react'],
-  rules: { 'react/react-in-jsx-scope': 'off' },
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+    'import/no-extraneous-dependencies': 0,
+    'import/no-unresolved': '2*',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+  },
 };
