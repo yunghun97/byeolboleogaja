@@ -16,6 +16,10 @@ export default function WorldMap() {
     }
   }, []);
 
+  const handleGoWorld = () => {
+    navigate('/world');
+  };
+
   const handleGoStellarium = () => {
     window.location = 'https://stellarium-web.org/';
   };
@@ -59,6 +63,21 @@ export default function WorldMap() {
           >
             {`${nickname} 님 반가워요!`}
           </Typography>
+          <Button
+            variant="contained"
+            sx={{ mt: '5vh', width: 'min(375px, 90%)' }}
+            onClick={handleGoWorld}
+          >
+            <Typography
+              sx={{
+                fontSize: '2rem',
+                fontWeight: 'bold',
+                textTransform: 'none',
+              }}
+            >
+              ★ 월드 입장 ★
+            </Typography>
+          </Button>
           <Button
             variant="contained"
             sx={{ mt: '5vh', width: 'min(375px, 90%)' }}
