@@ -1,11 +1,10 @@
-import Box from '@mui/material/Box';
-import mainBg from '@/assets/bg-main.png';
+import { Box } from '@mui/material';
 
-const LoadingBackground = () => {
+const LoadingBackground = ({ apodUrl }) => {
   return (
     <Box
       component="img"
-      src={mainBg}
+      src={apodUrl}
       sx={{
         width: '100%',
         height: '100%',
