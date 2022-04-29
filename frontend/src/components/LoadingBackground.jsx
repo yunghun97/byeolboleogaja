@@ -1,10 +1,10 @@
 import { Box } from '@mui/material';
 
-const LoadingBackground = ({ apodUrl }) => {
+const LoadingBackground = ({ bgUrl }) => {
   return (
     <Box
       component="img"
-      src={apodUrl}
+      src={bgUrl}
       sx={{
         width: '100%',
         height: '100%',

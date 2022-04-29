@@ -27,7 +27,7 @@ const LoadingScene = () => {
 
   return (
     <>
-      <LoadingBackground apodUrl={loadingBg} />
+      <LoadingBackground bgUrl={loadingBg} />
       <Container
         maxWidth="lg"
         sx={{
