@@ -21,4 +21,5 @@ public class Horoscope extends BaseDateEntity {
     private String category;
     @Column(name="horoscope_content")
     private String content;
+
 }

@@ -5,6 +5,7 @@ import com.ssafy.star.db.repository.HoroscopeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -13,6 +14,7 @@ public class HoroscopeService {
     HoroscopeRepository horoscopeRepository;
 
     public List<Horoscope> getHoroscope(){
-        return horoscopeRepository.findAll();
+        LocalDate date = LocalDate.now();
+        return horoscopeRepository.findByCreatedDate(date);
     }
 }
