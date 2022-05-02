@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Container, LinearProgress, Typography } from '@mui/material';
-import LoadingBackground from './LoadingBackground';
-import { Box } from '@mui/system';
+import { useStore } from '@/store';
+import { Box, Container, LinearProgress, Typography } from '@mui/material';
+import LoadingBackground from '@/components/LoadingBackground';
 
 const LoadingScene = () => {
   const [progress, setProgress] = useState(0);
+  const loadingBg = useStore((state) => state.apodUrl);
   const loadingMsg =
     '수성, 금성, 화성의 질량을 다 합쳐도 지구의 질량보다 작습니다.';
 
@@ -26,7 +27,7 @@ const LoadingScene = () => {
 
   return (
     <>
-      <LoadingBackground />
+      <LoadingBackground bgUrl={loadingBg} />
       <Container
         maxWidth="lg"
         sx={{
