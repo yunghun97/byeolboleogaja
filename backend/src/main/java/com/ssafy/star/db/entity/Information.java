@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -14,13 +13,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Horoscope{
+public class Information {
     @Id @GeneratedValue
-    @Column(name="horoscope_id")
+    @Column(name = "information_id")
     private Long id;
-    @Column(name="horoscope_category")
-    private String category;
-    @Column(name="horoscope_content")
-    private String content;
-    private LocalDate createdDate;
+
+    private String CommonSense;
 }

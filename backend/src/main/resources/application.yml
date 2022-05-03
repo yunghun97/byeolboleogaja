@@ -27,3 +27,5 @@ spring:
     port: 6380
     password: imlah
 
+  profiles:
+    include: API-KEY
