@@ -10,7 +10,7 @@ const WorldMapContainer = () => {
     navigate('/world');
   };
 
-  const handleGoStellarium = () => {
+  const handleGoObservatory = () => {
     navigate('/observatory');
   };
 
@@ -66,7 +66,7 @@ const WorldMapContainer = () => {
       <Button
         variant="contained"
         sx={{ mt: '5vh', width: 'min(375px, 90%)' }}
-        onClick={handleGoStellarium}
+        onClick={handleGoObservatory}
       >
         <Typography
           sx={{

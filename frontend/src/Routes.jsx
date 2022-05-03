@@ -4,7 +4,7 @@ import Vite from '@/pages/Vite';
 import NotFound from '@/pages/Page404';
 import WorldMap from '@/pages/WorldMap';
 import World from '@/pages/World';
-import Observatory from './pages/Observatory';
+import Observatory from '@/pages/Observatory';
 
 export default function Routes() {
   return (
