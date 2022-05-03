@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Horoscope extends BaseDateEntity {
+public class Horoscope{
     @Id @GeneratedValue
     @Column(name="horoscope_id")
     private Long id;
@@ -21,5 +22,6 @@ public class Horoscope extends BaseDateEntity {
     private String category;
     @Column(name="horoscope_content")
     private String content;
+    private LocalDate createdDate;
 
 }
