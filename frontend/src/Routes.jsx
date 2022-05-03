@@ -4,6 +4,7 @@ import Vite from '@/pages/Vite';
 import NotFound from '@/pages/Page404';
 import WorldMap from '@/pages/WorldMap';
 import World from '@/pages/World';
+import Observatory from '@/pages/Observatory';
 
 export default function Routes() {
   return (
@@ -12,6 +13,7 @@ export default function Routes() {
       <Route path="/vite" element={<Vite />} />
       <Route path="/worldmap" element={<WorldMap />} />
       <Route path="/world" element={<World />} />
+      <Route path="/observatory" element={<Observatory />} />
       <Route path="/404" element={<NotFound />} />
       <Route path="*" element={<Navigate replace to="/404" />} />
     </ReactRouterRoutes>
