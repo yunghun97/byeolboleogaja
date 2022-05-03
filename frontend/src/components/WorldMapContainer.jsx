@@ -11,7 +11,7 @@ const WorldMapContainer = () => {
   };
 
   const handleGoStellarium = () => {
-    window.location = 'https://stellarium-web.org/';
+    navigate('/observatory');
   };
 
   const handleGoLibrary = () => {
