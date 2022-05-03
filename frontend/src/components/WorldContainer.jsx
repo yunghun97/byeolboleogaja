@@ -26,7 +26,7 @@ const WorldContainer = () => {
         <a-asset-item id="spaceship" src="src/assets/spaceship.glb"></a-asset-item>
         <a-asset-item id="science-museum" src="src/assets/science-museum.glb"></a-asset-item>
         <a-asset-item id="satellite" src="src/assets/satellite.glb"></a-asset-item>
-        <a-asset-item id="crystal-ball" src="src/assets/scene.glb"></a-asset-item>
+        <a-asset-item id="crystal-ball" src="src/assets/crystal-ball.glb"></a-asset-item>
       </a-assets>
       <a-sky src="src/assets/bg-world.jpg" />
       <a-gltf-model src="src/assets/ground-world.glb" />
