@@ -27,6 +27,7 @@ public class HoroscopeCraw {
     @Scheduled(cron="0 0 3 * * ?", zone="Asia/Seoul")
     public void crawlingLuck() {
         Document doc = null;
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
         for(int i=0; i<12; i++){
             try {
                 System.out.println(LocalDate.now());
@@ -35,6 +36,7 @@ public class HoroscopeCraw {
                 Horoscope horoscope = Horoscope.builder()
                         .content(contents.get(0).text())
                         .category(STAR_CODES[i])
+                        .createdDate(tomorrow)
                         .build();
                 horoscopeRepository.save(horoscope);
             }catch (Exception e){
