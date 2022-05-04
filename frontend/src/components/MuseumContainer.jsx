@@ -3,20 +3,7 @@ import 'aframe';
 import 'aframe-extras';
 
 
-AFRAME.registerComponent('movement', {
 
-  init () {
-    // Do something when component first attached.    
-    var sceneEl = document.querySelector('a-scene');
-    var CameraEl =sceneEl.querySelector('a-camera');
-    var player = sceneEl.querySelector('#player');
-    
-    player.setAttribute('animation-mixer', {clip: 'base'});
-
-  },
-
-  
-});
 
 
 const MuseumContainer = () => {
@@ -32,8 +19,8 @@ const MuseumContainer = () => {
           <a-gltf-model position="0 0.4 0"  src="src/assets/spaceLine.glb" />
           <a-gltf-model position="-0.8 1 -0.8" rotation="90,0,0"  src="src/assets/hubble space telescope.glb" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" />
         
-          <a-camera movement position="0 1.5 4">
-            <a-entity  position="0 -1.1 -1" rotation="0 180 0" scale="0.8 0.8 0.8">
+          <a-camera position="0 1.5 4">
+            <a-entity position="0 -1.1 -1" rotation="0 180 0" scale="0.8 0.8 0.8">
               <a-gltf-model  scale="0.2, 0.2  0.2"  id="player" src="#model"/>
             </a-entity>
                
