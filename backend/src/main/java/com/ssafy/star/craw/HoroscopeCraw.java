@@ -34,7 +34,7 @@ public class HoroscopeCraw {
                 doc = Jsoup.connect(NAVER_LUCK_URL+STAR_CODES[i]).get();
                 Elements contents = doc.select("p._cs_fortune_text");
                 Horoscope horoscope = Horoscope.builder()
-                        .content(contents.get(0).text())
+                        .content(contents.get(1).text())
                         .category(STAR_CODES[i])
                         .createdDate(tomorrow)
                         .build();
