@@ -2,7 +2,6 @@ package com.ssafy.star.craw;
 
 import com.ssafy.star.db.entity.Horoscope;
 import com.ssafy.star.db.repository.HoroscopeRepository;
-import org.apache.tomcat.jni.Local;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -35,7 +34,7 @@ public class HoroscopeCraw {
                 doc = Jsoup.connect(NAVER_LUCK_URL+STAR_CODES[i]).get();
                 Elements contents = doc.select("p._cs_fortune_text");
                 Horoscope horoscope = Horoscope.builder()
-                        .content(contents.get(1).text())
+                        .content(contents.get(0).text())
                         .category(STAR_CODES[i])
                         .createdDate(tomorrow)
                         .build();

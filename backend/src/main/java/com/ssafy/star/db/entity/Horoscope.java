@@ -23,5 +23,4 @@ public class Horoscope{
     @Column(name="horoscope_content")
     private String content;
     private LocalDate createdDate;
-
 }

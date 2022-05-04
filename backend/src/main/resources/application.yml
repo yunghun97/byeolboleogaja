@@ -26,3 +26,6 @@ spring:
     host: k6b102.p.ssafy.io
     port: 6380
     password: imlah
+
+  profiles:
+    include: API-KEY

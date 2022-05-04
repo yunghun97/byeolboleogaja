@@ -1,46 +1,25 @@
-import { Link } from 'react-router-dom';
-import { Box, Button, Container, Typography } from '@mui/material';
-
-import logoMain from '@/assets/logo-main.png';
+import { useEffect } from 'react';
+import { useStore } from '@/store';
 import MainBackground from '@/components/MainBackground';
+import MainContainer from '@/components/MainContainer';
+import { getApod } from '@/api/nasa';
 
 export default function MainPage() {
+  const $setApodUrl = useStore((state) => state.setApodUrl);
+
+  useEffect(() => {
+    initApodUrl();
+  }, []);
+
+  const initApodUrl = async () => {
+    const res = await getApod();
+    $setApodUrl(res.data.url);
+  };
+
   return (
     <>
       <MainBackground />
-      <Container
-        maxWidth="sm"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Box
-          component="img"
-          src={logoMain}
-          sx={{
-            mt: '20vh',
-            height: '50vh',
-          }}
-        />
-        <Button
-          component={Link}
-          to="/world"
-          variant="contained"
-          sx={{ mt: '5vh' }}
-        >
-          <Typography
-            sx={{
-              fontSize: '2rem',
-              fontWeight: 'bold',
-              textTransform: 'none',
-            }}
-          >
-            별 보러 가기
-          </Typography>
-        </Button>
-      </Container>
+      <MainContainer />
     </>
   );
 }
