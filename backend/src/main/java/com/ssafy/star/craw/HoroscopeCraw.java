@@ -28,8 +28,7 @@ public class HoroscopeCraw {
     @Scheduled(cron="0 0 3 * * ?", zone="Asia/Seoul")
     public void crawlingLuck() {
         Document doc = null;
-        LocalDate tomorrow = LocalDate.now();
-        tomorrow = tomorrow.plusDays(1);
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
         for(int i=0; i<12; i++){
             try {
                 System.out.println(LocalDate.now());
