@@ -18,14 +18,14 @@ const MuseumContainer = () => {
           <a-cylinder  src="#groundTexture" radius="36" height="0.1"></a-cylinder>
          
           <a-gltf-model id="fence1" position="61 -1.3 -10" rotation="0 90 0" src="src/assets/fence.glb" />
-          <a-gltf-model id="fence1" position="41 -1.3 -10" rotation="0 90 0" src="src/assets/fence.glb" />
-          <a-gltf-model id="fence2" position="21 -1.3 -10" rotation="0 90 0" src="src/assets/fence.glb" />
-          <a-gltf-model id="fence3" position="1 -1.3 -10" rotation="0 90 0"  src="src/assets/fence.glb" />
+          <a-gltf-model id="fence2" position="41 -1.3 -10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence3" position="21 -1.3 -10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence4" position="1 -1.3 -10" rotation="0 90 0"  src="src/assets/fence.glb" />
         
-          <a-gltf-model id="fence1" position="61 -1.3 10" rotation="0 90 0" src="src/assets/fence.glb" />
-          <a-gltf-model id="fence1" position="41 -1.3 10" rotation="0 90 0" src="src/assets/fence.glb" />
-          <a-gltf-model id="fence2" position="21 -1.3 10" rotation="0 90 0" src="src/assets/fence.glb" />
-          <a-gltf-model id="fence3" position="1 -1.3 10"  rotation="0 90 0"  src="src/assets/fence.glb" />
+          <a-gltf-model id="fence5" position="61 -1.3 10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence6" position="41 -1.3 10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence7" position="21 -1.3 10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence8" position="1 -1.3 10"  rotation="0 90 0"  src="src/assets/fence.glb" />
   
 
           <a-text value="James Webb Space Telescope"  position="-15 1.5 -6"></a-text>
