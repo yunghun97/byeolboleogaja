@@ -19,7 +19,7 @@ const WorldContainer = () => {
         <a-gltf-model src="#observatory" scale="120 120 120" position="41.511 29.726 -56.011" rotation="0 90 0" />
         <a-gltf-model src="#spaceship" scale="100 100 100" position="-60.211 -1.030 -262.203" />
         <a-gltf-model src="#science-museum" scale="2.3 2.3 2.3" position="-54.671 0 -86.823" />
-        <a-gltf-model src="#satellite" scale="100 100 100" position="-69.931 45.263 -98.965" rotation="0 55.643 0" />
+        <a-gltf-model src="#satellite" scale="100 100 100" position="-69.931 45.263 -98.965" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" />
         <a-gltf-model src="#witch-house" scale="0.3 0.3 0.3" position="-83.652 15.925 -359.571" rotation="179.947 0 -179.957"/>
         <a-camera position="0 7 0">
           <a-entity position="0 -5 0" rotation="0 180 0">
