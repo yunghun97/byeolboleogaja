@@ -19,7 +19,7 @@ const WorldMapContainer = () => {
   };
 
   const handleGoFortune = () => {
-    navigate('/vite');
+    navigate('/horoscope');
   };
 
   const handleGoMuseum = () => {

@@ -6,6 +6,7 @@ import WorldMap from '@/pages/WorldMap';
 import World from '@/pages/World';
 import Museum from '@/pages/Museum';
 import Observatory from '@/pages/Observatory';
+import Horoscope from '@/pages/Horoscope';
 
 export default function Routes() {
   return (
@@ -16,6 +17,7 @@ export default function Routes() {
       <Route path="/world" element={<World />} />
       <Route path="/museum" element={<Museum />} />
       <Route path="/observatory" element={<Observatory />} />
+      <Route path="/horoscope" element={<Horoscope />} />
       <Route path="/404" element={<NotFound />} />
       <Route path="*" element={<Navigate replace to="/404" />} />
     </ReactRouterRoutes>
