@@ -6,7 +6,6 @@ const WorldContainer = () => {
       <a-scene>
         <a-assets>
           <a-asset-item id="ground" src="src/assets/ground-world.glb"></a-asset-item>
-          <a-asset-item id="fountain" src="src/assets/fountain.glb"></a-asset-item>
           <a-asset-item id="library" src="src/assets/library.glb"></a-asset-item>
           <a-asset-item id="observatory" src="src/assets/observatory.glb"></a-asset-item>
           <a-asset-item id="spaceship" src="src/assets/spaceship.glb"></a-asset-item>
