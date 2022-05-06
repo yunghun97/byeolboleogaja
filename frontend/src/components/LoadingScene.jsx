@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import { useStore } from '@/store';
 import { Box, Container, LinearProgress, Typography } from '@mui/material';
 import LoadingBackground from '@/components/LoadingBackground';
+import { getCommonSence } from '@/api/loading';
 
 const LoadingScene = ({ loadingTime }) => {
   const [progress, setProgress] = useState(0);
   const loadingBg = useStore((state) => state.apodUrl);
-  const loadingMsg =
-    '수성, 금성, 화성의 질량을 다 합쳐도 지구의 질량보다 작습니다.';
+  const [loadingMsg, setLoadingMsg] = useState('');
 
   useEffect(() => {
+    initLoadingMsg();
+
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
         const diff = 10000 / loadingTime; // loadingTime 을 참고해서 적당한 값 적용
@@ -21,6 +23,11 @@ const LoadingScene = ({ loadingTime }) => {
       clearInterval(timer);
     };
   }, []);
+
+  const initLoadingMsg = async () => {
+    const res = await getCommonSence();
+    setLoadingMsg(res.data.commonSense);
+  };
 
   return (
     <>
@@ -55,7 +62,7 @@ const LoadingScene = ({ loadingTime }) => {
           sx={{
             mt: '5vh',
             color: '#ffffff',
-            fontSize: '2rem',
+            fontSize: '1.7rem',
             fontWeight: 'bold',
             textTransform: 'none',
           }}
