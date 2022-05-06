@@ -1,32 +1,86 @@
-// @ts-nocheck
+
 import 'aframe';
 import 'aframe-extras';
 
 
+AFRAME.registerComponent('clickhandler', {
+  schema: {
+    txt: {default:'default'}
+  },        
+  init: function () {
+    var data = this.data;
+    var el = this.el;
+    // function DetailItems() {
 
+    //   const [clicked, setClicked]= React.useState(false)
+  
+      
+  
+    //   return React.createElement(
+    //       'h1',
+    //       { onClick: () => setClicked(!clicked) },
+    //       'clicked',
+    //   );
+    // }        
+    el.addEventListener('click', function () {         
+           
+      console.log(data.txt)
+      const domContainer = document.getElementById('museum');
+      // ReactDOM.render(React.createElement(DetailItems), domContainer)
 
+    });        
+}
+})
 
 const MuseumContainer = () => {
-
+ 
   return (
-      <a-scene>
+    
+       <a-scene id="museum">
           <a-assets>
-               <a-asset-item id="model" src="/src/assets/amongUs.glb"></a-asset-item>
+            <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg"/>
+            <a-asset-item id="model" src="/src/assets/amongUs.glb"></a-asset-item>
           </a-assets>
+          <a-sky src="src/assets/space.jpg" theta-length="90" radius="35" />
+          <a-cylinder  src="#groundTexture" radius="36" height="0.1"></a-cylinder>
          
-          <a-text value="허블우주망원경" font="/src/assets/text/BMYEONSUNG_ttf-msdf.json" font-image="/src/assets/text/BMYEONSUNGttf.png" negate="false" scale="2 2 1"  position="2 1.5 0"></a-text>
-          <a-gltf-model position="0 0 0" scale="1.8,2,2" src="src/assets/showroom.glb" />
-          <a-gltf-model position="0 0.4 0"  src="src/assets/spaceLine.glb" />
-          <a-gltf-model position="-0.8 1 -0.8" rotation="90,0,0"  src="src/assets/hubble space telescope.glb" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" />
+          <a-gltf-model id="fence1" position="61 -1.3 -10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence2" position="41 -1.3 -10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence3" position="21 -1.3 -10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence4" position="1 -1.3 -10" rotation="0 90 0"  src="src/assets/fence.glb" />
         
+          <a-gltf-model id="fence5" position="61 -1.3 10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence6" position="41 -1.3 10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence7" position="21 -1.3 10" rotation="0 90 0" src="src/assets/fence.glb" />
+          <a-gltf-model id="fence8" position="1 -1.3 10"  rotation="0 90 0"  src="src/assets/fence.glb" />
+  
+
+          <a-text clickhandler="txt:james" value="James Webb Space Telescope"  position="-15 1.5 -6"></a-text>
+          <a-text clickhandler="txt:hubble" value="Hubble Space Telescope"   position="3 1.5 -6"></a-text>
+          <a-text clickhandler="txt:chandra" value="Chandra X-ray Observatory"  position="25 1.5 -6"></a-text>
+          <a-text clickhandler="txt:spitzer" value="Spitzer Space Telescope"  position="15 2 10" rotation="0 180 0"></a-text>
+          <a-text clickhandler="txt:fermi" value="Fermi Gamma-ray Large Area Space Telescope"  position="-3 2 10" rotation="0 180 0"></a-text>
+          <a-text clickhandler="txt:kepler" value="Kepler space observatory"  position="-25 2 10" rotation="0 180 0"></a-text>
+
+          <a-gltf-model clickhandler="txt:james" id="james"  position="-19 3 -10" scale="0.5 0.5 0.5"  src="src/assets/james_webb_space_telescope.glb" />
+          <a-gltf-model clickhandler="txt:hubble" id="hubble" position="-0.2 8 -12" rotation="-180 0 0"  src="src/assets/hubble space telescope.glb"  />
+          <a-gltf-model clickhandler="txt:chandra" id="chandra" position="25 2 -10" rotation="0 90 10" src="src/assets/Chandra X-ray Observatory.glb"/>
+          <a-gltf-model clickhandler="txt:spitzer" id="spitzer" position="21 3 10" scale="0.6 0.6 0.6"  rotation="60 360 0" src="src/assets/Spitzer Space Telescope.glb"/>
+          <a-gltf-model clickhandler="txt:fermi" id="fermi" position="1 3 10"  scale="0.8 0.8 0.8"  rotation="90 90 0" src="src/assets/Fermi Gamma-ray Large Area Space Telescope.glb"/>
+          <a-gltf-model clickhandler="txt:kepler" id="kepler" position="-20 3 10"  rotation="0 90 0" src="src/assets/Kepler space observatory.glb"/>
+          
+          
+          <a-entity cursor="rayOrigin:mouse"></a-entity>
           <a-camera position="0 1.5 4">
             <a-entity position="0 -1.1 -1" rotation="0 180 0" scale="0.8 0.8 0.8">
-              <a-gltf-model  scale="0.2, 0.2  0.2"  id="player" src="#model"/>
+              <a-gltf-model  scale="0.2 0.2 0.2"  id="player" src="#model"/>
             </a-entity>
                
           </a-camera>
          
       </a-scene>
+    
+      
   
 
   );
