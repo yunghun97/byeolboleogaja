@@ -5,7 +5,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   MobileStepper,
   Typography,
@@ -51,17 +50,15 @@ const GuideDialog = ({ guideInfos }) => {
         sx={{ m: 1 }}
       ></Box>
       <DialogContent>
-        <DialogContentText>
-          <Typography
-            sx={{
-              fontSize: '1.2rem',
-              fontWeight: 'bold',
-              textTransform: 'none',
-            }}
-          >
-            {guideInfos[activeStep].description}
-          </Typography>
-        </DialogContentText>
+        <Typography
+          sx={{
+            fontSize: '1.2rem',
+            fontWeight: 'bold',
+            textTransform: 'none',
+          }}
+        >
+          {guideInfos[activeStep].description}
+        </Typography>
       </DialogContent>
       <MobileStepper
         steps={maxSteps}

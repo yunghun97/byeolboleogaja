@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Grid,
   Paper,
@@ -123,17 +122,15 @@ const HoroscopeContainer = () => {
           sx={{ m: 1 }}
         ></Box>
         <DialogContent>
-          <DialogContentText>
-            <Typography
-              sx={{
-                fontSize: '1.2rem',
-                fontWeight: 'bold',
-                textTransform: 'none',
-              }}
-            >
-              {horoscope[horoIndex].content}
-            </Typography>
-          </DialogContentText>
+          <Typography
+            sx={{
+              fontSize: '1.2rem',
+              fontWeight: 'bold',
+              textTransform: 'none',
+            }}
+          >
+            {horoscope[horoIndex].content}
+          </Typography>
         </DialogContent>
         <DialogActions>
           <Button variant="contained" onClick={handleClose}>
