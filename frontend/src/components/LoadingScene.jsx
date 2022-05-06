@@ -48,7 +48,11 @@ const LoadingScene = () => {
           로 딩 중
         </Typography>
         <Box sx={{ mt: '2vh', width: '100%' }}>
-          <LinearProgress variant="determinate" value={progress} />
+          <LinearProgress
+            variant="determinate"
+            value={progress}
+            sx={{ height: 15, borderRadius: 5 }}
+          />
         </Box>
         <Typography
           sx={{
