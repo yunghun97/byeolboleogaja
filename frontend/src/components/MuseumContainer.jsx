@@ -1,34 +1,15 @@
-// @ts-nocheck
+
 import 'aframe';
 import 'aframe-extras';
-import { useEffect } from 'react';
+import { aframeMuseum } from '/src/components/museum.js';
 
 
-AFRAME.registerComponent('clickhandler', {
-          schema: {
-            txt: {default:'default'}
-          },        
-          init: function () {
-            var data = this.data;
-            var el = this.el;        
-            el.addEventListener('click', function () {            
-            console.log(data.txt);
-            });        
-          }
-    });
-
-
-
-
-
-
-
-
+aframeMuseum()
 const MuseumContainer = () => {
  
   return (
-     
-      <a-scene >
+    
+       <a-scene id="museum">
           <a-assets>
             <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg"/>
             <a-asset-item id="model" src="/src/assets/amongUs.glb"></a-asset-item>
@@ -61,7 +42,7 @@ const MuseumContainer = () => {
           <a-gltf-model clickhandler="txt:fermi" id="fermi" position="1 3 10"  scale="0.8 0.8 0.8"  rotation="90 90 0" src="src/assets/Fermi Gamma-ray Large Area Space Telescope.glb"/>
           <a-gltf-model clickhandler="txt:kepler" id="kepler" position="-20 3 10"  rotation="0 90 0" src="src/assets/Kepler space observatory.glb"/>
           
-          {/* <a-box clickhandler="txt:box1"></a-box> */}
+          
           <a-entity cursor="rayOrigin:mouse"></a-entity>
           <a-camera position="0 1.5 4">
             <a-entity position="0 -1.1 -1" rotation="0 180 0" scale="0.8 0.8 0.8">
@@ -71,6 +52,8 @@ const MuseumContainer = () => {
           </a-camera>
          
       </a-scene>
+    
+      
   
 
   );
