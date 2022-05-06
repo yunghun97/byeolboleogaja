@@ -3,7 +3,7 @@ import { useStore } from '@/store';
 import { Box, Container, LinearProgress, Typography } from '@mui/material';
 import LoadingBackground from '@/components/LoadingBackground';
 
-const LoadingScene = () => {
+const LoadingScene = ({ loadingTime }) => {
   const [progress, setProgress] = useState(0);
   const loadingBg = useStore((state) => state.apodUrl);
   const loadingMsg =
@@ -12,13 +12,10 @@ const LoadingScene = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = 12;
+        const diff = 10000 / loadingTime; // loadingTime 을 참고해서 적당한 값 적용
         return Math.min(oldProgress + diff, 100);
       });
-    }, 500);
+    }, 100);
 
     return () => {
       clearInterval(timer);
