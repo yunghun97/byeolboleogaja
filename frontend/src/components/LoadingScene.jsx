@@ -2,28 +2,32 @@ import { useEffect, useState } from 'react';
 import { useStore } from '@/store';
 import { Box, Container, LinearProgress, Typography } from '@mui/material';
 import LoadingBackground from '@/components/LoadingBackground';
+import { getCommonSence } from '@/api/loading';
 
-const LoadingScene = () => {
+const LoadingScene = ({ loadingTime }) => {
   const [progress, setProgress] = useState(0);
   const loadingBg = useStore((state) => state.apodUrl);
-  const loadingMsg =
-    '수성, 금성, 화성의 질량을 다 합쳐도 지구의 질량보다 작습니다.';
+  const [loadingMsg, setLoadingMsg] = useState('');
 
   useEffect(() => {
+    initLoadingMsg();
+
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = 12;
+        const diff = 10000 / loadingTime; // loadingTime 을 참고해서 적당한 값 적용
         return Math.min(oldProgress + diff, 100);
       });
-    }, 500);
+    }, 100);
 
     return () => {
       clearInterval(timer);
     };
   }, []);
+
+  const initLoadingMsg = async () => {
+    const res = await getCommonSence();
+    setLoadingMsg(res.data.commonSense);
+  };
 
   return (
     <>
@@ -48,13 +52,17 @@ const LoadingScene = () => {
           로 딩 중
         </Typography>
         <Box sx={{ mt: '2vh', width: '100%' }}>
-          <LinearProgress variant="determinate" value={progress} />
+          <LinearProgress
+            variant="determinate"
+            value={progress}
+            sx={{ height: 15, borderRadius: 5 }}
+          />
         </Box>
         <Typography
           sx={{
             mt: '5vh',
             color: '#ffffff',
-            fontSize: '2rem',
+            fontSize: '1.7rem',
             fontWeight: 'bold',
             textTransform: 'none',
           }}
