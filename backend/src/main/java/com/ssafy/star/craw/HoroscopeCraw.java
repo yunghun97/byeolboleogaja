@@ -44,6 +44,5 @@ public class HoroscopeCraw {
                 System.out.println("오류 발생");
             }
         }
-
     }
 }

@@ -28,4 +28,4 @@ spring:
     password: imlah
 
   profiles:
-    include: API-KEY
+    include: API-KEY, credentials
