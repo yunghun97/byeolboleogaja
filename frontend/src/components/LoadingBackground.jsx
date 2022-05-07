@@ -10,7 +10,7 @@ const LoadingBackground = ({ bgUrl }) => {
         width: '100%',
         height: '100%',
         objectFit: 'cover',
-        position: 'absolute',
+        position: 'fixed',
         zIndex: '-100',
       }}
     />
