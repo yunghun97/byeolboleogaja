@@ -1,13 +1,12 @@
 import 'aframe';
 import 'aframe-extras';
 import { useState, useEffect } from 'react';
-import MuseumDialog from '../components/MuseumDialog';
+
 const MuseumContainer = ({ isOpen, setOpen }) => {
-  const [item, setItem] = useState(false);
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const telescope = sceneEl.querySelector('#hubble');
-    setItem(telescope);
+
     telescope.addEventListener('click', function () {
       setOpen(true);
     });

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Box,
   Button,
@@ -14,7 +13,6 @@ import {
 const MuseumDialog = ({ isOpen, setOpen }) => {
   const handleClose = () => {
     setOpen(false);
-    console.log(isOpen);
   };
 
   return (
