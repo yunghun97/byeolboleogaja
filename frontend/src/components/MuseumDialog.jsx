@@ -32,13 +32,12 @@ const MuseumDialog = ({ isOpen, setOpen, satellite }) => {
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">{satellite.name}</DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ whiteSpace: 'pre-line' }}>
         <DialogContentText id="alert-dialog-description">
           발사 일자 : {year}년 {month}월 {day}일
         </DialogContentText>
-        <DialogContentText id="alert-dialog-description">
-          {satellite.desc}
-        </DialogContentText>
+
+        {satellite.desc}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} variant="contained">

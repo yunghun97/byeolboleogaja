@@ -17,29 +17,36 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const telescopeKepler = sceneEl.querySelector('#kepler');
     const telescopeJames = sceneEl.querySelector('#james');
     telescopeHubble.addEventListener('click', function () {
-      initSatellite(1);
-      setOpen(true);
-    });
-    telescopeChandra.addEventListener('click', function () {
-      initSatellite(2);
-      setOpen(true);
-    });
-    telescopeSpitzer.addEventListener('click', function () {
-      initSatellite(3);
-      setOpen(true);
-    });
-    telescopeFermi.addEventListener('click', function () {
-      initSatellite(4);
-      setOpen(true);
-    });
-    telescopeKepler.addEventListener('click', function () {
-      initSatellite(5);
+      const hubble = 1;
+      initSatellite(hubble);
       setOpen(true);
     });
     telescopeJames.addEventListener('click', function () {
-      initSatellite(6);
+      const james = 2;
+      initSatellite(james);
       setOpen(true);
     });
+    telescopeChandra.addEventListener('click', function () {
+      const chandra = 3;
+      initSatellite(chandra);
+      setOpen(true);
+    });
+    telescopeSpitzer.addEventListener('click', function () {
+      const spitzer = 4;
+      initSatellite(spitzer);
+      setOpen(true);
+    });
+    telescopeFermi.addEventListener('click', function () {
+      const fermi = 5;
+      initSatellite(fermi);
+      setOpen(true);
+    });
+    telescopeKepler.addEventListener('click', function () {
+      const kepler = 6;
+      initSatellite(kepler);
+      setOpen(true);
+    });
+
     return;
   });
 
