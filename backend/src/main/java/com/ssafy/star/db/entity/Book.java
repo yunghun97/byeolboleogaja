@@ -2,10 +2,7 @@ package com.ssafy.star.db.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -23,4 +20,8 @@ public class Book extends BaseTimeEntity{
 
     @Column(name = "book_content", columnDefinition = "TEXT")
     private String content;
+
+    @Column(name = "category")
+    @Enumerated(EnumType.STRING)
+    private Category category;
 }

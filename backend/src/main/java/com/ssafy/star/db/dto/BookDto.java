@@ -1,6 +1,7 @@
 package com.ssafy.star.db.dto;
 
 import com.ssafy.star.db.entity.Book;
+import com.ssafy.star.db.entity.Category;
 import lombok.*;
 import java.time.LocalDateTime;
 
@@ -16,6 +17,8 @@ public class BookDto {
 
     private String content;
 
+    private Category category;
+
     private LocalDateTime modifiedDate;
 
     public static BookDto convert(Book book) {
@@ -25,6 +28,7 @@ public class BookDto {
                 .id(book.getId())
                 .title(book.getTitle())
                 .content(book.getContent())
+                .category(book.getCategory())
                 .modifiedDate(book.getModifiedDate())
                 .build();
     }

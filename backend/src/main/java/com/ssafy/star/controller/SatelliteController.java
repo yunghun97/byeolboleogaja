@@ -19,7 +19,7 @@ public class SatelliteController {
         return satelliteService.getAllSatellites();
     }
 
-    @GetMapping("/{satelliteId")
+    @GetMapping("/{satelliteId}")
     public ResponseEntity<?> getSatellite(@PathVariable Long satelliteId) {
         return satelliteService.getSatellite(satelliteId);
     }
