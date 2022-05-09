@@ -1,7 +1,17 @@
 import 'aframe';
 import 'aframe-extras';
+import amongUs from '@/assets/amongUs.glb?url';
+import sky from '@/assets/space.jpg?url';
+import fence from '@/assets/fence.glb?url';
+import jamesWebbSpaceTelescope from '@/assets/james_webb_space_telescope.glb?url';
+import hubbleSpaceTelescope from '@/assets/hubble space telescope.glb?url';
+import chandraXrayObservatory from '@/assets/Chandra X-ray Observatory.glb?url';
+import spitzerSpaceTelescope from '@/assets/Spitzer Space Telescope.glb?url';
+import fermiGammarayTelescope from '@/assets/Fermi Gamma-ray Large Area Space Telescope.glb?url';
+import keplerSpaceObservatory from '@/assets/Kepler space observatory.glb?url';
 import { useEffect } from 'react';
 import { getSatellite } from '@/api/satellite';
+
 const MuseumContainer = ({ setOpen, setSatellite }) => {
   const initSatellite = async (satelliteId) => {
     const res = await getSatellite(satelliteId);
@@ -58,58 +68,58 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
             id="groundTexture"
             src="https://cdn.aframe.io/a-painter/images/floor.jpg"
           />
-          <a-asset-item id="model" src="/src/assets/amongUs.glb"></a-asset-item>
-             
+          <img id="sky" src={sky} />
+          <a-asset-item id="model" src={amongUs}></a-asset-item>   
         </a-assets>
-        <a-sky src="src/assets/space.jpg" theta-length="90" radius="35" />
+        <a-sky src={sky} theta-length="90" radius="35" />
         <a-cylinder src="#groundTexture" radius="36" height="0.1"></a-cylinder>
         <a-gltf-model
           id="fence1"
           position="61 -1.3 -10"
           rotation="0 90 0"
-          src="src/assets/fence.glb"
+          src={fence}
         />
         <a-gltf-model
           id="fence2"
           position="41 -1.3 -10"
           rotation="0 90 0"
-          src="src/assets/fence.glb"
+          src={fence}
         />
         <a-gltf-model
           id="fence3"
           position="21 -1.3 -10"
           rotation="0 90 0"
-          src="src/assets/fence.glb"
+          src={fence}
         />
         <a-gltf-model
           id="fence4"
           position="1 -1.3 -10"
           rotation="0 90 0"
-          src="src/assets/fence.glb"
+          src={fence}
         />
         <a-gltf-model
           id="fence5"
           position="61 -1.3 10"
           rotation="0 90 0"
-          src="src/assets/fence.glb"
+          src={fence}
         />
         <a-gltf-model
           id="fence6"
           position="41 -1.3 10"
           rotation="0 90 0"
-          src="src/assets/fence.glb"
+          src={fence}
         />
         <a-gltf-model
           id="fence7"
           position="21 -1.3 10"
           rotation="0 90 0"
-          src="src/assets/fence.glb"
+          src={fence}
         />
         <a-gltf-model
           id="fence8"
           position="1 -1.3 10"
           rotation="0 90 0"
-          src="src/assets/fence.glb"
+          src={fence}
         />
         <a-text
           value="James Webb Space Telescope"
@@ -137,21 +147,21 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           id="james"
           position="-19 3 -10"
           scale="0.5 0.5 0.5"
-          src="src/assets/james_webb_space_telescope.glb"
+          src={jamesWebbSpaceTelescope}
         />
         <a-gltf-model
           class="clickable"
           id="hubble"
           position="-0.2 8 -12"
           rotation="-180 0 0"
-          src="src/assets/hubble space telescope.glb"
+          src={hubbleSpaceTelescope}
         />
         <a-gltf-model
           class="clickable"
           id="chandra"
           position="25 2 -10"
           rotation="0 90 10"
-          src="src/assets/Chandra X-ray Observatory.glb"
+          src={chandraXrayObservatory}
         />
         <a-gltf-model
           class="clickable"
@@ -159,7 +169,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           position="21 3 10"
           scale="0.6 0.6 0.6"
           rotation="60 360 0"
-          src="src/assets/Spitzer Space Telescope.glb"
+          src={spitzerSpaceTelescope}
         />
         <a-gltf-model
           class="clickable"
@@ -167,14 +177,14 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           position="1 3 10"
           scale="0.8 0.8 0.8"
           rotation="90 90 0"
-          src="src/assets/Fermi Gamma-ray Large Area Space Telescope.glb"
+          src={fermiGammarayTelescope}
         />
         <a-gltf-model
           class="clickable"
           id="kepler"
           position="-20 3 10"
           rotation="0 90 0"
-          src="src/assets/Kepler space observatory.glb"
+          src={keplerSpaceObservatory}
         />
         <a-entity
           raycaster="objects: .clickable"
