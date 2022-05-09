@@ -6,12 +6,14 @@ import spaceship from '@/assets/spaceship.glb?url';
 import scienceMuseum from '@/assets/science-museum.glb?url';
 import satellite from '@/assets/satellite.glb?url';
 import witchHouse from '@/assets/witch-house.glb?url';
+import sky from '@/assets/bg-world.jpg?url';
 
 const WorldContainer = () => {
   return (
     <>
       <a-scene>
         <a-assets>
+          <img id="sky" src={sky}/>
           <a-asset-item id="ground" src={ground}></a-asset-item>
           <a-asset-item id="library" src={library}></a-asset-item>
           <a-asset-item id="observatory" src={observatory}></a-asset-item>
@@ -20,7 +22,7 @@ const WorldContainer = () => {
           <a-asset-item id="satellite" src={satellite}></a-asset-item>
           <a-asset-item id="witch-house" src={witchHouse}></a-asset-item>
         </a-assets>
-        <a-sky src="src/assets/bg-world.jpg" />
+        <a-sky src="#sky" />
         <a-gltf-model src="#ground" position="0 -5 0" rotation="0 -2 0" />
         <a-gltf-model src="#library" position="82.276 14.178 -204.775" rotation="0 90 0" />
         <a-gltf-model src="#observatory" scale="120 120 120" position="41.511 29.726 -56.011" rotation="0 90 0" />
