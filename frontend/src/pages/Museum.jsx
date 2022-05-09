@@ -1,5 +1,5 @@
 import MuseumContainer from '@/components/MuseumContainer';
-import MuseumDialog from '../components/MuseumDialog';
+import MuseumDialog from '@/components/MuseumDialog';
 import { useState } from 'react';
 export default function Museum() {
   const [isOpen, setOpen] = useState(false);
