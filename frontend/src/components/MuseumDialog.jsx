@@ -20,6 +20,7 @@ const MuseumDialog = ({ isOpen, setOpen, satellite }) => {
     month = launchDate[1];
     day = launchDate[2];
   }
+
   const handleClose = () => {
     setOpen(false);
   };
