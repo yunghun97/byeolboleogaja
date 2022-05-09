@@ -1,20 +1,48 @@
 import 'aframe';
 import 'aframe-extras';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { getSatellite } from '@/api/satellite';
+const MuseumContainer = ({ setOpen, setSatellite }) => {
+  const initSatellite = async (satelliteId) => {
+    const res = await getSatellite(satelliteId);
+    setSatellite(res.data);
+  };
 
-const MuseumContainer = ({ isOpen, setOpen }) => {
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
-    const telescope = sceneEl.querySelector('#hubble');
-
-    telescope.addEventListener('click', function () {
+    const telescopeHubble = sceneEl.querySelector('#hubble');
+    const telescopeChandra = sceneEl.querySelector('#chandra');
+    const telescopeSpitzer = sceneEl.querySelector('#spitzer');
+    const telescopeFermi = sceneEl.querySelector('#fermi');
+    const telescopeKepler = sceneEl.querySelector('#kepler');
+    const telescopeJames = sceneEl.querySelector('#james');
+    telescopeHubble.addEventListener('click', function () {
+      initSatellite(1);
+      setOpen(true);
+    });
+    telescopeChandra.addEventListener('click', function () {
+      initSatellite(2);
+      setOpen(true);
+    });
+    telescopeSpitzer.addEventListener('click', function () {
+      initSatellite(3);
+      setOpen(true);
+    });
+    telescopeFermi.addEventListener('click', function () {
+      initSatellite(4);
+      setOpen(true);
+    });
+    telescopeKepler.addEventListener('click', function () {
+      initSatellite(5);
+      setOpen(true);
+    });
+    telescopeJames.addEventListener('click', function () {
+      initSatellite(6);
       setOpen(true);
     });
     return;
   });
-  // console.log(item);
 
-  // console.log(isOpen);
   return (
     <div>
       <a-scene>
