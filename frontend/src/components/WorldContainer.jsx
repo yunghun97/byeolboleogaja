@@ -1,17 +1,24 @@
 import 'aframe';
+import ground from '@/assets/ground-world.glb?url';
+import library from '@/assets/library.glb?url';
+import observatory from '@/assets/observatory.glb?url';
+import spaceship from '@/assets/spaceship.glb?url';
+import scienceMuseum from '@/assets/science-museum.glb?url';
+import satellite from '@/assets/satellite.glb?url';
+import witchHouse from '@/assets/witch-house.glb?url';
 
 const WorldContainer = () => {
   return (
     <>
       <a-scene>
         <a-assets>
-          <a-asset-item id="ground" src="src/assets/ground-world.glb"></a-asset-item>
-          <a-asset-item id="library" src="src/assets/library.glb"></a-asset-item>
-          <a-asset-item id="observatory" src="src/assets/observatory.glb"></a-asset-item>
-          <a-asset-item id="spaceship" src="src/assets/spaceship.glb"></a-asset-item>
-          <a-asset-item id="science-museum" src="src/assets/science-museum.glb"></a-asset-item>
-          <a-asset-item id="satellite" src="src/assets/satellite.glb"></a-asset-item>
-          <a-asset-item id="witch-house" src="src/assets/witch-house.glb"></a-asset-item>
+          <a-asset-item id="ground" src={ground}></a-asset-item>
+          <a-asset-item id="library" src={library}></a-asset-item>
+          <a-asset-item id="observatory" src={observatory}></a-asset-item>
+          <a-asset-item id="spaceship" src={spaceship}></a-asset-item>
+          <a-asset-item id="science-museum" src={scienceMuseum}></a-asset-item>
+          <a-asset-item id="satellite" src={satellite}></a-asset-item>
+          <a-asset-item id="witch-house" src={witchHouse}></a-asset-item>
         </a-assets>
         <a-sky src="src/assets/bg-world.jpg" />
         <a-gltf-model src="#ground" position="0 -5 0" rotation="0 -2 0" />
