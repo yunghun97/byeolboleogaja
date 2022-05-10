@@ -43,8 +43,6 @@ public class S3Controller {
         if("image".equals(nasaDto.getMedia_type())) {
             File nasaImg = s3Uploader.downloadImg(nasaDto.getHdurl(), nasaDto.getTitle());
             uploadURL = s3Uploader.upload(nasaImg, "todayNASA");
-        } else {
-            uploadURL = "";
         }
     }
 
