@@ -10,8 +10,8 @@ import {
   Typography,
 } from '@mui/material';
 
-const GuideDialog = ({ guideInfos }) => {
-  const [open, setOpen] = useState(true);
+const GuideDialog = ({ guideInfos, open, setOpen }) => {
+  // const [open, setOpen] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = guideInfos.length;
 
@@ -35,6 +35,7 @@ const GuideDialog = ({ guideInfos }) => {
     <Dialog fullWidth maxWidth="md" open={open} onClose={handleClose}>
       <DialogTitle>
         <Typography
+          component="h1"
           sx={{
             fontSize: '1.5rem',
             fontWeight: 'bold',
@@ -47,10 +48,16 @@ const GuideDialog = ({ guideInfos }) => {
       <Box
         component="img"
         src={guideInfos[activeStep].imgPath}
-        sx={{ m: 1 }}
+        sx={{
+          height: 400,
+          display: 'block',
+          overflow: 'hidden',
+          m: 1,
+        }}
       ></Box>
       <DialogContent>
         <Typography
+          component="body1"
           sx={{
             fontSize: '1.2rem',
             fontWeight: 'bold',

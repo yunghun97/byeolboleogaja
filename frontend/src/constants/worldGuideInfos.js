@@ -1,11 +1,11 @@
-import movement from '@/assets/img-movement.png';
-import chat from '@/assets/img-chat.png';
-import observatory from '@/assets/img-observatory.png';
-import library from '@/assets/img-library.png';
-import museum from '@/assets/img-museum.png';
-import spaceship from '@/assets/img-spaceship.png';
-import astrology from '@/assets/img-astrology.png';
-import guidecharacter from '@/assets/observatory/img-guidecharacter.png';
+import movement from '@/assets/img/world/img-movement.png';
+import chat from '@/assets/img/world/img-chat.png';
+import observatory from '@/assets/img/world/img-observatory.png';
+import library from '@/assets/img/world/img-library.png';
+import museum from '@/assets/img/world/img-museum.png';
+import spaceship from '@/assets/img/world/img-spaceship.png';
+import astrology from '@/assets/img/world/img-astrology.png';
+import guidecharacter from '@/assets/img/observatory/img-guidecharacter.png';
 
 const worldGuideInfos = [
   {
@@ -50,7 +50,7 @@ const worldGuideInfos = [
   {
     title: '별 보러 가자!',
     description:
-      '기능이 궁금하다면 월드맵 우측 하단의 ? 아이콘을 클릭하면 언제든지 조작 안내 팝업을 다시 볼 수 있어요.',
+      '월드맵 우측 하단의 \'?\' 아이콘을 클릭하면 언제든지 조작 안내 팝업을 다시 볼 수 있어요.',
     imgPath: guidecharacter,
   },
 ];

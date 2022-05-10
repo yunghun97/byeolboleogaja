@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import logoMain from '@/assets/logo-main.png';
+import logoMain from '@/assets/img/main/logo-main.png';
 
 const MainContainer = () => {
   const navigate = useNavigate();
