@@ -8,6 +8,11 @@ import museum from '@/assets/model/world/mdl-museum.glb?url';
 import satellite from '@/assets/model/world/mdl-satellite.glb?url';
 import witchHouse from '@/assets/model/world/mdl-witchhouse.glb?url';
 import amongus from '@/assets/model/common/mdl-amongus.glb?url';
+import observatoryNpc from '@/assets/model/world/mdl-npc-1.glb?url';
+import libraryNpc from '@/assets/model/world/mdl-npc-2.glb?url';
+import museumNpc from '@/assets/model/world/mdl-npc-3.glb?url';
+import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
+import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
 
 const WorldContainer = () => {
   return (
@@ -23,6 +28,11 @@ const WorldContainer = () => {
           <a-asset-item id="satellite" src={satellite}></a-asset-item>
           <a-asset-item id="witch-house" src={witchHouse}></a-asset-item>
           <a-asset-item id="amongus" src={amongus}></a-asset-item>
+          <a-asset-item id="libraryNpc" src={libraryNpc}></a-asset-item>
+          <a-asset-item id="observatoryNpc" src={observatoryNpc}></a-asset-item>
+          <a-asset-item id="museumNpc" src={museumNpc}></a-asset-item>
+          <a-asset-item id="spaceshipNpc" src={spaceshipNpc}></a-asset-item>
+          <a-asset-item id="horoscopeNpc" src={horoscopeNpc}></a-asset-item>
         </a-assets>
         <a-sky src="#sky" />
         <a-gltf-model src="#ground" position="0 -5 0" rotation="0 -2 0" />
@@ -58,6 +68,37 @@ const WorldContainer = () => {
           scale="0.3 0.3 0.3"
           position="-83.652 15.925 -359.571"
           rotation="179.947 0 -179.957"
+        />
+
+        <a-gltf-model
+          src="#libraryNpc"
+          scale="12 12 12"
+          position="50 2 -200"
+          rotation="0 270 0"
+        />
+        <a-gltf-model
+          src="#observatoryNpc"
+          scale="14 14 14"
+          position="44 2 -60"
+          rotation="0 270 0"
+        />
+        <a-gltf-model
+          src="#museumNpc"
+          scale="15 15 15"
+          position="-35 2.4 -70"
+          rotation="0 30 0"
+        />
+        <a-gltf-model
+          src="#spaceshipNpc"
+          scale="15 15 15"
+          position="-55 2.5 -200"
+          rotation="0 60 0"
+        />
+        <a-gltf-model
+          src="#horoscopeNpc"
+          scale="15 15 15"
+          position="-65 3 -345"
+          rotation="0 0 0"
         />
         <a-camera position="0 7 0">
           <a-entity position="0 -5 0" rotation="0 180 0">
