@@ -7,6 +7,8 @@ import scienceMuseum from '@/assets/science-museum.glb?url';
 import satellite from '@/assets/satellite.glb?url';
 import witchHouse from '@/assets/witch-house.glb?url';
 import sky from '@/assets/bg-world.jpg?url';
+import GuideDialog from '@/components/GuideDialog';
+import { worldGuideInfos } from '@/constants';
 
 const WorldContainer = () => {
   return (
@@ -36,6 +38,7 @@ const WorldContainer = () => {
           </a-entity>
         </a-camera>
       </a-scene>
+      <GuideDialog guideInfos={worldGuideInfos} />
     </>
   );
 };
