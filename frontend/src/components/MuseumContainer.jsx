@@ -28,12 +28,68 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const telescopeFermi = sceneEl.querySelector('#fermi');
     const telescopeKepler = sceneEl.querySelector('#kepler');
     const telescopeJames = sceneEl.querySelector('#james');
+    const cam = document.querySelector('#camera');
 
-    const camera = sceneEl.querySelector('#camera');
+    //키 이동 이벤트 가져오기
 
-    camera.addEventListener('onsubmit', function () {
-      console.log('press');
+    document.addEventListener('keydown', function (event) {
+      let primaryPosition;
+      let primaryRotation;
+      console.log(cam.getAttribute('position'));
+      // <shift> + * for everything.
+      if (!event.shiftKey) {
+        return;
+      }
+
+      // <space> for trigger.
+      if (event.keyCode === 32) {
+        if (this.isTriggerDown) {
+          cam.emit('triggerup');
+          this.isTriggerDown = false;
+        } else {
+          cam.emit('triggerdown');
+          this.isTriggerDown = true;
+        }
+        return;
+      }
+
+      // Position bindings.
+      primaryPosition = cam.getAttribute('position');
+
+      if (event.key === 'ArrowUP') {
+        primaryPosition.x -= 0.01;
+      } // h.
+      if (event.key === 'ArrowDown') {
+        primaryPosition.y -= 0.01;
+      } // j.
+      if (event.key === 'ArrowRight') {
+        primaryPosition.y += 0.01;
+      } // k.
+      if (event.key === 'ArrowRight') {
+        primaryPosition.x += 0.01;
+      } // l.
+      // if (event.keyCode === 59 || event.keyCode === 186) {
+      //   primaryPosition.z -= 0.01;
+      // } // ;.
+      // if (event.keyCode === 222) {
+      //   primaryPosition.z += 0.01;
+      // } // ;.
+
+      // Rotation bindings.
+      // primaryRotation = cam.getAttribute('rotation');
+      // if (event.keyCode === 89) {
+      //   primaryRotation.x -= 10;
+      // } // y.
+      // if (event.keyCode === 79) {
+      //   primaryRotation.x += 10;
+      // } // o.
+
+      cam.setAttribute('position', AFRAME.utils.clone(primaryPosition));
+      // cam.setAttribute('rotation', AFRAME.utils.clone(primaryRotation));
     });
+    // const cameraEl = sceneEl.querySelector('#camera');
+
+    // cameraEl.removeAttribute('wasd-controls');
     telescopeHubble.addEventListener('click', function () {
       const hubble = 1;
       initSatellite(hubble);
@@ -70,7 +126,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
 
   return (
     <div>
-      <a-scene physics="gravity: 0">
+      <a-scene>
         <a-assets>
           <img
             id="groundTexture"
@@ -80,7 +136,12 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           <a-asset-item id="model" src={amongUs}></a-asset-item>   
         </a-assets>
         <a-sky id="backSky" src={sky} theta-length="90" radius="50" />
-        <a-cylinder src="#groundTexture" radius="51" height="0.1"></a-cylinder>
+        <a-cylinder
+          material="src:#cam1; opacity: .95"
+          src="#groundTexture"
+          radius="51"
+          height="0.1"
+        ></a-cylinder>
         <a-gltf-model
           id="fence1"
           position="65 -1.3 -10"
@@ -289,12 +350,12 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           id="vendingMachine"
           src={vendingMachine}
         />
-        <a-entity
+        {/* <a-entity
           raycaster="objects: .clickable"
           cursor="rayOrigin:mouse"
-        ></a-entity>
+        ></a-entity> */}
            
-        <a-camera
+        {/* <a-camera
           id="camera"
           position="0 1.5 5"
           wasd-controls="acceleration:50"
@@ -303,8 +364,27 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
             <a-gltf-model scale="0.2 0.2 0.2" id="player" src="#model" />
           </a-entity>
                
-        </a-camera>
-         
+        </a-camera> */}
+        <a-entity position="0 0 2" movement-controls="fly: true; speed: 0.1">
+          <a-entity
+            id="camera"
+            camera
+            position="0 1.6 0"
+            wasd-controls="acceleration:50"
+          >
+            <a-gltf-model
+              cursor="rayOrigin: mouse;"
+              raycaster="objects: .clickable"
+              scale="0.2 0.2 0.2"
+              height="0.5"
+              position="0 -0.6 -1"
+              rotation="0 180 0"
+              id="player"
+              src="#model"
+            />
+          </a-entity>
+        </a-entity>
+        <canvas id="cam1"></canvas>
       </a-scene>
     </div>
   );
