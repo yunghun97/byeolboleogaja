@@ -1,5 +1,5 @@
 import WorldContainer from '@/components/WorldContainer';
-import citykey from '@/assets/CityKey.mp3';
+import citykey from '@/assets/audio/bgm-citykey.mp3';
 
 export default function World() {
   return (

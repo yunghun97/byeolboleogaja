@@ -1,15 +1,15 @@
-import aquarius from '@/assets/horoscope/img-aquarius.png';
-import pisces from '@/assets/horoscope/img-pisces.png';
-import aries from '@/assets/horoscope/img-aries.png';
-import taurus from '@/assets/horoscope/img-taurus.png';
-import gemini from '@/assets/horoscope/img-gemini.png';
-import cancer from '@/assets/horoscope/img-cancer.png';
-import leo from '@/assets/horoscope/img-leo.png';
-import virgo from '@/assets/horoscope/img-virgo.png';
-import libra from '@/assets/horoscope/img-libra.png';
-import scorpio from '@/assets/horoscope/img-scorpio.png';
-import sagittarius from '@/assets/horoscope/img-sagittarius.png';
-import capricorn from '@/assets/horoscope/img-capricorn.png';
+import aquarius from '@/assets/img/horoscope/img-aquarius.png';
+import pisces from '@/assets/img/horoscope/img-pisces.png';
+import aries from '@/assets/img/horoscope/img-aries.png';
+import taurus from '@/assets/img/horoscope/img-taurus.png';
+import gemini from '@/assets/img/horoscope/img-gemini.png';
+import cancer from '@/assets/img/horoscope/img-cancer.png';
+import leo from '@/assets/img/horoscope/img-leo.png';
+import virgo from '@/assets/img/horoscope/img-virgo.png';
+import libra from '@/assets/img/horoscope/img-libra.png';
+import scorpio from '@/assets/img/horoscope/img-scorpio.png';
+import sagittarius from '@/assets/img/horoscope/img-sagittarius.png';
+import capricorn from '@/assets/img/horoscope/img-capricorn.png';
 
 const zodiac = [
   {
