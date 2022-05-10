@@ -40,13 +40,15 @@ public class S3Controller {
 
         NasaDto nasaDto = restTemplate.exchange(NASA_APOD_API, HttpMethod.GET, entity, NasaDto.class, serviceKey).getBody();
 
-        File nasaImg = s3Uploader.downloadImg(nasaDto.getHdurl(), nasaDto.getTitle());
-        uploadURL = s3Uploader.upload(nasaImg, "todayNASA");
+        if("image".equals(nasaDto.getMedia_type())) {
+            File nasaImg = s3Uploader.downloadImg(nasaDto.getHdurl(), nasaDto.getTitle());
+            uploadURL = s3Uploader.upload(nasaImg, "todayNASA");
+        }
     }
 
     @GetMapping
     public String getImgUrl() {
-        return uploadURL;
+        return "".equals(uploadURL) ? "" : uploadURL;
     }
 
     @GetMapping("/asset/{fileName}")
