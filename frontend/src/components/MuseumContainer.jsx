@@ -11,7 +11,7 @@ import fermiGammarayTelescope from '@/assets/model/museum/mdl-fermi.glb?url';
 import keplerSpaceObservatory from '@/assets/model/museum/mdl-kepler.glb?url';
 import elevator from '@/assets/model/museum/mdl-elevator.glb?url';
 import vendingMachine from '@/assets/model/museum/mdl-vending-machine.glb?url';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getSatellite } from '@/api/satellite';
 
 const MuseumContainer = ({ setOpen, setSatellite }) => {
@@ -19,7 +19,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const res = await getSatellite(satelliteId);
     setSatellite(res.data);
   };
-
+  const [position, setPosition] = useState({});
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const telescopeHubble = sceneEl.querySelector('#hubble');
@@ -31,65 +31,11 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const cam = document.querySelector('#camera');
 
     //키 이동 이벤트 가져오기
-
     document.addEventListener('keydown', function (event) {
-      let primaryPosition;
-      let primaryRotation;
       console.log(cam.getAttribute('position'));
-      // <shift> + * for everything.
-      if (!event.shiftKey) {
-        return;
-      }
-
-      // <space> for trigger.
-      if (event.keyCode === 32) {
-        if (this.isTriggerDown) {
-          cam.emit('triggerup');
-          this.isTriggerDown = false;
-        } else {
-          cam.emit('triggerdown');
-          this.isTriggerDown = true;
-        }
-        return;
-      }
-
-      // Position bindings.
-      primaryPosition = cam.getAttribute('position');
-
-      if (event.key === 'ArrowUP') {
-        primaryPosition.x -= 0.01;
-      } // h.
-      if (event.key === 'ArrowDown') {
-        primaryPosition.y -= 0.01;
-      } // j.
-      if (event.key === 'ArrowRight') {
-        primaryPosition.y += 0.01;
-      } // k.
-      if (event.key === 'ArrowRight') {
-        primaryPosition.x += 0.01;
-      } // l.
-      // if (event.keyCode === 59 || event.keyCode === 186) {
-      //   primaryPosition.z -= 0.01;
-      // } // ;.
-      // if (event.keyCode === 222) {
-      //   primaryPosition.z += 0.01;
-      // } // ;.
-
-      // Rotation bindings.
-      // primaryRotation = cam.getAttribute('rotation');
-      // if (event.keyCode === 89) {
-      //   primaryRotation.x -= 10;
-      // } // y.
-      // if (event.keyCode === 79) {
-      //   primaryRotation.x += 10;
-      // } // o.
-
-      cam.setAttribute('position', AFRAME.utils.clone(primaryPosition));
-      // cam.setAttribute('rotation', AFRAME.utils.clone(primaryRotation));
+      console.log(cam.getAttribute('rotation'));
     });
-    // const cameraEl = sceneEl.querySelector('#camera');
 
-    // cameraEl.removeAttribute('wasd-controls');
     telescopeHubble.addEventListener('click', function () {
       const hubble = 1;
       initSatellite(hubble);
@@ -133,7 +79,6 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
             src="https://cdn.aframe.io/a-painter/images/floor.jpg"
           />
           <img id="sky" src={sky} />
-          <a-asset-item id="model" src={amongUs}></a-asset-item>   
         </a-assets>
         <a-sky id="backSky" src={sky} theta-length="90" radius="50" />
         <a-cylinder
@@ -350,38 +295,25 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           id="vendingMachine"
           src={vendingMachine}
         />
-        {/* <a-entity
-          raycaster="objects: .clickable"
-          cursor="rayOrigin:mouse"
-        ></a-entity> */}
-           
-        {/* <a-camera
-          id="camera"
-          position="0 1.5 5"
-          wasd-controls="acceleration:50"
-        >
-          <a-entity position="0 -1.1 -1" rotation="0 180 0" scale="0.8 0.8 0.8">
-            <a-gltf-model scale="0.2 0.2 0.2" id="player" src="#model" />
-          </a-entity>
-               
-        </a-camera> */}
-        <a-entity position="0 0 2" movement-controls="fly: true; speed: 0.1">
+
+        <a-entity id="rig-camera" look-controls position="0 0 2">
           <a-entity
             id="camera"
-            camera
+            camera="active: true"
             position="0 1.6 0"
+            look-controls="mouseEnabled:true"
             wasd-controls="acceleration:50"
           >
-            <a-gltf-model
+            <a-entity
+              gltf-model={amongUs}
               cursor="rayOrigin: mouse;"
               raycaster="objects: .clickable"
               scale="0.2 0.2 0.2"
               height="0.5"
-              position="0 -0.6 -1"
+              position="0 -1.2 -1"
               rotation="0 180 0"
               id="player"
-              src="#model"
-            />
+            ></a-entity>
           </a-entity>
         </a-entity>
         <canvas id="cam1"></canvas>
