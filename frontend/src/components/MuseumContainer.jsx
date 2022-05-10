@@ -1,14 +1,14 @@
 import 'aframe';
 import 'aframe-extras';
-import amongUs from '@/assets/amongUs.glb?url';
-import sky from '@/assets/space.jpg?url';
-import fence from '@/assets/fence.glb?url';
-import jamesWebbSpaceTelescope from '@/assets/james_webb_space_telescope.glb?url';
-import hubbleSpaceTelescope from '@/assets/hubble space telescope.glb?url';
-import chandraXrayObservatory from '@/assets/Chandra X-ray Observatory.glb?url';
-import spitzerSpaceTelescope from '@/assets/Spitzer Space Telescope.glb?url';
-import fermiGammarayTelescope from '@/assets/Fermi Gamma-ray Large Area Space Telescope.glb?url';
-import keplerSpaceObservatory from '@/assets/Kepler space observatory.glb?url';
+import sky from '@/assets/img/museum/bg-space.jpg?url';
+import amongUs from '@/assets/model/common/mdl-amongus.glb?url';
+import fence from '@/assets/model/museum/mdl-fence.glb?url';
+import jamesWebbSpaceTelescope from '@/assets/model/museum/mdl-james.glb?url';
+import hubbleSpaceTelescope from '@/assets/model/museum/mdl-hubble.glb?url';
+import chandraXrayObservatory from '@/assets/model/museum/mdl-chandra.glb?url';
+import spitzerSpaceTelescope from '@/assets/model/museum/mdl-spitzer.glb?url';
+import fermiGammarayTelescope from '@/assets/model/museum/mdl-fermi.glb?url';
+import keplerSpaceObservatory from '@/assets/model/museum/mdl-kepler.glb?url';
 
 import { useEffect } from 'react';
 import { getSatellite } from '@/api/satellite';

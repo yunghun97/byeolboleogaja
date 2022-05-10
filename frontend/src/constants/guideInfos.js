@@ -1,10 +1,10 @@
-import guidecharacter from '@/assets/observatory/img-guidecharacter.png';
-import locationsetting from '@/assets/observatory/img-locationsetting.png';
-import starguidesetting from '@/assets/observatory/img-starguidesetting.png';
-import stardesc from '@/assets/observatory/img-stardesc.png';
-import starzoom from '@/assets/observatory/img-starzoom.png';
-import timesetting from '@/assets/observatory/img-timesetting.png';
-import returnworld from '@/assets/observatory/img-returnworld.png';
+import guidecharacter from '@/assets/img/observatory/img-guidecharacter.png';
+import locationsetting from '@/assets/img/observatory/img-locationsetting.png';
+import starguidesetting from '@/assets/img/observatory/img-starguidesetting.png';
+import stardesc from '@/assets/img/observatory/img-stardesc.png';
+import starzoom from '@/assets/img/observatory/img-starzoom.png';
+import timesetting from '@/assets/img/observatory/img-timesetting.png';
+import returnworld from '@/assets/img/observatory/img-returnworld.png';
 
 const guideInfos = [
   {

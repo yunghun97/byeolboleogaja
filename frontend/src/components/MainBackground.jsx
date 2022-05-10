@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import mainBg from '@/assets/bg-main.png';
+import mainBg from '@/assets/img/main/bg-main.png';
 
 const MainBackground = () => {
   return (

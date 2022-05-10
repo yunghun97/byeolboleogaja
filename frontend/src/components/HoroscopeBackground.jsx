@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import horoscopeBg from '@/assets/horoscope/bg-horoscope.png';
+import horoscopeBg from '@/assets/img/horoscope/bg-horoscope.png';
 
 const HoroscopeBackground = () => {
   return (
