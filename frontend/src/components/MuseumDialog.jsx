@@ -10,7 +10,17 @@ import {
   Typography,
 } from '@mui/material';
 
-const MuseumDialog = ({ isOpen, setOpen }) => {
+const MuseumDialog = ({ isOpen, setOpen, satellite }) => {
+  let launchDate = satellite.launchDate;
+  let year = '';
+  let month = '';
+  let day = '';
+  if (launchDate) {
+    year = launchDate[0];
+    month = launchDate[1];
+    day = launchDate[2];
+  }
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -22,14 +32,18 @@ const MuseumDialog = ({ isOpen, setOpen }) => {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">{'인공위성 이름'}</DialogTitle>
-      <DialogContent>
+      <DialogTitle id="alert-dialog-title">{satellite.name}</DialogTitle>
+      <DialogContent sx={{ whiteSpace: 'pre-line' }}>
         <DialogContentText id="alert-dialog-description">
-          설명
+          발사 일자 : {year}년 {month}월 {day}일
         </DialogContentText>
+
+        {satellite.desc}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>닫기</Button>
+        <Button onClick={handleClose} variant="contained">
+          닫기
+        </Button>
       </DialogActions>
     </Dialog>
   );
