@@ -1,0 +1,24 @@
+import MuseumContainer from '@/components/MuseumContainer';
+import MuseumDialog from '@/components/MuseumDialog';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+export default function Museum() {
+  const [isOpen, setOpen] = useState(false);
+  const [satellite, setSatellite] = useState({});
+  MuseumDialog.propTypes = {
+    name: PropTypes.string,
+    desc: PropTypes.string,
+    launchDate: PropTypes.array,
+  };
+  return (
+    <main style={{ padding: '1rem 0' }}>
+      <MuseumContainer setOpen={setOpen} setSatellite={setSatellite} />
+      <MuseumDialog
+        path="/react-prop-types"
+        isOpen={isOpen}
+        setOpen={setOpen}
+        satellite={satellite}
+      />
+    </main>
+  );
+}
