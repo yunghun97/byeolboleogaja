@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import 'aframe';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import sky from '@/assets/img/world/bg-world.jpg?url';
 import ground from '@/assets/model/world/mdl-ground.glb?url';
 import library from '@/assets/model/world/mdl-library.glb?url';
@@ -17,6 +17,7 @@ import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
 import questionmark from '@/assets/img/world/img-questionmark.png';
 import GuideDialog from '@/components/GuideDialog';
+import ChatWindow from '@/components/ChatWindow';
 import { worldGuideInfos } from '@/constants';
 
 const WorldContainer = () => {
@@ -127,6 +128,17 @@ const WorldContainer = () => {
       >
         <img src={questionmark} alt="questionmark" />
       </Button>
+      <Box
+        sx={{
+          width: 'min(730px, 75%)',
+          position: 'fixed',
+          left: '1vw',
+          bottom: '1vh',
+          zIndex: 999,
+        }}
+      >
+        <ChatWindow />
+      </Box>
     </>
   );
 };
