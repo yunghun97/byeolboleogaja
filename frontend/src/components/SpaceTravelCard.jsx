@@ -31,7 +31,7 @@ const Frame = styled.div`
 
   background: #FFFFFF;
   box-shadow: 0px 9.50524px 101.672px rgba(37, 72, 153, 0.17);
-  border-radius: 19.0105px;
+  border-radius: 10px;
   margin: 1vw;
 `
 

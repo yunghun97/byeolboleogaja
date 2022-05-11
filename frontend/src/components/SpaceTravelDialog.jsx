@@ -28,12 +28,12 @@ const Background1 = styled.img`
 const Background2 = styled.div`
   display: flex;
   justify-content: space-around;
-  align-items: flex-end;
+  align-items: center;
   position: absolute;
   top: 0;
   left: 0;
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 50px;
+  border-radius: 10px;
   margin: 30px;
   width: calc(100% - 60px);
   height: calc(100% - 60px);
@@ -88,7 +88,7 @@ function SpaceTravelDialog () {
           sx={{
             m: 1,
             position: 'absolute',
-            top: 'calc(50% - 55.45px/2 - 359.28px)',
+            top: '45px',
             left: '83.4%',
             right: '4.13%',
           }}
