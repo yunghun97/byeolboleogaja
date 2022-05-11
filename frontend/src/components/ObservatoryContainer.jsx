@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
 import GuideDialog from '@/components/GuideDialog';
 import { guideInfos } from '@/constants';
 
 const ObservatoryContainer = () => {
+  const [open, setOpen] = useState(true);
+
   return (
     <Box sx={{ width: '100%', height: '100%', backgroundColor: '#000000' }}>
       <iframe
@@ -35,7 +38,7 @@ const ObservatoryContainer = () => {
           월드로 돌아가기
         </Typography>
       </Button>
-      <GuideDialog guideInfos={guideInfos} />
+      <GuideDialog guideInfos={guideInfos} open={open} setOpen={setOpen}/>
     </Box>
   );
 };

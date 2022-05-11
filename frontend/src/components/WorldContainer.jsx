@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import 'aframe';
+import { Button } from '@mui/material';
 import sky from '@/assets/img/world/bg-world.jpg?url';
 import ground from '@/assets/model/world/mdl-ground.glb?url';
 import library from '@/assets/model/world/mdl-library.glb?url';
@@ -13,8 +15,13 @@ import libraryNpc from '@/assets/model/world/mdl-npc-2.glb?url';
 import museumNpc from '@/assets/model/world/mdl-npc-3.glb?url';
 import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
+import questionmark from '@/assets/img/world/img-questionmark.png';
+import GuideDialog from '@/components/GuideDialog';
+import { worldGuideInfos } from '@/constants';
 
 const WorldContainer = () => {
+  const [open, setOpen] = useState(true);
+
   return (
     <>
       <a-scene>
@@ -106,6 +113,20 @@ const WorldContainer = () => {
           </a-entity>
         </a-camera>
       </a-scene>
+      <GuideDialog guideInfos={worldGuideInfos} open={open} setOpen={setOpen} />
+      <Button
+        sx={{
+          position: 'absolute',
+          bottom: '1vh',
+          right: '1vw',
+          zIndex: 999,
+        }}
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        <img src={questionmark} alt="questionmark" />
+      </Button>
     </>
   );
 };

@@ -1,7 +1,7 @@
-import mainBg from '@/assets/bg-main.png';
+import andromedaBg from '@/assets/img/loading/bg-loading-1.jpg';
 
 const nasa = (set, get) => ({
-  apodUrl: mainBg,
+  apodUrl: andromedaBg,
   setApodUrl: (apodUrl) => set((prev) => ({ apodUrl })),
 });
 
