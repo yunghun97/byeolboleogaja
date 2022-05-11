@@ -35,7 +35,6 @@ const GuideDialog = ({ guideInfos, open, setOpen }) => {
     <Dialog fullWidth maxWidth="md" open={open} onClose={handleClose}>
       <DialogTitle>
         <Typography
-          component="h1"
           sx={{
             fontSize: '1.5rem',
             fontWeight: 'bold',
@@ -49,15 +48,11 @@ const GuideDialog = ({ guideInfos, open, setOpen }) => {
         component="img"
         src={guideInfos[activeStep].imgPath}
         sx={{
-          height: 400,
-          display: 'block',
-          overflow: 'hidden',
           m: 1,
         }}
       ></Box>
       <DialogContent>
         <Typography
-          component="body1"
           sx={{
             fontSize: '1.2rem',
             fontWeight: 'bold',
