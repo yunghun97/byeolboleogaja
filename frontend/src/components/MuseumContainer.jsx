@@ -29,13 +29,24 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const telescopeKepler = sceneEl.querySelector('#kepler');
     const telescopeJames = sceneEl.querySelector('#james');
     const cam = document.querySelector('#camera');
+    var player = sceneEl.querySelector('#player');
 
     //키 이동 이벤트 가져오기
     document.addEventListener('keydown', function (event) {
-      console.log(cam.getAttribute('position'));
-      console.log(cam.getAttribute('rotation'));
+      if (
+        event.key === 'ArrowUp' ||
+        event.key === 'ArrowDown' ||
+        event.key === 'ArrowReft' ||
+        event.key === 'ArrowLeft'
+      ) {
+        console.log(cam.getAttribute('position'));
+        console.log(cam.getAttribute('rotation'));
+        player.setAttribute('animation-mixer', { clip: 'walk' });
+      }
     });
-
+    document.addEventListener('keyup', function () {
+      player.setAttribute('animation-mixer', { clip: 'base' });
+    });
     telescopeHubble.addEventListener('click', function () {
       const hubble = 1;
       initSatellite(hubble);
@@ -300,7 +311,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           <a-entity
             id="camera"
             camera="active: true"
-            position="0 1.6 0"
+            position="0 1.6 2"
             look-controls="mouseEnabled:true"
             wasd-controls="acceleration:50"
           >
@@ -310,9 +321,10 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
               raycaster="objects: .clickable"
               scale="0.2 0.2 0.2"
               height="0.5"
-              position="0 -1.2 -1"
+              position="0 -1.2 -3"
               rotation="0 180 0"
               id="player"
+              animation-mixer="clip: base"
             ></a-entity>
           </a-entity>
         </a-entity>
