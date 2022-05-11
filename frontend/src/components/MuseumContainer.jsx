@@ -9,8 +9,9 @@ import chandraXrayObservatory from '@/assets/model/museum/mdl-chandra.glb?url';
 import spitzerSpaceTelescope from '@/assets/model/museum/mdl-spitzer.glb?url';
 import fermiGammarayTelescope from '@/assets/model/museum/mdl-fermi.glb?url';
 import keplerSpaceObservatory from '@/assets/model/museum/mdl-kepler.glb?url';
-
-import { useEffect } from 'react';
+import elevator from '@/assets/model/museum/mdl-elevator.glb?url';
+import vendingMachine from '@/assets/model/museum/mdl-vending-machine.glb?url';
+import { useEffect, useState } from 'react';
 import { getSatellite } from '@/api/satellite';
 
 const MuseumContainer = ({ setOpen, setSatellite }) => {
@@ -18,7 +19,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const res = await getSatellite(satelliteId);
     setSatellite(res.data);
   };
-
+  const [position, setPosition] = useState({});
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const telescopeHubble = sceneEl.querySelector('#hubble');
@@ -27,7 +28,14 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const telescopeFermi = sceneEl.querySelector('#fermi');
     const telescopeKepler = sceneEl.querySelector('#kepler');
     const telescopeJames = sceneEl.querySelector('#james');
-    console.log(sceneEl.systems);
+    const cam = document.querySelector('#camera');
+
+    //키 이동 이벤트 가져오기
+    document.addEventListener('keydown', function (event) {
+      console.log(cam.getAttribute('position'));
+      console.log(cam.getAttribute('rotation'));
+    });
+
     telescopeHubble.addEventListener('click', function () {
       const hubble = 1;
       initSatellite(hubble);
@@ -71,132 +79,154 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
             src="https://cdn.aframe.io/a-painter/images/floor.jpg"
           />
           <img id="sky" src={sky} />
-          <a-asset-item id="model" src={amongUs}></a-asset-item>   
         </a-assets>
-        <a-sky src={sky} theta-length="90" radius="35" />
-        <a-cylinder src="#groundTexture" radius="36" height="0.1"></a-cylinder>
+        <a-sky id="backSky" src={sky} theta-length="90" radius="50" />
+        <a-cylinder
+          material="src:#cam1; opacity: .95"
+          src="#groundTexture"
+          radius="51"
+          height="0.1"
+        ></a-cylinder>
         <a-gltf-model
           id="fence1"
-          position="61 -1.3 -10"
+          position="65 -1.3 -10"
           rotation="0 90 0"
           src={fence}
         />
         <a-gltf-model
           id="fence2"
-          position="41 -1.3 -10"
+          position="40 -1.3 -30"
           rotation="0 90 0"
           src={fence}
         />
         <a-gltf-model
           id="fence3"
-          position="21 -1.3 -10"
+          position="20 -1.3 -30"
           rotation="0 90 0"
           src={fence}
         />
         <a-gltf-model
           id="fence4"
-          position="1 -1.3 -10"
+          position="-5 -1.3 -10"
           rotation="0 90 0"
           src={fence}
         />
         <a-gltf-model
           id="fence5"
-          position="61 -1.3 10"
+          position="65 -1.3 10"
           rotation="0 90 0"
           src={fence}
         />
         <a-gltf-model
           id="fence6"
-          position="41 -1.3 10"
+          position="40 -1.3 20"
           rotation="0 90 0"
           src={fence}
         />
         <a-gltf-model
           id="fence7"
-          position="21 -1.3 10"
+          position="20 -1.3 20"
           rotation="0 90 0"
           src={fence}
         />
         <a-gltf-model
           id="fence8"
-          position="1 -1.3 10"
+          position="-5 -1.3 10"
+          rotation="0 90 0"
+          src={fence}
+        />
+        <a-gltf-model
+          id="fence9"
+          position="45 -1.3 -10"
+          rotation="0 90 0"
+          src={fence}
+        />
+        <a-gltf-model
+          id="fence10"
+          position="15 -1.3 -10"
+          rotation="0 90 0"
+          src={fence}
+        />
+        <a-gltf-model
+          id="fence11"
+          position="45 -1.3 10"
+          rotation="0 90 0"
+          src={fence}
+        />
+        <a-gltf-model
+          id="fence12"
+          position="15 -1.3 10"
           rotation="0 90 0"
           src={fence}
         />
         <a-text
-          value="James Webb Space Telescope"
-          position="-15 1.5 -6"
+          value="Fermi Gamma-ray Large Area \n Space Telescope"
+          position="-21.5 1 -7"
           color="#0a0a0a"
         ></a-text>
         <a-plane
           geometry="primitive:plane"
-          position="-13.5 1.5 -6"
+          position="-20 1 -7"
           color="#CCC"
           height="1"
           width="3.5"
         ></a-plane>
         <a-text
           value="Hubble Space Telescope"
-          position="3 1.5 -6"
+          position="5 1 -28"
           color="#0a0a0a"
         ></a-text>
         <a-plane
           geometry="primitive:plane"
-          position="4.2 1.5 -6"
+          position="6.2 1 -28"
           color="#CCC"
           height="1"
           width="3"
         ></a-plane>
         <a-text
           value="Chandra X-ray Observatory"
-          position="25 1.5 -6"
+          position="28.7 1 -7"
           color="#0a0a0a"
         ></a-text>
         <a-plane
           geometry="primitive:plane"
-          position="26.3 1.5 -6"
+          position="30 1 -7"
           color="#CCC"
           height="1"
           width="3"
         ></a-plane>
         <a-text
           value="Spitzer Space Telescope"
-          position="15 2 10"
+          position="28.8 1 12"
           color="#0a0a0a"
-          rotation="0 180 0"
         ></a-text>
         <a-plane
           geometry="primitive:plane"
-          position="13.8 2 10"
-          rotation="0 180 0"
+          position="30 1 12"
           color="#CCC"
           height="1"
           width="3"
         ></a-plane>
         <a-text
-          value="Fermi Gamma-ray Large Area Space Telescope"
-          position="-3 2 10"
+          value="James Webb Space Telescope"
+          position="4.5 1 22"
           color="#0a0a0a"
-          rotation="0 180 0"
         ></a-text>
         <a-plane
           geometry="primitive:plane"
-          position="-5.3 2 10"
-          rotation="0 180 0"
+          position="6 1 22"
           color="#CCC"
           height="1"
-          width="5"
+          width="3.5"
         ></a-plane>
         <a-text
           value="Kepler Space Observatory"
-          position="-25 2 10"
+          position="-21.3 1 12"
           color="#0a0a0a"
-          rotation="0 180 0"
         ></a-text>
         <a-plane
           geometry="primitive:plane"
-          position="-26.3 2 10"
-          rotation="0 180 0"
+          position="-20 1 12"
           color="#CCC"
           height="1"
           width="3"
@@ -204,59 +234,89 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
         <a-gltf-model
           class="clickable"
           id="james"
-          position="-19 3 -10"
+          position="0 5 20"
           scale="0.5 0.5 0.5"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
           src={jamesWebbSpaceTelescope}
         />
         <a-gltf-model
           class="clickable"
           id="hubble"
-          position="-0.2 8 -12"
-          rotation="-180 0 0"
+          position="0 10 -33"
+          animation="property: rotation; to: 90 0 360; loop: true; dur: 10000 easing:linear "
           src={hubbleSpaceTelescope}
         />
         <a-gltf-model
           class="clickable"
           id="chandra"
-          position="25 2 -10"
-          rotation="0 90 10"
+          position="30 5 -11"
+          rotation="0 90 0"
+          animation="property: rotation; to: 90 360 90; loop: true; dur: 10000"
           src={chandraXrayObservatory}
         />
         <a-gltf-model
           class="clickable"
           id="spitzer"
-          position="21 3 10"
+          position="25 5 10"
           scale="0.6 0.6 0.6"
-          rotation="60 360 0"
+          rotation="90 180 0"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
           src={spitzerSpaceTelescope}
         />
         <a-gltf-model
           class="clickable"
           id="fermi"
-          position="1 3 10"
+          position="-25 5 -10"
           scale="0.8 0.8 0.8"
           rotation="90 90 0"
+          animation="property: rotation; to: 90 0 90; loop: true; dur: 10000"
           src={fermiGammarayTelescope}
         />
         <a-gltf-model
           class="clickable"
           id="kepler"
-          position="-20 3 10"
-          rotation="0 90 0"
+          position="-25 5 10"
+          rotation="90 360 0"
+          animation="property: rotation; to: 360 0 0; loop: true; dur: 10000"
           src={keplerSpaceObservatory}
         />
-        <a-entity
-          raycaster="objects: .clickable"
-          cursor="rayOrigin:mouse"
-        ></a-entity>
-           
-        <a-camera position="0 1.5 4">
-          <a-entity position="0 -1.1 -1" rotation="0 180 0" scale="0.8 0.8 0.8">
-            <a-gltf-model scale="0.2 0.2 0.2" id="player" src="#model" />
+        <a-gltf-model
+          class="clickable"
+          scale="0.04 0.04 0.04"
+          rotation="0 180 0"
+          position="-33 0 30"
+          id="elevator"
+          src={elevator}
+        />
+        <a-gltf-model
+          class="clickable"
+          rotation="0 30 0"
+          position="-32 0 37"
+          id="vendingMachine"
+          src={vendingMachine}
+        />
+
+        <a-entity id="rig-camera" look-controls position="0 0 2">
+          <a-entity
+            id="camera"
+            camera="active: true"
+            position="0 1.6 0"
+            look-controls="mouseEnabled:true"
+            wasd-controls="acceleration:50"
+          >
+            <a-entity
+              gltf-model={amongUs}
+              cursor="rayOrigin: mouse;"
+              raycaster="objects: .clickable"
+              scale="0.2 0.2 0.2"
+              height="0.5"
+              position="0 -1.2 -1"
+              rotation="0 180 0"
+              id="player"
+            ></a-entity>
           </a-entity>
-               
-        </a-camera>
-         
+        </a-entity>
+        <canvas id="cam1"></canvas>
       </a-scene>
     </div>
   );
