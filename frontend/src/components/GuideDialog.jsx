@@ -49,7 +49,6 @@ const GuideDialog = ({ guideInfos, open, setOpen }) => {
         component="img"
         src={guideInfos[activeStep].imgPath}
         sx={{
-          height: 400,
           display: 'block',
           overflow: 'hidden',
           m: 1,
