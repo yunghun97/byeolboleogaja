@@ -1,5 +1,6 @@
 import MuseumContainer from '@/components/MuseumContainer';
 import MuseumDialog from '@/components/MuseumDialog';
+import Menu from '@/components/Menu';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 export default function Museum() {
@@ -19,6 +20,7 @@ export default function Museum() {
         setOpen={setOpen}
         satellite={satellite}
       />
+      <Menu />
     </main>
   );
 }
