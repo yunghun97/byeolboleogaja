@@ -24,7 +24,7 @@ const WorldMapContainer = () => {
   };
 
   const handleGoMuseum = () => {
-    navigate('/vite');
+    navigate('/museum');
   };
 
   const handleGoSpace = () => {
