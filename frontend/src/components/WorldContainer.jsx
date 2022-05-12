@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'aframe';
 import { Button } from '@mui/material';
 import sky from '@/assets/img/world/bg-world.jpg?url';
@@ -17,6 +17,7 @@ import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
 import questionmark from '@/assets/img/world/img-questionmark.png';
 import GuideDialog from '@/components/GuideDialog';
+import LoadingScene from '@/components/LoadingScene';
 import BuildingDialog from '@/components/BuildingDialog';
 import {
   worldGuideInfos,
@@ -28,6 +29,63 @@ import {
 } from '@/constants';
 
 const WorldContainer = () => {
+  const [guideOpen, setGuideOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const sceneEl = document.querySelector('a-scene');
+    const libraryEl = sceneEl.querySelector('#library-model');
+    const observatoryEl = sceneEl.querySelector('#observatory-model');
+    const spaceshipEl = sceneEl.querySelector('#spaceship-model');
+    const satelliteEl = sceneEl.querySelector('#satellite-model');
+    const witchHouseEl = sceneEl.querySelector('#witch-house-model');
+    const libraryNpcEl = sceneEl.querySelector('#libraryNpc-model');
+    const observatoryNpcEl = sceneEl.querySelector('#observatoryNpc-model');
+    const museumNpcEl = sceneEl.querySelector('#museumNpc-model');
+    const spaceshipNpcEl = sceneEl.querySelector('#spaceshipNpc-model');
+    const horoscopeNpcEl = sceneEl.querySelector('#horoscopeNpc-model');
+
+    libraryEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+    observatoryEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+    spaceshipEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+    satelliteEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+    witchHouseEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+    libraryNpcEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+    observatoryNpcEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+    museumNpcEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+    spaceshipNpcEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+    horoscopeNpcEl.addEventListener('model-loaded', function () {
+      setProgress(progress+1);
+    });
+  })
+
+  useEffect(() => {
+    // model-loaded 이벤트 3개가 1개로 처리되는 문제로 progress 값 6 이상으로 임의 설정
+    if (progress >= 6) {
+      setIsLoading(false);
+      setGuideOpen(true);
+    }
+  },[progress])
+
   const [open, setOpen] = useState(true);
   const [isopen, setOpened] = useState(false);
   const [info, setInfo] = useState(observatoryIntro);
@@ -35,11 +93,11 @@ const WorldContainer = () => {
 
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
-    const observatory = sceneEl.querySelector('#npc1');
-    const library = sceneEl.querySelector('#npc2');
-    const museum = sceneEl.querySelector('#npc3');
-    const spaceship = sceneEl.querySelector('#npc4');
-    const horoscope = sceneEl.querySelector('#npc5');
+    const observatory = sceneEl.querySelector('#observatoryNpc-model');
+    const library = sceneEl.querySelector('#libraryNpc-model');
+    const museum = sceneEl.querySelector('#museumNpc-model');
+    const spaceship = sceneEl.querySelector('#spaceshipNpc-model');
+    const horoscope = sceneEl.querySelector('#horoscopeNpc-model');
 
     observatory.addEventListener('click', function () {
       setOpened(true);
@@ -69,7 +127,8 @@ const WorldContainer = () => {
   });
   return (
     <>
-      <a-scene shadow="type: pcfsoft">
+      {isLoading && <LoadingScene loadingTime={progress}/>}
+      <a-scene loading-screen="enabled: false" shadow="type: pcfsoft">
         <a-assets>
           <img id="sky" src={sky} />
           <a-asset-item id="ground" src={ground}></a-asset-item>
@@ -103,12 +162,14 @@ const WorldContainer = () => {
           shadow="cast: false; receive: true"
         />
         <a-gltf-model
+          id="library-model"
           src="#library"
           shadow="cast: true; receive: false"
           position="82.276 14.178 -204.775"
           rotation="0 90 0"
         />
         <a-gltf-model
+          id="observatory-model"
           src="#observatory"
           scale="120 120 120"
           shadow="cast: true; receive: false"
@@ -116,18 +177,21 @@ const WorldContainer = () => {
           rotation="0 90 0"
         />
         <a-gltf-model
+          id="spaceship-model"
           src="#spaceship"
           shadow="cast: true; receive: false"
           scale="100 100 100"
           position="-60.211 -1.030 -262.203"
         />
         <a-gltf-model
+          id="museum-model"
           src="#museum"
           shadow="cast: true; receive: false"
           scale="2.3 2.3 2.3"
           position="-54.671 0 -86.823"
         />
         <a-gltf-model
+          id="satellite-model"
           src="#satellite"
           shadow="cast: true; receive: false"
           scale="100 100 100"
@@ -135,6 +199,7 @@ const WorldContainer = () => {
           animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
         />
         <a-gltf-model
+          id="witch-house-model"
           src="#witch-house"
           shadow="cast: true; receive: false"
           scale="0.3 0.3 0.3"
@@ -142,8 +207,15 @@ const WorldContainer = () => {
           rotation="179.947 0 -179.957"
         />
         <a-gltf-model
+          id="libraryNpc-model"
+          src="#libraryNpc"
+          scale="12 12 12"
+          position="50 2 -200"
+          rotation="0 270 0"
+        />
+        <a-gltf-model
+          id="observatoryNpc-model"
           class="clickable"
-          id="npc1"
           src="#observatoryNpc"
           shadow="cast: true; receive: false"
           scale="14 14 14"
@@ -151,8 +223,8 @@ const WorldContainer = () => {
           rotation="0 270 0"
         />
         <a-gltf-model
+          id="libraryNpc-model"
           class="clickable"
-          id="npc2"
           src="#libraryNpc"
           shadow="cast: true; receive: false"
           scale="12 12 12"
@@ -161,7 +233,7 @@ const WorldContainer = () => {
         />
         <a-gltf-model
           class="clickable"
-          id="npc3"
+          id="museumNpc-model"
           src="#museumNpc"
           shadow="cast: true; receive: false"
           scale="15 15 15"
@@ -169,8 +241,8 @@ const WorldContainer = () => {
           rotation="0 30 0"
         />
         <a-gltf-model
+          id="spaceshipNpc-model"
           class="clickable"
-          id="npc4"
           src="#spaceshipNpc"
           shadow="cast: true; receive: false"
           scale="15 15 15"
@@ -178,8 +250,8 @@ const WorldContainer = () => {
           rotation="0 60 0"
         />
         <a-gltf-model
+          id="horoscopeNpc-model"
           class="clickable"
-          id="npc5"
           src="#horoscopeNpc"
           shadow="cast: true; receive: false"
           scale="15 15 15"
@@ -202,7 +274,7 @@ const WorldContainer = () => {
           on: keydown:keyW"
         ></a-entity>
       </a-scene>
-      <GuideDialog guideInfos={worldGuideInfos} open={open} setOpen={setOpen} />
+      <GuideDialog guideInfos={worldGuideInfos} open={guideOpen} setOpen={setGuideOpen} />
       <BuildingDialog
         buildingInfos={info}
         building={Building}
@@ -217,7 +289,7 @@ const WorldContainer = () => {
           zIndex: 999,
         }}
         onClick={() => {
-          setOpen(true);
+          setGuideOpen(true);
         }}
       >
         <img src={questionmark} alt="questionmark" />
