@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'aframe';
 import { Button } from '@mui/material';
 import sky from '@/assets/img/world/bg-world.jpg?url';
@@ -17,11 +17,56 @@ import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
 import questionmark from '@/assets/img/world/img-questionmark.png';
 import GuideDialog from '@/components/GuideDialog';
-import { worldGuideInfos } from '@/constants';
+import BuildingDialog from '@/components/BuildingDialog';
+import {
+  worldGuideInfos,
+  observatoryIntro,
+  libraryIntro,
+  museumIntro,
+  spaceshipIntro,
+  horoscopeIntro,
+} from '@/constants';
 
 const WorldContainer = () => {
   const [open, setOpen] = useState(true);
+  const [isopen, setOpened] = useState(false);
+  const [info, setInfo] = useState(observatoryIntro);
+  const [Building, setBuilding] = useState('');
 
+  useEffect(() => {
+    const sceneEl = document.querySelector('a-scene');
+    const observatory = sceneEl.querySelector('#npc1');
+    const library = sceneEl.querySelector('#npc2');
+    const museum = sceneEl.querySelector('#npc3');
+    const spaceship = sceneEl.querySelector('#npc4');
+    const horoscope = sceneEl.querySelector('#npc5');
+
+    observatory.addEventListener('click', function () {
+      setOpened(true);
+      setInfo(observatoryIntro);
+      setBuilding('observatory');
+    });
+    library.addEventListener('click', function () {
+      setOpened(true);
+      setInfo(libraryIntro);
+      setBuilding('library');
+    });
+    museum.addEventListener('click', function () {
+      setOpened(true);
+      setInfo(museumIntro);
+      setBuilding('museum');
+    });
+    spaceship.addEventListener('click', function () {
+      setOpened(true);
+      setInfo(spaceshipIntro);
+      setBuilding('spaceship');
+    });
+    horoscope.addEventListener('click', function () {
+      setOpened(true);
+      setInfo(horoscopeIntro);
+      setBuilding('horoscope');
+    });
+  });
   return (
     <>
       <a-scene shadow="type: pcfsoft">
@@ -49,9 +94,14 @@ const WorldContainer = () => {
           castShadow:true;
           shadowCameraTop:    500;
           shadowCameraRight:  500;
-          shadowCameraLeft:   -500" 
+          shadowCameraLeft:   -500"
         ></a-entity>
-        <a-gltf-model src="#ground" position="0 -5 0" rotation="0 -2 0" shadow="cast: false; receive: true"/>
+        <a-gltf-model
+          src="#ground"
+          position="0 -5 0"
+          rotation="0 -2 0"
+          shadow="cast: false; receive: true"
+        />
         <a-gltf-model
           src="#library"
           shadow="cast: true; receive: false"
@@ -91,15 +141,9 @@ const WorldContainer = () => {
           position="-83.652 15.925 -359.571"
           rotation="179.947 0 -179.957"
         />
-
         <a-gltf-model
-          src="#libraryNpc"
-          shadow="cast: true; receive: false"
-          scale="12 12 12"
-          position="50 2 -200"
-          rotation="0 270 0"
-        />
-        <a-gltf-model
+          class="clickable"
+          id="npc1"
           src="#observatoryNpc"
           shadow="cast: true; receive: false"
           scale="14 14 14"
@@ -107,6 +151,16 @@ const WorldContainer = () => {
           rotation="0 270 0"
         />
         <a-gltf-model
+          class="clickable"
+          id="npc2"
+          src="#libraryNpc"
+          scale="12 12 12"
+          position="50 2 -200"
+          rotation="0 270 0"
+        />
+        <a-gltf-model
+          class="clickable"
+          id="npc3"
           src="#museumNpc"
           shadow="cast: true; receive: false"
           scale="15 15 15"
@@ -114,6 +168,8 @@ const WorldContainer = () => {
           rotation="0 30 0"
         />
         <a-gltf-model
+          class="clickable"
+          id="npc4"
           src="#spaceshipNpc"
           shadow="cast: true; receive: false"
           scale="15 15 15"
@@ -121,6 +177,8 @@ const WorldContainer = () => {
           rotation="0 60 0"
         />
         <a-gltf-model
+          class="clickable"
+          id="npc5"
           src="#horoscopeNpc"
           shadow="cast: true; receive: false"
           scale="15 15 15"
@@ -128,16 +186,28 @@ const WorldContainer = () => {
           rotation="0 0 0"
         />
         <a-camera position="0 7 0">
-          <a-entity position="0 -5 0" rotation="0 180 0">
+          <a-entity
+            position="0 -5 0"
+            rotation="0 180 0"
+            cursor="rayOrigin: mouse;"
+            raycaster="objects: .clickable"
+          >
             <a-gltf-model src="#amongus" />
           </a-entity>
         </a-camera>
-        <a-entity keyboard-controls
+        <a-entity
+          keyboard-controls
           sound="src: {footsteps};
-          on: keydown:keyW">
-        </a-entity>
+          on: keydown:keyW"
+        ></a-entity>
       </a-scene>
       <GuideDialog guideInfos={worldGuideInfos} open={open} setOpen={setOpen} />
+      <BuildingDialog
+        buildingInfos={info}
+        building={Building}
+        open={isopen}
+        setOpen={setOpened}
+      />
       <Button
         sx={{
           position: 'absolute',
