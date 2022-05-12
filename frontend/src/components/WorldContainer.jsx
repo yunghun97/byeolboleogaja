@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import 'aframe';
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import sky from '@/assets/img/world/bg-world.jpg?url';
 import ground from '@/assets/model/world/mdl-ground.glb?url';
 import library from '@/assets/model/world/mdl-library.glb?url';
