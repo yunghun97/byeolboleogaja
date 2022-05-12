@@ -40,24 +40,27 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
       console.log('player', player.getAttribute('rotation'));
       console.log('cam', cam.getAttribute('position'));
       console.log('cam', cam.getAttribute('rotation'));
-      player.setAttribute('animation-mixer', { clip: 'walk' });
+
       if (event.key === 'ArrowUp') {
         nowRotation.y = 180;
         player.setAttribute('rotation', nowRotation);
+        player.setAttribute('animation-mixer', { clip: 'walk' });
       }
       if (event.key === 'ArrowDown') {
         nowRotation.y = 0;
         player.setAttribute('rotation', nowRotation);
+        player.setAttribute('animation-mixer', { clip: 'walk' });
       }
 
       if (event.key === 'ArrowRight') {
         nowRotation.y = 90;
         player.setAttribute('rotation', nowRotation);
+        player.setAttribute('animation-mixer', { clip: 'walk' });
       }
       if (event.key === 'ArrowLeft') {
         nowRotation.y = -90;
-
         player.setAttribute('rotation', nowRotation);
+        player.setAttribute('animation-mixer', { clip: 'walk' });
       }
     });
     document.addEventListener('keyup', function () {
