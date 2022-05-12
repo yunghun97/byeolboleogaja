@@ -1,5 +1,6 @@
 import 'aframe';
 import 'aframe-extras';
+
 import sky from '@/assets/img/museum/bg-space.jpg?url';
 import amongUs from '@/assets/model/common/mdl-amongus.glb?url';
 import fence from '@/assets/model/museum/mdl-fence.glb?url';
@@ -11,7 +12,7 @@ import fermiGammarayTelescope from '@/assets/model/museum/mdl-fermi.glb?url';
 import keplerSpaceObservatory from '@/assets/model/museum/mdl-kepler.glb?url';
 import elevator from '@/assets/model/museum/mdl-elevator.glb?url';
 import vendingMachine from '@/assets/model/museum/mdl-vending-machine.glb?url';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getSatellite } from '@/api/satellite';
 
 const MuseumContainer = ({ setOpen, setSatellite }) => {
@@ -19,7 +20,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const res = await getSatellite(satelliteId);
     setSatellite(res.data);
   };
-  const [position, setPosition] = useState({});
+
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const telescopeHubble = sceneEl.querySelector('#hubble');
@@ -29,13 +30,42 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const telescopeKepler = sceneEl.querySelector('#kepler');
     const telescopeJames = sceneEl.querySelector('#james');
     const cam = document.querySelector('#camera');
-
+    const player = sceneEl.querySelector('#player');
     //키 이동 이벤트 가져오기
     document.addEventListener('keydown', function (event) {
-      console.log(cam.getAttribute('position'));
-      console.log(cam.getAttribute('rotation'));
-    });
+      let nowRotation = player.getAttribute('rotation');
+      let nowPosition = player.getAttribute('position');
 
+      console.log('player', player.getAttribute('position'));
+      console.log('player', player.getAttribute('rotation'));
+      console.log('cam', cam.getAttribute('position'));
+      console.log('cam', cam.getAttribute('rotation'));
+
+      if (event.key === 'ArrowUp') {
+        nowRotation.y = 180;
+        player.setAttribute('rotation', nowRotation);
+        player.setAttribute('animation-mixer', { clip: 'walk' });
+      }
+      if (event.key === 'ArrowDown') {
+        nowRotation.y = 0;
+        player.setAttribute('rotation', nowRotation);
+        player.setAttribute('animation-mixer', { clip: 'walk' });
+      }
+
+      if (event.key === 'ArrowRight') {
+        nowRotation.y = 90;
+        player.setAttribute('rotation', nowRotation);
+        player.setAttribute('animation-mixer', { clip: 'walk' });
+      }
+      if (event.key === 'ArrowLeft') {
+        nowRotation.y = -90;
+        player.setAttribute('rotation', nowRotation);
+        player.setAttribute('animation-mixer', { clip: 'walk' });
+      }
+    });
+    document.addEventListener('keyup', function () {
+      player.setAttribute('animation-mixer', { clip: 'base' });
+    });
     telescopeHubble.addEventListener('click', function () {
       const hubble = 1;
       initSatellite(hubble);
@@ -296,27 +326,27 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           src={vendingMachine}
         />
 
-        <a-entity id="rig-camera" look-controls position="0 0 2">
+        <a-entity id="rig-camera" position="0 0 9">
           <a-entity
             id="camera"
             camera="active: true"
-            position="0 1.6 0"
-            look-controls="mouseEnabled:true"
+            position="0 1.6 2"
             wasd-controls="acceleration:50"
+            look-controls="mouseEnabled:true"
           >
             <a-entity
               gltf-model={amongUs}
-              cursor="rayOrigin: mouse;"
+              cursor="rayOrigin: mouse"
               raycaster="objects: .clickable"
               scale="0.2 0.2 0.2"
               height="0.5"
-              position="0 -1.2 -1"
+              position="0 -1.2 -3"
               rotation="0 180 0"
               id="player"
+              animation-mixer="clip: base"
             ></a-entity>
           </a-entity>
         </a-entity>
-        <canvas id="cam1"></canvas>
       </a-scene>
     </div>
   );
