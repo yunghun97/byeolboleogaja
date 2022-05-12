@@ -33,33 +33,16 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const player = sceneEl.querySelector('#player');
     //키 이동 이벤트 가져오기
     document.addEventListener('keydown', function (event) {
-      let nowRotation = player.getAttribute('rotation');
-      let nowPosition = player.getAttribute('position');
-
-      console.log('player', player.getAttribute('position'));
-      console.log('player', player.getAttribute('rotation'));
-      console.log('cam', cam.getAttribute('position'));
-      console.log('cam', cam.getAttribute('rotation'));
-
-      if (event.key === 'ArrowUp') {
-        nowRotation.y = 180;
-        player.setAttribute('rotation', nowRotation);
-        player.setAttribute('animation-mixer', { clip: 'walk' });
-      }
-      if (event.key === 'ArrowDown') {
-        nowRotation.y = 0;
-        player.setAttribute('rotation', nowRotation);
-        player.setAttribute('animation-mixer', { clip: 'walk' });
-      }
-
-      if (event.key === 'ArrowRight') {
-        nowRotation.y = 90;
-        player.setAttribute('rotation', nowRotation);
-        player.setAttribute('animation-mixer', { clip: 'walk' });
-      }
-      if (event.key === 'ArrowLeft') {
-        nowRotation.y = -90;
-        player.setAttribute('rotation', nowRotation);
+      if (
+        event.key === 'ArrowUp' ||
+        event.key === 'ArrowDown' ||
+        event.key === 'ArrowRight' ||
+        event.key === 'ArrowLeft' ||
+        event.key === 'w' ||
+        event.key === 'a' ||
+        event.key === 's' ||
+        event.key === 'd'
+      ) {
         player.setAttribute('animation-mixer', { clip: 'walk' });
       }
     });
@@ -326,11 +309,11 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           src={vendingMachine}
         />
 
-        <a-entity id="rig-camera" position="0 0 9">
+        <a-entity id="rig-camera" position="0 0 0">
           <a-entity
             id="camera"
             camera="active: true"
-            position="0 1.6 2"
+            position="0 2 0"
             wasd-controls="acceleration:50"
             look-controls="mouseEnabled:true"
           >
@@ -340,7 +323,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
               raycaster="objects: .clickable"
               scale="0.2 0.2 0.2"
               height="0.5"
-              position="0 -1.2 -3"
+              position="0 -1.35 -0.5"
               rotation="0 180 0"
               id="player"
               animation-mixer="clip: base"
