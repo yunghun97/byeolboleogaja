@@ -24,7 +24,7 @@ const WorldContainer = () => {
 
   return (
     <>
-      <a-scene>
+      <a-scene shadow="type: pcfsoft">
         <a-assets>
           <img id="sky" src={sky} />
           <a-asset-item id="ground" src={ground}></a-asset-item>
@@ -42,36 +42,51 @@ const WorldContainer = () => {
           <a-asset-item id="horoscopeNpc" src={horoscopeNpc}></a-asset-item>
         </a-assets>
         <a-sky src="#sky" />
-        <a-gltf-model src="#ground" position="0 -5 0" rotation="0 -2 0" />
+        <a-entity
+          position="0 400 25"
+          light="type:point;
+          intensity: 1.5;
+          castShadow:true;
+          shadowCameraTop:    500;
+          shadowCameraRight:  500;
+          shadowCameraLeft:   -500" 
+        ></a-entity>
+        <a-gltf-model src="#ground" position="0 -5 0" rotation="0 -2 0" shadow="cast: false; receive: true"/>
         <a-gltf-model
           src="#library"
+          shadow="cast: true; receive: false"
           position="82.276 14.178 -204.775"
           rotation="0 90 0"
         />
         <a-gltf-model
           src="#observatory"
           scale="120 120 120"
+          shadow="cast: true; receive: false"
           position="41.511 29.726 -56.011"
           rotation="0 90 0"
         />
         <a-gltf-model
           src="#spaceship"
+          shadow="cast: true; receive: false"
           scale="100 100 100"
           position="-60.211 -1.030 -262.203"
         />
         <a-gltf-model
           src="#museum"
+          shadow="cast: true; receive: false"
           scale="2.3 2.3 2.3"
           position="-54.671 0 -86.823"
         />
         <a-gltf-model
           src="#satellite"
+          shadow="cast: true; receive: false"
           scale="100 100 100"
           position="-69.931 45.263 -98.965"
           animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
         />
         <a-gltf-model
           src="#witch-house"
+          shadow="cast: true; receive: false"
           scale="0.3 0.3 0.3"
           position="-83.652 15.925 -359.571"
           rotation="179.947 0 -179.957"
@@ -79,30 +94,35 @@ const WorldContainer = () => {
 
         <a-gltf-model
           src="#libraryNpc"
+          shadow="cast: true; receive: false"
           scale="12 12 12"
           position="50 2 -200"
           rotation="0 270 0"
         />
         <a-gltf-model
           src="#observatoryNpc"
+          shadow="cast: true; receive: false"
           scale="14 14 14"
           position="44 2 -60"
           rotation="0 270 0"
         />
         <a-gltf-model
           src="#museumNpc"
+          shadow="cast: true; receive: false"
           scale="15 15 15"
           position="-35 2.4 -70"
           rotation="0 30 0"
         />
         <a-gltf-model
           src="#spaceshipNpc"
+          shadow="cast: true; receive: false"
           scale="15 15 15"
           position="-55 2.5 -200"
           rotation="0 60 0"
         />
         <a-gltf-model
           src="#horoscopeNpc"
+          shadow="cast: true; receive: false"
           scale="15 15 15"
           position="-65 3 -345"
           rotation="0 0 0"
@@ -112,6 +132,10 @@ const WorldContainer = () => {
             <a-gltf-model src="#amongus" />
           </a-entity>
         </a-camera>
+        <a-entity keyboard-controls
+          sound="src: {footsteps};
+          on: keydown:keyW">
+        </a-entity>
       </a-scene>
       <GuideDialog guideInfos={worldGuideInfos} open={open} setOpen={setOpen} />
       <Button
