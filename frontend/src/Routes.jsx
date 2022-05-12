@@ -7,13 +7,13 @@ import World from '@/pages/World';
 import Museum from '@/pages/Museum';
 import Observatory from '@/pages/Observatory';
 import Horoscope from '@/pages/Horoscope';
-import SpaceTravelDialog from './components/SpaceTravelDialog';
+import Library from '@/pages/Library';
 
 export default function Routes() {
   return (
     <ReactRouterRoutes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/dialog" element={<SpaceTravelDialog />} />
+      <Route path="/library" element={<Library />} />
       <Route path="/vite" element={<Vite />} />
       <Route path="/worldmap" element={<WorldMap />} />
       <Route path="/world" element={<World />} />
