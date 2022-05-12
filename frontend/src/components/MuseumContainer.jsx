@@ -102,7 +102,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
 
   return (
     <div>
-      <a-scene physics="driver: ammo">
+      <a-scene>
         <a-assets>
           <img
             id="groundTexture"
@@ -329,14 +329,14 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
         <a-entity id="rig-camera" position="0 0 9">
           <a-entity
             id="camera"
-            camera="active: true; fov: 60"
+            camera="active: true"
             position="0 1.6 2"
-            wasd-controls="acceleration:50;"
+            wasd-controls="acceleration:50"
             look-controls="mouseEnabled:true"
           >
             <a-entity
               gltf-model={amongUs}
-              cursor="rayOrigin: mouse;"
+              cursor="rayOrigin: mouse"
               raycaster="objects: .clickable"
               scale="0.2 0.2 0.2"
               height="0.5"
