@@ -1,16 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import {
-  Box,
   Button,
-  Grid,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  MobileStepper,
-  Typography,
-  Paper,
+  Typography
 } from '@mui/material';
 import bg from '@/assets/img/spaceship/img-dialogbackground.jpg'
 import logo from '@/assets/img/common/logo-rmbg.png'

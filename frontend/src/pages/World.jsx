@@ -3,7 +3,8 @@ import citykey from '@/assets/audio/bgm-citykey.mp3';
 
 export default function World() {
   return (
-    <main style={{ padding: '1rem 0' }}>
+    // <main style={{ padding: '1rem 0' }}>
+    <main>
       <audio src={citykey} autoPlay={true} loop={true}></audio>
       <WorldContainer />
     </main>
