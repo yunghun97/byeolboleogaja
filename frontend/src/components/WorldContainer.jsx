@@ -154,6 +154,7 @@ const WorldContainer = () => {
           class="clickable"
           id="npc2"
           src="#libraryNpc"
+          shadow="cast: true; receive: false"
           scale="12 12 12"
           position="50 2 -200"
           rotation="0 270 0"
