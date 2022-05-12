@@ -17,7 +17,6 @@ import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
 import questionmark from '@/assets/img/world/img-questionmark.png';
 import GuideDialog from '@/components/GuideDialog';
-import ChatWindow from '@/components/ChatWindow';
 import { worldGuideInfos } from '@/constants';
 
 const WorldContainer = () => {
@@ -128,17 +127,6 @@ const WorldContainer = () => {
       >
         <img src={questionmark} alt="questionmark" />
       </Button>
-      <Box
-        sx={{
-          width: 'min(730px, 75%)',
-          position: 'fixed',
-          left: '1vw',
-          bottom: '1vh',
-          zIndex: 999,
-        }}
-      >
-        <ChatWindow />
-      </Box>
     </>
   );
 };

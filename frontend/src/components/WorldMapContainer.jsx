@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '@/store';
-import { Button, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
+import ChatWindow from '@/components/ChatWindow';
 
 const WorldMapContainer = () => {
   const navigate = useNavigate();
@@ -138,6 +139,17 @@ const WorldMapContainer = () => {
           우주여행 하기
         </Typography>
       </Button>
+      <Box
+        sx={{
+          width: 'min(730px, 75%)',
+          position: 'fixed',
+          left: '1vw',
+          bottom: '1vh',
+          zIndex: 999,
+        }}
+      >
+        <ChatWindow />
+      </Box>
     </Container>
   );
 };
