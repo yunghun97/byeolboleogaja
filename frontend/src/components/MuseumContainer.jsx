@@ -240,155 +240,165 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
             ></a-text>
           </a-entity>
         </a-entity>
-        <a-entity id="text-hubble" position="6.2 1 -28">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3"
-          ></a-plane>
-          <a-text
-            value="Hubble Space Telescope"
-            position="-1.2 0 0"
-            color="#0a0a0a"
-          ></a-text>
+        <a-entity id="text-hubble">
+          <a-entity position="6.2 1 -28">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3"
+            ></a-plane>
+            <a-text
+              value="Hubble Space Telescope"
+              position="-1.2 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
+          <a-entity position="6.2 1 -28" rotation="0 180 0">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3"
+            ></a-plane>
+            <a-text
+              value="Hubble Space Telescope"
+              position="-1.2 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
         </a-entity>
-        <a-entity id="text-hubble-r" position="6.2 1 -28" rotation="0 180 0">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3"
-          ></a-plane>
-          <a-text
-            value="Hubble Space Telescope"
-            position="-1.2 0 0"
-            color="#0a0a0a"
-          ></a-text>
+        <a-entity id="text-chandra">
+          <a-entity position="30 1 -7">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3"
+            ></a-plane>
+            <a-text
+              value="Chandra X-ray Observatory"
+              position="-1.3 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
+          <a-entity position="30 1 -7" rotation="0 180 0">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3"
+            ></a-plane>
+            <a-text
+              value="Chandra X-ray Observatory"
+              position="-1.3 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
         </a-entity>
-        <a-entity id="text-chandra" position="30 1 -7">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3"
-          ></a-plane>
-          <a-text
-            value="Chandra X-ray Observatory"
-            position="-1.3 0 0"
-            color="#0a0a0a"
-          ></a-text>
+        <a-entity id="text-spitzer">
+          <a-entity position="30 1 12">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3"
+            ></a-plane>
+            <a-text
+              value="Spitzer Space Telescope"
+              position="-1.2 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
+          <a-entity position="30 1 12" rotation="0 180 0">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3"
+            ></a-plane>
+            <a-text
+              value="Spitzer Space Telescope"
+              position="-1.2 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
         </a-entity>
-        <a-entity id="text-chandra-r" position="30 1 -7" rotation="0 180 0">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3"
-          ></a-plane>
-          <a-text
-            value="Chandra X-ray Observatory"
-            position="-1.3 0 0"
-            color="#0a0a0a"
-          ></a-text>
+        <a-entity id="text-james">
+          <a-entity position="6 1 22">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3.5"
+            ></a-plane>
+            <a-text
+              value="James Webb Space Telescope"
+              position="-1.5 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
+          <a-entity position="6 1 22" rotation="0 180 0">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3.5"
+            ></a-plane>
+            <a-text
+              value="James Webb Space Telescope"
+              position="-1.5 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
         </a-entity>
-        <a-entity id="text-spitzer" position="30 1 12">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3"
-          ></a-plane>
-          <a-text
-            value="Spitzer Space Telescope"
-            position="-1.2 0 0"
-            color="#0a0a0a"
-          ></a-text>
-        </a-entity>
-        <a-entity id="text-spitzer-r" position="30 1 12" rotation="0 180 0">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3"
-          ></a-plane>
-          <a-text
-            value="Spitzer Space Telescope"
-            position="-1.2 0 0"
-            color="#0a0a0a"
-          ></a-text>
-        </a-entity>
-        <a-entity id="text-james" position="6 1 22">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3.5"
-          ></a-plane>
-          <a-text
-            value="James Webb Space Telescope"
-            position="-1.5 0 0"
-            color="#0a0a0a"
-          ></a-text>
-        </a-entity>
-        <a-entity id="text-james-r" position="6 1 22" rotation="0 180 0">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3.5"
-          ></a-plane>
-          <a-text
-            value="James Webb Space Telescope"
-            position="-1.5 0 0"
-            color="#0a0a0a"
-          ></a-text>
-        </a-entity>
-        <a-entity id="text-kepler" position="-20 1 12">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3"
-          ></a-plane>
-          <a-text
-            value="Kepler Space Observatory"
-            position="-1.3 0 0"
-            color="#0a0a0a"
-          ></a-text>
-        </a-entity>
-        <a-entity id="text-kepler-r" position="-20 1 12" rotation="0 180 0">
-          <a-plane
-            class="clickable"
-            geometry="primitive:plane"
-            position="0 0 0"
-            color="#CCC"
-            height="1"
-            width="3"
-          ></a-plane>
-          <a-text
-            value="Kepler Space Observatory"
-            position="-1.3 0 0"
-            color="#0a0a0a"
-          ></a-text>
+        <a-entity id="text-kepler">
+          <a-entity id="text-kepler" position="-20 1 12">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3"
+            ></a-plane>
+            <a-text
+              value="Kepler Space Observatory"
+              position="-1.3 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
+          <a-entity id="text-kepler-r" position="-20 1 12" rotation="0 180 0">
+            <a-plane
+              class="clickable"
+              geometry="primitive:plane"
+              position="0 0 0"
+              color="#CCC"
+              height="1"
+              width="3"
+            ></a-plane>
+            <a-text
+              value="Kepler Space Observatory"
+              position="-1.3 0 0"
+              color="#0a0a0a"
+            ></a-text>
+          </a-entity>
         </a-entity>
         <a-gltf-model
           class="clickable"
