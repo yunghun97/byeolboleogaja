@@ -369,7 +369,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           </a-entity>
         </a-entity>
         <a-entity id="text-kepler">
-          <a-entity id="text-kepler" position="-20 1 12">
+          <a-entity position="-20 1 12">
             <a-plane
               class="clickable"
               geometry="primitive:plane"
@@ -384,7 +384,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
               color="#0a0a0a"
             ></a-text>
           </a-entity>
-          <a-entity id="text-kepler-r" position="-20 1 12" rotation="0 180 0">
+          <a-entity position="-20 1 12" rotation="0 180 0">
             <a-plane
               class="clickable"
               geometry="primitive:plane"
