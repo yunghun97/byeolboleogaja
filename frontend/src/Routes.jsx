@@ -7,7 +7,7 @@ import World from '@/pages/World';
 import Museum from '@/pages/Museum';
 import Observatory from '@/pages/Observatory';
 import Horoscope from '@/pages/Horoscope';
-import SpaceTravelDialog from './components/SpaceTravelDialog';
+import SpaceTravelDialog from '@/components/SpaceTravelDialog';
 import ImageGallery from '@/pages/MuseumGallery';
 export default function Routes() {
   return (
