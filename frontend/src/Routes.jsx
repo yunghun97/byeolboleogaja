@@ -8,7 +8,7 @@ import Museum from '@/pages/Museum';
 import Observatory from '@/pages/Observatory';
 import Horoscope from '@/pages/Horoscope';
 import SpaceTravelDialog from './components/SpaceTravelDialog';
-
+import ImageGallery from '@/pages/MuseumGallery';
 export default function Routes() {
   return (
     <ReactRouterRoutes>
@@ -18,6 +18,7 @@ export default function Routes() {
       <Route path="/worldmap" element={<WorldMap />} />
       <Route path="/world" element={<World />} />
       <Route path="/museum" element={<Museum />} />
+      <Route path="/museum/gallery" element={<ImageGallery />} />
       <Route path="/observatory" element={<Observatory />} />
       <Route path="/horoscope" element={<Horoscope />} />
       <Route path="/404" element={<NotFound />} />
