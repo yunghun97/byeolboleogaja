@@ -13,7 +13,7 @@ export default function Routes() {
   return (
     <ReactRouterRoutes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/dialog" element={<SpaceTravelDialog />} />
+      <Route path="/spaceship" element={<SpaceTravelDialog />} />
       <Route path="/vite" element={<Vite />} />
       <Route path="/worldmap" element={<WorldMap />} />
       <Route path="/world" element={<World />} />
