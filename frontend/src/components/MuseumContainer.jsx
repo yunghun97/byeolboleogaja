@@ -455,7 +455,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           src={vendingMachine}
         />
 
-        <a-entity id="rig-camera" position="0 0 0">
+        <a-entity id="rig-camera" position="0 0 30">
           <a-entity
             id="camera"
             camera="active: true"
