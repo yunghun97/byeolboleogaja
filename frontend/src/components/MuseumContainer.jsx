@@ -220,7 +220,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
             ></a-plane>
             <a-text
               value="Fermi Gamma-ray Large Area \n Space Telescope"
-              position="-1.5w 0 0"
+              position="-1.5 0 0"
               color="#0a0a0a"
             ></a-text>
           </a-entity>
