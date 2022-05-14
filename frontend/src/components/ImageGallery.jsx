@@ -23,9 +23,20 @@ const ImageGallery = () => {
     const scene1 = sceneEl.querySelector('#scene1');
     const rubinframe = sceneEl.querySelector('#rubinframe');
     const camera = sceneEl.querySelector('#camera');
-    const backtogallery = sceneEl.querySelector('#backtogallery');
+    const cameraRig = sceneEl.querySelector('#cameraRig');
+    const backtoGallery = sceneEl.querySelector('#backtogallery');
     const scene2 = sceneEl.querySelector('#scene2');
-    backtogallery.addEventListener('click', function (event) {
+
+    backtoGallery.addEventListener('click', function (event) {
+      let rotation = camera.getAttribute('rotation');
+      camera.setAttribute('position', { x: 0, y: 4, z: 54 });
+      camera.setAttribute('rotation', { x: 0, y: 0, z: 0 });
+
+      camera.components['look-controls'].pitchObject.rotation.x =
+        THREE.Math.degToRad(rotation.x);
+      camera.components['look-controls'].yawObject.rotation.y =
+        THREE.Math.degToRad(rotation.y);
+
       scene1.setAttribute('visible', 'true');
       scene2.setAttribute('visible', 'false');
     });
@@ -199,15 +210,15 @@ const ImageGallery = () => {
             "
           />
         </a-entity>
-
-        <a-entity
-          id="camera"
-          camera="active: true"
-          position="0 4 54"
-          wasd-controls="acceleration:50"
-          look-controls="mouseEnabled:true"
-        ></a-entity>
-
+        <a-entity id="cameraRig" position="0 0 0">
+          <a-entity
+            id="camera"
+            camera="active: true"
+            position="0 4 54"
+            wasd-controls="acceleration:50"
+            look-controls="mouseEnabled:true"
+          ></a-entity>
+        </a-entity>
         <a-entity
           cursor="rayOrigin: mouse"
           raycaster="objects: .clickable"
