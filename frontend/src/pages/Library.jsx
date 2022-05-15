@@ -1,9 +1,9 @@
-import LibraryContainer from "@/components/LibraryContainer";
+import LibraryContainers from "@/components/LibraryContainers";
 
 function Library () {
     return (
         <>
-          <LibraryContainer />  
+          <LibraryContainers />  
         </>
     );
 }
