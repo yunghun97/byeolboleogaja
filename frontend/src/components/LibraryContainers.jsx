@@ -1,5 +1,5 @@
 import { jsx, css, keyframes } from '@emotion/react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { Button, Typography } from '@mui/material';
 // 각 이야기에 맞는 사진으로 변경하거나 사진 아얘 삭제
@@ -56,7 +56,7 @@ function LibraryContainers () {
   const [backBtnOpen, setBackBtnOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
   const [bookInfo, setBookInfo] = useState([]);
-  let currentMenu;
+  const currentMenu = useRef({});
   let pageCount = 0;
 
   // setBookInfo(async () => {
@@ -170,8 +170,8 @@ function LibraryContainers () {
     document.body.classList.add('zoom-in');
     leaflet.style.transform = `translate3d(${dx}px, ${dy}px, 50vw) rotateY(${angle}deg)`
 
-    currentMenu = elem;
-    currentMenu.classList.add('current-menu');
+    currentMenu.current = elem;
+    currentMenu.current.classList.add('current-menu');
     setBackBtnOpen(true);
   }
 
@@ -187,8 +187,8 @@ function LibraryContainers () {
     if (currentMenu) {
       setBackBtnOpen(false);
       document.body.classList.remove('zoom-in');
-      currentMenu.classList.remove('current-menu');
-      currentMenu = null;
+      currentMenu.current.classList.remove('current-menu');
+      currentMenu.current= null;
     }
   }
 
