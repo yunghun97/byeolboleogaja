@@ -1,10 +1,10 @@
-import LibraryContainers from "@/components/LibraryContainers";
+import LibraryContainer from '@/components/LibraryContainer';
 
 function Library () {
     return (
-        <>
-          <LibraryContainers />  
-        </>
+      <main style={{ padding: '1rem 0' }}>
+          <LibraryContainer />  
+      </main>
     );
 }
 

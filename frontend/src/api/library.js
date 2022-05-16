@@ -1,7 +1,7 @@
 import { api } from '.';
 
-const getBooks = async () => {
-  return await api.get(`/library`);
+const getBooks = async (category) => {
+  return await api.get(`/library?category=${category}`);
 };
 
 export { getBooks };
