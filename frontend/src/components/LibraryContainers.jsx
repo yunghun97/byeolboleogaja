@@ -7,33 +7,7 @@ import logo from '@/assets/img/common/logo-rmbg.png';
 import bg from '@/assets/img/library/img-bookshelf.png';
 import '@/assets/img/library/main.css';
 import LibraryDetail from '@/components/LibraryDetail';
-
-// const bounce = keyframes`
-//   from, 20%, 53%, 80%, to {
-//     transform: translate3d(0,0,0);
-//   }
-
-//   40%, 43% {
-//     transform: translate3d(0, -30px, 0);
-//   }
-
-//   70% {
-//     transform: translate3d(0, -15px, 0);
-//   }
-
-//   90% {
-//     transform: translate3d(0,-4px,0);
-//   }
-// `
-
-const startAni = keyframes`
-	0% {
-		transform: translate(-100%, 100%) rotate(-540deg);
-	}
-	100% {
-		transform: translate(0, 0) rotate(0);
-	}
-`
+import { getBooks } from '@/api/library';
 
 const sectionStyle = {
   backgroundImage: `url(${logo})`
@@ -81,9 +55,73 @@ function LibraryContainers () {
   const [isOpen, setIsOpen] = useState(false);
   const [backBtnOpen, setBackBtnOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
-  const [currentMenu, setCurrentMenu] = useState(0);
-  // let currentMenu;
+  const [bookInfo, setBookInfo] = useState([]);
+  let currentMenu;
   let pageCount = 0;
+
+  // setBookInfo(async () => {
+  //   return await getBooks()
+  // })
+  // console.log('bookInfo', bookInfo);
+  // const initSatellite = async (satelliteId) => {
+  //   const res = await getSatellite(satelliteId);
+  //   setSatellite(res.data);
+  // };
+
+  useEffect(() => {
+    setBookInfo(async () => {
+    return await getBooks()
+    })
+    console.log('bookInfo', bookInfo);
+  }, [])
+  
+  useEffect(() => {
+    const leaflet = document.querySelector('#leaflet');
+    // const pageElems = document.querySelectorAll('.page');
+    // let pageCount = 0;
+    // let currentMenu;
+
+    leaflet.addEventListener('click', e => {
+      let pageElem = getTarget(e.target, 'page');
+      if (pageElem) {
+        pageElem.classList.add('page-flipped');
+        pageCount++;
+
+        if (pageCount == 2) {
+          setIsOpen(true);
+        }
+      }
+
+      // const closeBtn = document.querySelector('#close-btn');
+      // if (closeBtn) {
+      //   closeBtn.addEventListener('click', e => {
+      //     // 리플릿 닫기
+      //     pageCount = 0;
+      //     setTimeout(() => {
+      //       pageElems[2].classList.remove('page-flipped');
+      //     }, 100)
+      //     setTimeout(() => {
+      //       pageElems[0].classList.remove('page-flipped');
+      //     }, 800)
+      //   })
+      // }
+
+      // const menuItemElem = document.querySelector('li');
+      const menuItemElem = getTarget(e.target, 'menu-item')
+      if (menuItemElem) {
+        // console.log('menuItem', menuItemElem);
+        // zoom-in 상태이면 다른 컨텐츠 zoom-in 불가
+        if (!document.body.classList.contains('zoom-in')) {
+					zoomIn(menuItemElem);
+				}
+        // zoomIn(menuItemElem);
+      }
+
+      leaflet.addEventListener('animationend', () => {
+        leaflet.style.animation = 'none';
+      })
+    })
+  })
 
   const getTarget = (elem, className) => {
     while (!elem.classList.contains(className)) {
@@ -138,11 +176,10 @@ function LibraryContainers () {
   }
 
   const zoomOut = () => {
-    // console.log('zoomout');
-    // console.log(leaflet.style.transform);
+    console.log('zoomout');
+    console.log(leaflet.style.transform);
     leaflet.style.transform = 'translate3d(0, 0, 0)';
-    // console.log(leaflet.style.transform);
-    console.log('cM', currentMenu);
+    console.log(leaflet.style.transform);
     if (currentMenu) {
       setBackBtnOpen(false);
       document.body.classList.remove('zoom-in');
@@ -151,75 +188,12 @@ function LibraryContainers () {
     }
   }
 
-  useEffect(() => {
-    const leaflet = document.querySelector('#leaflet');
-    // const pageElems = document.querySelectorAll('.page');
-    // let pageCount = 0;
-    // let currentMenu;
-
-    leaflet.addEventListener('click', e => {
-      let pageElem = getTarget(e.target, 'page');
-      if (pageElem) {
-        pageElem.classList.add('page-flipped');
-        pageCount++;
-
-        if (pageCount == 2) {
-          setIsOpen(true);
-        }
-      }
-
-      // const closeBtn = document.querySelector('#close-btn');
-      // if (closeBtn) {
-      //   closeBtn.addEventListener('click', e => {
-      //     // 리플릿 닫기
-      //     pageCount = 0;
-      //     setTimeout(() => {
-      //       pageElems[2].classList.remove('page-flipped');
-      //     }, 100)
-      //     setTimeout(() => {
-      //       pageElems[0].classList.remove('page-flipped');
-      //     }, 800)
-      //   })
-      // }
-
-      // const menuItemElem = document.querySelector('li');
-      const menuItemElem = getTarget(e.target, 'menu-item')
-      if (menuItemElem) {
-        // console.log('menuItem', menuItemElem);
-        // zoom-in 상태이면 다른 컨텐츠 zoom-in 불가
-        if (!document.body.classList.contains('zoom-in')) {
-					zoomIn(menuItemElem);
-				}
-        // zoomIn(menuItemElem);
-      }
-
-      leaflet.addEventListener('animationend', () => {
-        leaflet.style.animation = 'none';
-      })
-    })
-  })
-
     return (
       <>
         <Background src={bg} alt="background" />
         <LibraryDetail open={detailOpen} setOpen={setDetailOpen}/>
-        <LeafletBox
-          // css={css`
-          // animation: ${bounce} 1s ease infinite;
-          // `}
-          css={css`
-          animation: ${startAni} 1s forwards;
-          `}
-        >
-          <div className="leaflet" id="leaflet"
-            // css={css`
-            //   animation: ${bounce} 1s ease infinite;
-            // `}
-            // css={css`
-            //   animation: ${startAni} 1s forwards;
-            // `}
-          >
-          {/* <div id="leaflet"> */}
+        <LeafletBox>
+          <div className="leaflet" id="leaflet">
             <div className="page" data-page="1">
               <div className="page-face cover-page">
                 <Typography
