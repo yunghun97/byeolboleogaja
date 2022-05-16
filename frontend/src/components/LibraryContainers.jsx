@@ -68,13 +68,13 @@ function LibraryContainers () {
   //   setSatellite(res.data);
   // };
 
-  useEffect(() => {
-    setBookInfo(async () => {
-    return await getBooks()
-    })
-    console.log('bookInfo', bookInfo);
-  }, [])
-  
+  // useEffect(() => {
+  //   setBookInfo(async () => {
+  //   return await getBooks()
+  //   })
+  //   console.log('bookInfo', bookInfo);
+  // }, [])
+
   useEffect(() => {
     const leaflet = document.querySelector('#leaflet');
     // const pageElems = document.querySelectorAll('.page');
@@ -106,20 +106,17 @@ function LibraryContainers () {
       //   })
       // }
 
-      // const menuItemElem = document.querySelector('li');
       const menuItemElem = getTarget(e.target, 'menu-item')
       if (menuItemElem) {
-        // console.log('menuItem', menuItemElem);
-        // zoom-in 상태이면 다른 컨텐츠 zoom-in 불가
         if (!document.body.classList.contains('zoom-in')) {
 					zoomIn(menuItemElem);
 				}
-        // zoomIn(menuItemElem);
       }
+    })
 
-      leaflet.addEventListener('animationend', () => {
-        leaflet.style.animation = 'none';
-      })
+    // animation 충돌로 초기 animation 작동 후 바로 제거
+    leaflet.addEventListener('animationend', () => {
+      leaflet.style.animation = 'none';
     })
   })
 
@@ -154,32 +151,39 @@ function LibraryContainers () {
     const dy = window.innerHeight/2 - (rect.y + rect.height/2);
     let angle;
 
-    switch (elem.parentNode.parentNode.parentNode.dataset.page) {
-      case "1":
+    console.log('page', elem.parentNode.parentNode.parentNode.dataset.page);
+    switch (elem.parentNode.parentNode.parentNode.dataset.page*1) {
+      case 1:
         angle = -50;
+        console.log('got angle 1');
         break;
-      case "2":
+      case 2:
         angle = 0;
+        console.log('got angle 2');
         break;
-      case "3":
+      case 3:
         angle = 50;
+        console.log('got angle 3');
         break;
     }
-    // console.log(elem.parentNode.parentNode.parentNode.dataset);
+    console.log('pagepage', elem.parentNode.parentNode.parentNode.dataset);
     document.body.classList.add('zoom-in');
     leaflet.style.transform = `translate3d(${dx}px, ${dy}px, 50vw) rotateY(${angle}deg)`
-    // leaflet.style.transform = `translate3d(0, 0, 100vw)`
-    // console.log('zoom in');
+
     currentMenu = elem;
     currentMenu.classList.add('current-menu');
     setBackBtnOpen(true);
   }
 
+  // const zoomOut = (elem) => {
   const zoomOut = () => {
     console.log('zoomout');
     console.log(leaflet.style.transform);
     leaflet.style.transform = 'translate3d(0, 0, 0)';
     console.log(leaflet.style.transform);
+    // current Menu가 안찍히는 상황
+    // currentMenu = elem;
+    console.log('currentMenu', currentMenu);
     if (currentMenu) {
       setBackBtnOpen(false);
       document.body.classList.remove('zoom-in');
