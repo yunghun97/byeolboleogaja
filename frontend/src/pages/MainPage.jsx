@@ -3,7 +3,7 @@ import { useStore } from '@/store';
 import MainBackground from '@/components/MainBackground';
 import MainContainer from '@/components/MainContainer';
 import { getApod } from '@/api/nasa';
-import andromedaBg from '@/assets/loading/bg-loading-1.jpg';
+import andromedaBg from '@/assets/img/loading/bg-loading-1.jpg';
 
 export default function MainPage() {
   const $setApodUrl = useStore((state) => state.setApodUrl);

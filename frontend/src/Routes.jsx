@@ -8,16 +8,20 @@ import Museum from '@/pages/Museum';
 import Observatory from '@/pages/Observatory';
 import Horoscope from '@/pages/Horoscope';
 import Library from '@/pages/Library';
+import ImageGallery from '@/pages/MuseumGallery';
+import Moon from '@/pages/Moon';
 
 export default function Routes() {
   return (
     <ReactRouterRoutes>
       <Route path="/" element={<MainPage />} />
       <Route path="/library" element={<Library />} />
+      <Route path="/moon" element={<Moon />} />
       <Route path="/vite" element={<Vite />} />
       <Route path="/worldmap" element={<WorldMap />} />
       <Route path="/world" element={<World />} />
       <Route path="/museum" element={<Museum />} />
+      <Route path="/museum/gallery" element={<ImageGallery />} />
       <Route path="/observatory" element={<Observatory />} />
       <Route path="/horoscope" element={<Horoscope />} />
       <Route path="/404" element={<NotFound />} />
