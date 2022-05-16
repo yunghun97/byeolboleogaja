@@ -6,7 +6,6 @@ import logo from '@/assets/img/common/logo-rmbg.png';
 import bg from '@/assets/img/library/img-tablewood.jpg';
 import '@/assets/img/library/main.css';
 import { getBooks } from '@/api/library';
-// import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
 
 const sectionStyle = {
   backgroundImage: `url(${logo})`
@@ -168,7 +167,7 @@ function LibraryLeaflet ({setIsOpen, category, title}) {
       <>
         <Background src={bg} alt="background" />
         <CloseLeafletButton>
-          {/* <ArrowBackIcon /> */}
+          돌아가기
         </CloseLeafletButton>
         <LeafletBox>
           <div className="leaflet" id="leaflet">
