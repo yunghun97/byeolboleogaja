@@ -40,20 +40,20 @@ function LibraryContainer () {
         <Layout>
           <Grid container spacing={1}>
             <Grid item xs={6} onClick={() => {setIsConsOpen(true)}} >
-              { isConsOpen && <LibraryLeaflet setIsOpen={setIsConsOpen} category="CONSTELLATION"/>}
+              { isConsOpen && <LibraryLeaflet setIsOpen={setIsConsOpen} category="CONSTELLATION" title="별자리 이야기" />}
               <LibraryBookCard text="별자리 이야기"/>
             </Grid>
             <Grid item xs={6} onClick={() => {setIsSCSOpen(true)}} >
-              { isSCSOpen && <LibraryLeaflet setIsOpen={setIsSCSOpen} />}
-              <LibraryBookCard color="darkblue" text="우주에 관한 상식" category="SPACE_COMMON_SENSE"/>
+              { isSCSOpen && <LibraryLeaflet setIsOpen={setIsSCSOpen} category="SPACE_COMMON_SENSE" title="우주에 관한 상식" />}
+              <LibraryBookCard color="darkblue" text="우주에 관한 상식"/>
             </Grid>
             <Grid item xs={6} onClick={() => {setIsPlanetOpen(true)}} >
-              { isPlanetOpen && <LibraryLeaflet setIsOpen={setIsPlanetOpen} category="PLANET"/>}
+              { isPlanetOpen && <LibraryLeaflet setIsOpen={setIsPlanetOpen} category="PLANET" title="행성 이야기" />}
               <LibraryBookCard color="black" text="행성 이야기" />
             </Grid>
             <Grid item xs={6} onClick={() => {setIsAstOpen(true)}} >
-              { isAstOpen && <LibraryLeaflet setIsOpen={setIsAstOpen} />}
-              <LibraryBookCard color="cornflowerblue" text="우주비행사 이야기" category="ASTRONAUT"/>
+              { isAstOpen && <LibraryLeaflet setIsOpen={setIsAstOpen}  category="ASTRONAUT" title="우주비행사 이야기" />}
+              <LibraryBookCard color="cornflowerblue" text="우주비행사 이야기"/>
             </Grid>
           </Grid>
         </Layout>

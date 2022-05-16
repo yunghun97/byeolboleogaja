@@ -6,6 +6,7 @@ import logo from '@/assets/img/common/logo-rmbg.png';
 import bg from '@/assets/img/library/img-tablewood.jpg';
 import '@/assets/img/library/main.css';
 import { getBooks } from '@/api/library';
+// import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
 
 const sectionStyle = {
   backgroundImage: `url(${logo})`
@@ -51,7 +52,13 @@ const BackButton = styled(Button)`
   top: 10px;
 `
 
-function LibraryLeaflet ({setIsOpen, category}) {
+const CloseLeafletButton = styled(Button)`
+  position: absolute;
+  left: 10px;
+  top: 10px;
+`
+
+function LibraryLeaflet ({setIsOpen, category, title}) {
   const [isCloseOpen, setIsCloseOpen] = useState(false);
   const [backBtnOpen, setBackBtnOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -66,6 +73,7 @@ function LibraryLeaflet ({setIsOpen, category}) {
   const getBookInfo = async () => {
     const res = await getBooks(category);
     setBookInfo(res.data);
+    console.log(bookInfo);
   };
 
   useEffect(() => {
@@ -159,6 +167,9 @@ function LibraryLeaflet ({setIsOpen, category}) {
     return (
       <>
         <Background src={bg} alt="background" />
+        <CloseLeafletButton>
+          {/* <ArrowBackIcon /> */}
+        </CloseLeafletButton>
         <LeafletBox>
           <div className="leaflet" id="leaflet">
             <div className="page" data-page="1">
@@ -176,7 +187,7 @@ function LibraryLeaflet ({setIsOpen, category}) {
                     fontWeight: 'bold',
                     color: 'white',
                   }}
-                >별자리 이야기</Typography>
+                >{title}</Typography>
               </div>
               <div className="page-face">
                 <ul className="menu-list">
