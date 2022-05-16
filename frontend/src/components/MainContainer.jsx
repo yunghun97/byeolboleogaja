@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import logoMain from '@/assets/img/main/logo-main.png';
+import logoMain from '@/assets/img/common/logo-rmbg.png';
 
 const MainContainer = () => {
   const navigate = useNavigate();
@@ -83,10 +83,12 @@ const MainContainer = () => {
         component="img"
         src={logoMain}
         sx={{
+          position: 'relative',
           mt: '20vh',
           height: '50vh',
         }}
       />
+
       <Button variant="contained" sx={{ mt: '5vh' }} onClick={handleClickOpen}>
         <Typography
           sx={{
