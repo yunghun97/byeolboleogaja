@@ -155,6 +155,15 @@ const WorldContainer = () => {
           shadowCameraRight:  500;
           shadowCameraLeft:   -500"
         ></a-entity>
+        <a-entity
+          position="0 400 25"
+          light="type:directional;
+          intensity: 1.5;
+          castShadow:true;
+          shadowCameraTop:    500;
+          shadowCameraRight:  500;
+          shadowCameraLeft:   -500"
+        ></a-entity>
         <a-gltf-model
           src="#ground"
           position="0 -5 0"
