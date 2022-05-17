@@ -105,6 +105,7 @@ const WorldContainer = () => {
       setOpened(true);
       setInfo(libraryIntro);
       setBuilding('library');
+      console.log('hi');
     });
     museum.addEventListener('click', function () {
       setOpened(true);
@@ -215,13 +216,6 @@ const WorldContainer = () => {
           scale="0.3 0.3 0.3"
           position="-83.652 15.925 -359.571"
           rotation="179.947 0 -179.957"
-        />
-        <a-gltf-model
-          id="libraryNpc-model"
-          src="#libraryNpc"
-          scale="12 12 12"
-          position="50 2 -200"
-          rotation="0 270 0"
         />
         <a-gltf-model
           id="observatoryNpc-model"
