@@ -14,9 +14,10 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, placeBGM }) => {
   useEffect(() => {
     const audioSetting = document.querySelector('audio');
     const nowPlaceBGM = bgmInfo.filter((item, idx) => item.place == placeBGM);
-    console.log(nowPlaceBGM);
-    audioSetting.src = nowPlaceBGM[0].bgm;
-    audioSetting.volume = 0.2;
+    if (Object.keys(nowPlaceBGM).length != 0) {
+      audioSetting.src = nowPlaceBGM[0].bgm;
+      audioSetting.volume = 0.2;
+    }
   }, []);
   const goMain = () => {
     navigate('/');
