@@ -26,8 +26,7 @@ const ElevatorDialog = ({
       if (activeFloor === 1) {
         navigate('/museum/gallery');
       }
-    }
-    if (nowFloor == floor) {
+    } else {
       setControlFloor(true);
     }
   };

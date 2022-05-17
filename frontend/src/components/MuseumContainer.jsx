@@ -12,11 +12,13 @@ import fermiGammarayTelescope from '@/assets/model/museum/mdl-fermi.glb?url';
 import keplerSpaceObservatory from '@/assets/model/museum/mdl-kepler.glb?url';
 import elevator from '@/assets/model/museum/mdl-elevator.glb?url';
 import carpet from '@/assets/model/museum/mdl-carpet.glb?url';
-
 import enterance from '@/assets/model/museum/mdl-enterance.glb?url';
 import exit from '@/assets/model/museum/mdl-exit.glb?url';
 import backimg from '@/assets/img/museum/img-backimg.png?url';
+import elevatorSound from '@/assets/audio/elevatortomove.wav?url';
+
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getSatellite } from '@/api/satellite';
 import { elevatorIntro } from '@/constants';
 import ElevatorDialog from '@/components/ElevatorDialog';
@@ -25,7 +27,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const res = await getSatellite(satelliteId);
     setSatellite(res.data);
   };
-
+  const navigate = useNavigate();
   const [elevatorIntoOpen, setElevatorIntoOpen] = useState(false);
   const [info, setInfo] = useState(elevatorIntro);
   const [nowFloor, setNowFloor] = useState('museum');
@@ -52,6 +54,9 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const elevator1FButton = sceneEl.querySelector('#elevator1FButton');
     const elevator2FButton = sceneEl.querySelector('#elevator2FButton');
     const enterance = sceneEl.querySelector('#enterance');
+    const elevatorId = sceneEl.querySelector('#elevatorId');
+    let raycasterEl = sceneEl.querySelector('[raycaster]');
+
     document.addEventListener('keydown', function (event) {
       if (
         event.key === 'ArrowUp' ||
@@ -69,8 +74,13 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     document.addEventListener('keyup', function () {
       player.setAttribute('animation-mixer', { clip: 'base' });
     });
-    enterance.addEventListener('hitstart', (e) => {
+    enterance.addEventListener('raycaster-intersected', (e) => {
       console.log(e);
+      navigate('/world');
+    });
+    enterance.addEventListener('raycaster-intersected-cleared', (e) => {
+      raycasterEl.components.raycaster.refreshObjects();
+      // console.log(e);
     });
     elevatorButton.addEventListener('click', function () {
       let rotation = camera.getAttribute('rotation');
@@ -188,6 +198,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
         />
         <a-gltf-model
           id="enterance"
+          class="collidable"
           position="0 0 50"
           scale="1 1 1"
           rotation="0 180 0"
@@ -482,14 +493,12 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           id="james"
           position="0 5 20"
           scale="0.5 0.5 0.5"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
           src={jamesWebbSpaceTelescope}
         />
         <a-gltf-model
           class="clickable"
           id="hubble"
-          position="0 10 -33"
-          animation="property: rotation; to: 90 0 360; loop: true; dur: 10000 easing:linear "
+          position="0 5 -33"
           src={hubbleSpaceTelescope}
         />
         <a-gltf-model
@@ -497,7 +506,6 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           id="chandra"
           position="30 5 -11"
           rotation="0 90 0"
-          animation="property: rotation; to: 90 360 90; loop: true; dur: 10000"
           src={chandraXrayObservatory}
         />
         <a-gltf-model
@@ -506,7 +514,6 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           position="25 5 10"
           scale="0.6 0.6 0.6"
           rotation="90 180 0"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
           src={spitzerSpaceTelescope}
         />
         <a-gltf-model
@@ -515,15 +522,13 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           position="-25 5 -10"
           scale="0.8 0.8 0.8"
           rotation="90 90 0"
-          animation="property: rotation; to: 90 0 90; loop: true; dur: 10000"
           src={fermiGammarayTelescope}
         />
         <a-gltf-model
           class="clickable"
           id="kepler"
           position="-25 5 10"
-          rotation="90 360 0"
-          animation="property: rotation; to: 360 0 0; loop: true; dur: 10000"
+          rotation="0 0 0"
           src={keplerSpaceObservatory}
         />
         <a-gltf-model
@@ -587,7 +592,8 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
             <a-entity
               gltf-model={amongUs}
               cursor="rayOrigin: mouse"
-              raycaster="objects: .clickable"
+              raycaster="objects: .clickable ,  .collidable"
+              // collidable
               scale="0.2 0.2 0.2"
               height="0.5"
               position="0 -1.35 -0.5"
@@ -598,6 +604,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           </a-entity>
         </a-entity>
       </a-scene>
+
       <ElevatorDialog
         info={info}
         elevatorIntoOpen={elevatorIntoOpen}
