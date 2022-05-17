@@ -2,6 +2,7 @@ package com.ssafy.star.service;
 
 import com.ssafy.star.db.dto.BookDto;
 import com.ssafy.star.db.entity.Book;
+import com.ssafy.star.db.entity.Category;
 import com.ssafy.star.db.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,6 +44,24 @@ public class BookService {
             BookDto bookDto = BookDto.convert(bookById);
 
             return new ResponseEntity<>(bookDto, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<?> getAllBooksByCategory(String category) {
+        try {
+            Category selectedCategory = Category.valueOf(category.toUpperCase());
+
+            List<Book> allByCategory = bookRepository.findAllByCategory(selectedCategory);
+            List<BookDto> bookDtoList = new ArrayList<>();
+
+            for (Book book : allByCategory) {
+                bookDtoList.add(BookDto.convert(book));
+            }
+
+            return new ResponseEntity<>(bookDtoList, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
