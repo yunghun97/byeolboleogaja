@@ -48,6 +48,7 @@ const HoroscopeContainer = () => {
       sx={{
         display: 'flex',
         alignItems: 'center',
+        overflowY: 'auto',
       }}
     >
       <Box sx={{ m: 7, flexGrow: 1 }}>
