@@ -5,12 +5,8 @@ import Menu from '@/components/Menu';
 import { worldGuideInfos } from '@/constants';
 import { useState, useEffect } from 'react';
 export default function World() {
-  const [value, setValue] = useState(0.5);
-  const isGuideDialog = true;
-  const isWorld = false;
-  const placeBGM = 'world';
   const [guideOpen, setGuideOpen] = useState(false);
-  console.log(value);
+
   useEffect(() => {
     setTimeout(function () {
       setGuideOpen(true);
@@ -26,10 +22,10 @@ export default function World() {
         setOpen={setGuideOpen}
       />
       <Menu
-        isGuideDialog={isGuideDialog}
+        isGuideDialog={true}
         setGuideOpen={setGuideOpen}
-        isWorld={isWorld}
-        placeBGM={placeBGM}
+        isWorld={false}
+        placeBGM={'world'}
       />
     </main>
   );
