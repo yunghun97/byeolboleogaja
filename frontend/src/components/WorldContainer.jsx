@@ -15,7 +15,6 @@ import libraryNpc from '@/assets/model/world/mdl-npc-2.glb?url';
 import museumNpc from '@/assets/model/world/mdl-npc-3.glb?url';
 import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
-import questionmark from '@/assets/img/world/img-questionmark.png';
 
 import LoadingScene from '@/components/LoadingScene';
 import BuildingDialog from '@/components/BuildingDialog';

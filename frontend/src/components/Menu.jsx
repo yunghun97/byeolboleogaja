@@ -1,13 +1,18 @@
 import { SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import { Logout, VolumeUp, Public, QuestionMark } from '@mui/icons-material';
+import SoundDialog from '@/components/SoundDialog';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-const Menu = ({ isGuideDialog, isWorld, setGuideOpen }) => {
+import { useState, useEffect } from 'react';
+const Menu = ({ isGuideDialog, isWorld, setGuideOpen, value, setValue }) => {
   const navigate = useNavigate();
+
+  const [anchorEl, setAnchorEl] = useState(null);
   const goMain = () => {
     navigate('/');
   };
-  const controlSounds = () => {};
+  const controlSounds = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
   const goWorld = () => {
     navigate('/world');
   };
@@ -33,20 +38,28 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen }) => {
   );
 
   return (
-    <SpeedDial
-      ariaLabel="Museum menu"
-      sx={{ position: 'absolute', bottom: 16, right: 16 }}
-      icon={<SpeedDialIcon />}
-    >
-      {NewactionMenu.map((action) => (
-        <SpeedDialAction
-          key={action.name}
-          icon={action.icon}
-          tooltipTitle={action.name}
-          onClick={action.move}
-        />
-      ))}
-    </SpeedDial>
+    <>
+      <SpeedDial
+        ariaLabel="Museum menu"
+        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        icon={<SpeedDialIcon />}
+      >
+        {NewactionMenu.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            onClick={action.move}
+          />
+        ))}
+      </SpeedDial>
+      <SoundDialog
+        anchorEl={anchorEl}
+        setAnchorEl={setAnchorEl}
+        value={value}
+        setValue={setValue}
+      />
+    </>
   );
 };
 export default Menu;
