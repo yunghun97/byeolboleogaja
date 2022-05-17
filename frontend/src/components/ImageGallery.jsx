@@ -15,21 +15,35 @@ import rubin from "@/assets/img/museum/img-Rubin's galaxy UGC 2885.png?url";
 import rubinMdl from '@/assets/model/museum/mdl-rubin.glb?url';
 import spaceShip from '@/assets/model/museum/mdl-spaceship.glb?url';
 import Monocerotis from '@/assets/img/museum/img-V838 Monocerotis.jpg?url';
-import { useEffect } from 'react';
+import elevator from '@/assets/model/museum/mdl-elevator.glb?url';
+
+import { elevatorIntro } from '@/constants';
+import ElevatorDialog from '@/components/ElevatorDialog';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ImageGallery = () => {
+  const [elevatorIntoOpen, setElevatorIntoOpen] = useState(false);
+  const [info, setInfo] = useState(elevatorIntro);
+  const [nowFloor, setNowFloor] = useState('gallery');
+  const [controlFloor, setControlFloor] = useState(false);
+  const [floor, setFloor] = useState('');
+  const [activeFloor, setActiveFloor] = useState(0);
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const scene1 = sceneEl.querySelector('#scene1');
     const rubinframe = sceneEl.querySelector('#rubinframe');
-    const camera = sceneEl.querySelector('#camera');
-    const cameraRig = sceneEl.querySelector('#cameraRig');
+    const cameraRig = sceneEl.querySelector('#rig-camera');
     const backtoGallery = sceneEl.querySelector('#backtogallery');
     const scene2 = sceneEl.querySelector('#scene2');
-
+    const camera = document.querySelector('#camera');
+    const player = sceneEl.querySelector('#player');
+    const elevatorButton = sceneEl.querySelector('#elevatorButton');
+    const elevator1FButton = sceneEl.querySelector('#elevator1FButton');
+    const elevator2FButton = sceneEl.querySelector('#elevator2FButton');
     backtoGallery.addEventListener('click', function (event) {
       let rotation = camera.getAttribute('rotation');
-      camera.setAttribute('position', { x: 0, y: 4, z: 54 });
+      camera.setAttribute('position', { x: 0, y: 2, z: 4 });
       camera.setAttribute('rotation', { x: 0, y: 0, z: 0 });
 
       camera.components['look-controls'].pitchObject.rotation.x =
@@ -44,6 +58,38 @@ const ImageGallery = () => {
       scene1.setAttribute('visible', 'false');
       scene2.setAttribute('visible', 'true');
     });
+    elevatorButton.addEventListener('click', function () {
+      let rotation = camera.getAttribute('rotation');
+      camera.setAttribute('position', { x: 0, y: 2, z: -105 });
+      camera.setAttribute('rotation', { x: 0, y: 180, z: 0 });
+
+      camera.components['look-controls'].pitchObject.rotation.x =
+        THREE.Math.degToRad(rotation.x);
+      camera.components['look-controls'].yawObject.rotation.y =
+        THREE.Math.degToRad(rotation.y);
+    });
+    elevator1FButton.addEventListener('click', function () {
+      setElevatorIntoOpen(true);
+      setInfo(elevatorIntro);
+      setActiveFloor(0);
+      setFloor('museum');
+
+      setControlFloor(false);
+    });
+    elevator2FButton.addEventListener('click', function () {
+      let rotation = camera.getAttribute('rotation');
+      setElevatorIntoOpen(false);
+      setInfo(elevatorIntro);
+      setActiveFloor(1);
+      setFloor('gallery');
+      camera.setAttribute('position', { x: 0, y: 2, z: 4 });
+      camera.setAttribute('rotation', { x: 0, y: 0, z: 0 });
+
+      camera.components['look-controls'].pitchObject.rotation.x =
+        THREE.Math.degToRad(rotation.x);
+      camera.components['look-controls'].yawObject.rotation.y =
+        THREE.Math.degToRad(rotation.y);
+    });
   }, []);
 
   return (
@@ -51,7 +97,56 @@ const ImageGallery = () => {
       <a-scene>
         <a-entity id="scene1" visible="true">
           <a-gltf-model id="gallery" rotation="0 90 0" src={gallery} />
+          <a-gltf-model
+            scale="3 3 3"
+            rotation="0 0 0"
+            position="0 0 -55.4"
+            id="elevatorId"
+            src={elevator}
+          />
 
+          <a-plane
+            id="elevatorButton"
+            class="clickable"
+            geometry="primitive:plane"
+            position="1.499 3 -53.74"
+            rotation="0 0 0"
+            color="#CCC"
+            height="0.1"
+            width="0.1"
+          ></a-plane>
+          <a-plane
+            id="elevatorPannel"
+            class="clickable"
+            geometry="primitive:plane"
+            position="1.5 3 -53.75"
+            rotation="0 0 0"
+            color="#5c5a5a"
+            height="0.4"
+            width="0.2"
+          ></a-plane>
+          <a-plane
+            visible="false"
+            id="elevator1FButton"
+            class="clickable"
+            geometry="primitive:plane"
+            position="-1.6 3.25 -55.55"
+            rotation="0 90 0"
+            color="#CCC"
+            height="0.1"
+            width="0.1"
+          ></a-plane>
+          <a-plane
+            visible="false"
+            id="elevator2FButton"
+            class="clickable"
+            geometry="primitive:plane"
+            position="-1.6 3.25 -55.83"
+            rotation="0 90 0"
+            color="#CCC"
+            height="0.1"
+            width="0.1"
+          ></a-plane>
           <a-image
             position="-8.3 5.0 40"
             src={eagleNebula}
@@ -210,20 +305,38 @@ const ImageGallery = () => {
             "
           />
         </a-entity>
-        <a-entity id="cameraRig" position="0 0 0">
+
+        <a-entity id="rig-camera" position="0 1 50">
           <a-entity
             id="camera"
             camera="active: true"
-            position="0 4 54"
+            position="0 2 0"
             wasd-controls="acceleration:50"
             look-controls="mouseEnabled:true"
-          ></a-entity>
+          >
+            <a-entity
+              gltf-model={amongUs}
+              cursor="rayOrigin: mouse"
+              raycaster="objects: .clickable "
+              scale="0.2 0.2 0.2"
+              height="0.5"
+              position="0 -1.35 -0.5"
+              rotation="0 180 0"
+              id="player"
+              animation-mixer="clip: base"
+            ></a-entity>
+          </a-entity>
         </a-entity>
-        <a-entity
-          cursor="rayOrigin: mouse"
-          raycaster="objects: .clickable"
-        ></a-entity>
       </a-scene>
+      <ElevatorDialog
+        info={info}
+        elevatorIntoOpen={elevatorIntoOpen}
+        setElevatorIntoOpen={setElevatorIntoOpen}
+        activeFloor={activeFloor}
+        nowFloor={nowFloor}
+        floor={floor}
+        setControlFloor={setControlFloor}
+      />
     </>
   );
 };
