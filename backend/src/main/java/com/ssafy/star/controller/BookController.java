@@ -3,10 +3,7 @@ package com.ssafy.star.controller;
 import com.ssafy.star.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,5 +19,10 @@ public class BookController {
     @GetMapping("/{bookId}")
     public ResponseEntity<?> getBook(@PathVariable Long bookId) {
         return bookService.getBook(bookId);
+    }
+
+    @GetMapping(params = {"category"})
+    public ResponseEntity<?> getAllBooksByCategory(@RequestParam String category) {
+        return bookService.getAllBooksByCategory(category);
     }
 }
