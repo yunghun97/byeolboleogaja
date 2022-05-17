@@ -54,8 +54,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const elevator1FButton = sceneEl.querySelector('#elevator1FButton');
     const elevator2FButton = sceneEl.querySelector('#elevator2FButton');
     const enterance = sceneEl.querySelector('#enterance');
-    const elevatorId = sceneEl.querySelector('#elevatorId');
-    let raycasterEl = sceneEl.querySelector('[raycaster]');
+    const outDoor = sceneEl.querySelector('#outDoor');
 
     document.addEventListener('keydown', function (event) {
       if (
@@ -74,14 +73,13 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     document.addEventListener('keyup', function () {
       player.setAttribute('animation-mixer', { clip: 'base' });
     });
-    enterance.addEventListener('raycaster-intersected', (e) => {
-      console.log(e);
+    enterance.addEventListener('click', (e) => {
       navigate('/world');
     });
-    enterance.addEventListener('raycaster-intersected-cleared', (e) => {
-      raycasterEl.components.raycaster.refreshObjects();
-      // console.log(e);
+    outDoor.addEventListener('click', (e) => {
+      navigate('/world');
     });
+
     elevatorButton.addEventListener('click', function () {
       let rotation = camera.getAttribute('rotation');
       camera.setAttribute('position', { x: -35.5, y: 2, z: 5.358 });
@@ -198,7 +196,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
         />
         <a-gltf-model
           id="enterance"
-          class="collidable"
+          class="clickable"
           position="0 0 50"
           scale="1 1 1"
           rotation="0 180 0"
@@ -212,6 +210,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           src={exit}
         />
         <a-image
+          id="outDoor"
           position="0 2 51.7"
           src={backimg}
           rotation="0 180 0"
@@ -592,8 +591,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
             <a-entity
               gltf-model={amongUs}
               cursor="rayOrigin: mouse"
-              raycaster="objects: .clickable ,  .collidable"
-              // collidable
+              raycaster="objects: .clickable "
               scale="0.2 0.2 0.2"
               height="0.5"
               position="0 -1.35 -0.5"
