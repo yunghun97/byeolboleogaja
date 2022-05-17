@@ -1,12 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
-import { useState, useEffect } from 'react';
 
-function LibraryDetailDialog ({title, open, setOpen, content}) {
-  useEffect(() => {
-    console.log(setOpen);
-    console.log(open);
-  })
-
+function LibraryDetailDialog ({title, content, open, setOpen}) {
   const handleClose = () => {
     setOpen(false);
   };

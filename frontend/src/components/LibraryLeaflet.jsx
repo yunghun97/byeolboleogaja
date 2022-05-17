@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
-// import { Button, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import bg from '@/assets/img/library/img-tablewood.jpg';
-import '@/assets/img/library/main.css';
+import '@/assets/img/library/library.module.css';
 import { getBooks } from '@/api/library';
-// import LibraryDetailDialog from '@/components/LibraryDetailDialog';
+import LibraryDetailDialog from '@/components/LibraryDetailDialog';
 
 const LeafletBox = styled.div`
   // 3D
@@ -78,6 +77,7 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
   const [pageTwo, setPageTwo] = useState([]);
   const [pageThree, setPageThree] = useState([]);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [currentMenuItem, setCurrentMenuItem] = useState(null);
 
   let pageCount = 0;
 
@@ -154,6 +154,12 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
     console.log(isDetailOpen);
   }
 
+  const handleMenuItem = (index) => {
+    setCurrentMenuItem(index);
+    setIsDetailOpen(true);
+  }
+
+
   return (
     <>
       <Background src={bg} alt="background"/>
@@ -179,23 +185,14 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
             <div className="page-face">
               <ul className="menu-list">
                 {pageOne.map((item, index) => (
-                  <MenuItem key={index} onClick={handleOpenDetail} >
+                  <MenuItem key={index} onClick={() => handleMenuItem(index)} >
                     <Typography
                       sx={{
                         fontSize: '1rem',
                         fontWeight: 'bold',
                       }}
                     >{item.title}</Typography>
-                    <Dialog onClose={handleCloseDetail} open={isDetailOpen} sx={{ minWidth: 275 }}>
-                      <DialogTitle>{item.title}</DialogTitle>
-                      <DialogContent>
-                        <Typography variant="body1">{item.content}</Typography>
-                      </DialogContent>
-                      <DialogActions>
-                        <Button fullWidth variant="contained" onClick={handleCloseDetail}>X</Button>
-                      </DialogActions>
-                    </Dialog>
-                    {/* <LibraryDetailDialog title={title} open={isDetailOpen} content={item.content} setOpen={setIsDetailOpen} /> */}
+                    { currentMenuItem === index && <LibraryDetailDialog title={item.title} open={isDetailOpen} content={item.content} setOpen={setIsDetailOpen} />}
                   </MenuItem>
                 ))}
               </ul>
@@ -205,14 +202,14 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
             <div className="page-face">
               <ul className="menu-list">
                 {pageTwo.map((item, index) => (
-                  <MenuItem key={index}>
+                  <MenuItem key={index} onClick={() => handleMenuItem(index)}>
                     <Typography
                       sx={{
                         fontSize: '1rem',
                         fontWeight: 'bold',
                       }}
                     >{item.title}</Typography>
-                    {/* <LibraryDetailDialog title={title} open={isDetailOpen} content={item.content} setOpen={setIsDetailOpen} /> */}
+                    { currentMenuItem === index && <LibraryDetailDialog title={item.title} open={isDetailOpen} content={item.content} setOpen={setIsDetailOpen} />}
                   </MenuItem>
                 ))}
               </ul>
@@ -232,14 +229,14 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
             <div className="page-face">
               <ul className="menu-list">
                 {pageThree.map((item, index) => (
-                  <MenuItem key={index}>
+                  <MenuItem key={index} onClick={() => handleMenuItem(index)}>
                     <Typography
                       sx={{
                         fontSize: '1rem',
                         fontWeight: 'bold',
                       }}
                     >{item.title}</Typography>
-                    {/* <LibraryDetailDialog title={item.title} open={isDetailOpen} content={item.content} setOpen={setIsDetailOpen} /> */}
+                    { currentMenuItem === index && <LibraryDetailDialog title={item.title} open={isDetailOpen} content={item.content} setOpen={setIsDetailOpen} />}
                   </MenuItem>
                 ))}
               </ul>

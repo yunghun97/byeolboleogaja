@@ -60,14 +60,12 @@ function LibraryContainer () {
     <>
       <Background src={bg} alt="background" />
         <Layout>
-          {
-            isOpen &&
+          { isOpen &&
             <CloseLeafletButton
               variant="contained"
               onClick={handleGoBack}>
               돌아가기
-            </CloseLeafletButton>
-          }
+            </CloseLeafletButton>}
           <Grid container spacing={1}>
             <Grid item xs={6} onClick={() => {setIsConsOpen(true)}} >
               { isConsOpen && <LibraryLeaflet isOpen={isConsOpen} setIsOpen={setIsConsOpen} category="CONSTELLATION" title="별자리 이야기" />}
@@ -82,7 +80,7 @@ function LibraryContainer () {
               <LibraryBookCard color="black" text="행성 이야기" />
             </Grid>
             <Grid item xs={6} onClick={() => {setIsAstOpen(true)}} >
-              { isAstOpen && <LibraryLeaflet setIsOpen={setIsAstOpen}  category="ASTRONAUT" title="우주비행사 이야기" color="cornflowerblue"/>}
+              { isAstOpen && <LibraryLeaflet setIsOpen={setIsAstOpen} category="ASTRONAUT" title="우주비행사 이야기" color="cornflowerblue"/>}
               <LibraryBookCard color="cornflowerblue" text="우주비행사 이야기"/>
             </Grid>
           </Grid>
