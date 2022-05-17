@@ -55,10 +55,10 @@ const HoroscopeContainer = () => {
         <Grid
           container
           spacing={{ xs: 1, md: 2, lg: 2, xl: 2 }}
-          coloumns={{ xs: 4, sm: 8, md: 12 }}
+          coloumns={{ xs: 8, sm: 8, md: 12 }}
         >
           {zodiac.map((item, index) => (
-            <Grid item xs={6} sm={4} md={4} lg={3} xl={3} key={index}>
+            <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
               <Paper sx={{ textAlign: 'center' }}>
                 <Box
                   component="img"
