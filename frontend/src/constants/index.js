@@ -8,6 +8,9 @@ import libraryIntro from './libraryIntro';
 import museumIntro from './museumIntro';
 import spaceshipIntro from './spaceshipIntro';
 import horoscopeIntro from './horoscopeIntro';
+import moonInfos from './moonInfos';
+import quizDefault from './quizDefault';
+
 import elevatorIntro from './elevatorIntro';
 import bgmInfo from './bgmInfo';
 export {
@@ -21,6 +24,8 @@ export {
   museumIntro,
   spaceshipIntro,
   horoscopeIntro,
+  moonInfos,
+  quizDefault,
   elevatorIntro,
   bgmInfo,
 };

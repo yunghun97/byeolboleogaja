@@ -4,8 +4,22 @@ import sky from '@/assets/img/moon/bg-moonsky.jpg?url';
 import amongus from '@/assets/model/common/mdl-amongus.glb?url';
 import flag from '@/assets/model/moon/mdl-flag.glb?url';
 import rabbit from '@/assets/model/moon/mdl-rabbit.glb?url';
-
+import PlanetDialog from '@/components/PlanetDialog';
+import { moonInfos } from '@/constants';
+import { useState, useEffect } from 'react';
 const MoonContainer = () => {
+  const [open, setOpen] = useState(true);
+  const [isopen, setOpened] = useState(false);
+
+  useEffect(() => {
+    const sceneEl = document.querySelector('a-scene');
+    const rabbitNpcEl = sceneEl.querySelector('#rabbitNpc');
+
+    rabbitNpcEl.addEventListener('click', function () {
+      setOpened(true);
+    });
+  });
+
   return (
     <>
       <a-scene vr-mode-ui="enabled: false">
@@ -39,6 +53,7 @@ const MoonContainer = () => {
           </a-entity>
         </a-camera>
       </a-scene>
+      <PlanetDialog planetInfos={moonInfos} open={isopen} setOpen={setOpened} />
     </>
   );
 };
