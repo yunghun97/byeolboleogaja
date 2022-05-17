@@ -9,12 +9,14 @@ import Observatory from '@/pages/Observatory';
 import Horoscope from '@/pages/Horoscope';
 import SpaceTravelDialog from '@/components/SpaceTravelDialog';
 import ImageGallery from '@/pages/MuseumGallery';
+import Character from '@/pages/Character';
 import Moon from '@/pages/Moon';
 
 export default function Routes() {
   return (
     <ReactRouterRoutes>
       <Route path="/" element={<MainPage />} />
+      <Route path="/character" element={<Character />} />
       <Route path="/spaceship" element={<SpaceTravelDialog />} />
       <Route path="/moon" element={<Moon />} />
       <Route path="/vite" element={<Vite />} />

@@ -10,6 +10,7 @@ import spaceshipIntro from './spaceshipIntro';
 import horoscopeIntro from './horoscopeIntro';
 import elevatorIntro from './elevatorIntro';
 import bgmInfo from './bgmInfo';
+import characterInfo from './characterInfo';
 export {
   zodiac,
   horoscopeDefault,
@@ -23,4 +24,5 @@ export {
   horoscopeIntro,
   elevatorIntro,
   bgmInfo,
+  characterInfo,
 };
