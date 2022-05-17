@@ -10,7 +10,8 @@ import Horoscope from '@/pages/Horoscope';
 import SpaceTravelDialog from '@/components/SpaceTravelDialog';
 import ImageGallery from '@/pages/MuseumGallery';
 import Moon from '@/pages/Moon';
-import ObservationSpot from './pages/ObservationSpot';
+import ObservationSpot from '@/pages/ObservationSpot';
+import StellarGuide from '@/pages/StellarGuide';
 
 export default function Routes() {
   return (
@@ -25,6 +26,7 @@ export default function Routes() {
       <Route path="/museum/gallery" element={<ImageGallery />} />
       <Route path="/observatory" element={<Observatory />} />
       <Route path="/observatory/spot" element={<ObservationSpot />} />
+      <Route path="/observatory/stellar" element={<StellarGuide />} />
       <Route path="/horoscope" element={<Horoscope />} />
       <Route path="/404" element={<NotFound />} />
       <Route path="*" element={<Navigate replace to="/404" />} />
