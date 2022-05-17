@@ -1,15 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { Button, Typography } from '@mui/material';
-// 각 이야기에 맞는 사진으로 변경하거나 사진 아얘 삭제
-import logo from '@/assets/img/common/logo-rmbg.png';
 import bg from '@/assets/img/library/img-tablewood.jpg';
 import '@/assets/img/library/main.css';
 import { getBooks } from '@/api/library';
-
-const sectionStyle = {
-  backgroundImage: `url(${logo})`
-};
 
 const LeafletBox = styled.div`
   // 3D
@@ -22,7 +16,28 @@ const LeafletBox = styled.div`
   width: 30vw;
   height: 30vw;
   margin: auto;
-  z-index: 101;
+  z-index: 100;
+	transition: 1s;
+	// cursor: pointer;
+  transform-style: preserve-3d;
+  animation: start-ani 1s forwards;
+  @keyframes start-ani {
+    0% {
+      transform: translate(-100%, 100%) rotate(-540deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(0);
+    }
+  }
+`
+
+const Leaflet3D = styled.div`
+  margin: auto;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: 1s;
+	// cursor: pointer;
+  z-index: 100;
 `
 
 const Background = styled.img`
@@ -51,17 +66,13 @@ const BackButton = styled(Button)`
   top: 10px;
 `
 
-const CloseLeafletButton = styled(Button)`
-  position: absolute;
-  left: 10px;
-  top: 10px;
-`
-
-function LibraryLeaflet ({setIsOpen, category, title}) {
+function LibraryLeaflet ({setIsOpen, category, title, color}) {
   const [isCloseOpen, setIsCloseOpen] = useState(false);
   const [backBtnOpen, setBackBtnOpen] = useState(false);
-  const [detailOpen, setDetailOpen] = useState(false);
   const [bookInfo, setBookInfo] = useState([]);
+  const [pageOne, setPageOne] = useState([]);
+  const [pageTwo, setPageTwo] = useState([]);
+  const [pageThree, setPageThree] = useState([]);
   const currentMenu = useRef({});
   let pageCount = 0;
 
@@ -72,8 +83,20 @@ function LibraryLeaflet ({setIsOpen, category, title}) {
   const getBookInfo = async () => {
     const res = await getBooks(category);
     setBookInfo(res.data);
-    console.log(bookInfo);
+    console.log('bookInfo', bookInfo);
   };
+
+  useEffect(() => {
+    let infoLength = Math.ceil(bookInfo.length / 3);
+    // console.log('infoLength', infoLength);
+    // console.log(typeof infoLength);
+    setPageOne(bookInfo.slice(0, infoLength))
+    setPageTwo(bookInfo.slice(infoLength, infoLength*2))
+    setPageThree(bookInfo.slice(infoLength*2))
+    // console.log('1', pageOne);
+    // console.log('2', pageTwo);
+    // console.log('3', pageThree);
+  }, [bookInfo]);
 
   useEffect(() => {
     const leaflet = document.querySelector('#leaflet');
@@ -154,7 +177,9 @@ function LibraryLeaflet ({setIsOpen, category, title}) {
   }
 
   const zoomOut = () => {
+    console.log('zoomOut');
     leaflet.style.transform = 'translate3d(0, 0, 0)';
+    console.log(currentMenu);
     if (currentMenu) {
       setBackBtnOpen(false);
       document.body.classList.remove('zoom-in');
@@ -163,112 +188,97 @@ function LibraryLeaflet ({setIsOpen, category, title}) {
     }
   }
 
-    return (
-      <>
-        <Background src={bg} alt="background" />
-        <CloseLeafletButton>
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+
+  return (
+    <>
+      <Background src={bg} alt="background"/>
+      <Button
+          sx={{ position: 'absolute', top: '8px', right: '8px' }}
+          onClick={handleClose}
+        >
           돌아가기
-        </CloseLeafletButton>
-        <LeafletBox>
-          <div className="leaflet" id="leaflet">
-            <div className="page" data-page="1">
-              <div className="page-face cover-page">
-                <Typography
-                  sx={{
-                    fontSize: '1rem',
-                    color: 'white',
-                  }}
-                >별 보러 가자</Typography>
-                <Typography
-                  variant="h1"
-                  sx={{
-                    fontSize: '1.5rem',
-                    fontWeight: 'bold',
-                    color: 'white',
-                  }}
-                >{title}</Typography>
-              </div>
-              <div className="page-face">
-                <ul className="menu-list">
-                  <li className="menu-item">
-                    <figure className="menu-item-photo" style={ sectionStyle }></figure>
-                    <div className="menu-item-info">
-                      <p className="member-name">Ilbuni</p>
-                    </div>
-                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
-                  </li>
-                  <li className="menu-item">
-                    <figure className="menu-item-photo" style={ sectionStyle }></figure>
-                    <div className="menu-item-info">
-                      <p className="member-name">Jane Doe</p>
-                    </div>
-                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
-                  </li>
-                  <li className="menu-item">
-                    <figure className="menu-item-photo" style={ sectionStyle }></figure>
-                    <div className="menu-item-info">
-                      <p className="member-name">Jane Doe</p>
-                    </div>
-                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
-                  </li>
-                </ul>
-              </div>
+      </Button>
+      <LeafletBox>
+        <Leaflet3D id="leaflet">
+          <div className="page" data-page="1">
+            <div className="page-face cover-page" style={{background: color}}>
+              <Typography
+                sx={{
+                  fontSize: '1rem',
+                  color: 'white',
+                }}
+              >별 보러 가자</Typography>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  color: 'white',
+                }}
+              >{title}</Typography>
             </div>
-            <div className="page" data-page="2">
-              <div className="page-face">
-                <ul className="menu-list">
-                  <li className="menu-item">
-                    <figure className="menu-item-photo" style={ sectionStyle }></figure>
+            <div className="page-face">
+              <ul className="menu-list">
+                {pageOne.map((item, index) => (
+                  <li className="menu-item" key={index}>
                     <div className="menu-item-info">
-                      <p className="member-name">Ilbuni</p>
+                      <p className="member-name">{item.title}</p>
+                      { backBtnOpen && <p className="member-info">{item.content}</p> }
                     </div>
                     { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
                   </li>
-                  <li className="menu-item">
-                    <figure className="menu-item-photo" style={ sectionStyle }></figure>
-                    <div className="menu-item-info">
-                      <p className="member-name">Jane Doe</p>
-                    </div>
-                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
-                  </li>
-                </ul>
-              </div>
-              <div className="page-face">2B</div>
-            </div>
-            <div className="page" data-page="3">
-              <div className="page-face cover-page">
-                <Typography
-                  variant="h1"
-                  sx={{
-                    fontSize: '1rem',
-                    color: 'white',
-                  }}
-                >궁금한 별자리 이야기를 선택해보세요.</Typography>
-              </div>
-              <div className="page-face">
-                <ul className="menu-list">
-                  <li className="menu-item">
-                    <figure className="menu-item-photo" style={ sectionStyle }></figure>
-                    <div className="menu-item-info">
-                      <p className="member-name">Ilbuni</p>
-                    </div>
-                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
-                  </li>
-                  <li className="menu-item">
-                    <figure className="menu-item-photo" style={ sectionStyle }></figure>
-                    <div className="menu-item-info">
-                      <p className="member-name">Jane Doe</p>
-                    </div>
-                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
-                  </li>
-                </ul>
-                { isCloseOpen && <CloseButton id="close-btn" onClick={closeLeaflet}>✗</CloseButton>}
-              </div>
+                ))}
+              </ul>
             </div>
           </div>
-        </LeafletBox>
-      </>
-    );
+          <div className="page" data-page="2">
+            <div className="page-face">
+              <ul className="menu-list">
+                {pageTwo.map((item, index) => (
+                  <li className="menu-item" key={index}>
+                    <div className="menu-item-info">
+                      <p className="member-name">{item.title}</p>
+                      { backBtnOpen && <p className="member-info">{item.content}</p> }
+                    </div>
+                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="page-face">2B</div>
+          </div>
+          <div className="page" data-page="3">
+            <div className="page-face cover-page" style={{background: color}}>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: '1rem',
+                  color: 'white',
+                }}
+              >궁금한 {title}를 선택해보세요.</Typography>
+            </div>
+            <div className="page-face">
+              <ul className="menu-list">
+                {pageThree.map((item, index) => (
+                  <li className="menu-item" key={index}>
+                    <div className="menu-item-info">
+                      <p className="member-name">{item.title}</p>
+                      { backBtnOpen && <p className="member-info">{item.content}</p> }
+                    </div>
+                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
+                  </li>
+                ))}
+              </ul>
+              { isCloseOpen && <CloseButton id="close-btn" onClick={closeLeaflet}>✗</CloseButton>}
+            </div>
+          </div>
+        </Leaflet3D>
+      </LeafletBox>
+    </>
+  );
 }
 
 export default LibraryLeaflet;
