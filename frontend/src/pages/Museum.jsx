@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 export default function Museum() {
   const [isOpen, setOpen] = useState(false);
   const [satellite, setSatellite] = useState({});
-  const [isGuideDialog, setISGuideDialog] = useState(false);
-  const [isWorld, setWorld] = useState(true);
+
   const [guideOpen, setGuideOpen] = useState(false);
   MuseumDialog.propTypes = {
     name: PropTypes.string,
@@ -24,9 +23,10 @@ export default function Museum() {
         satellite={satellite}
       />
       <Menu
-        isGuideDialog={isGuideDialog}
+        isGuideDialog={false}
         setGuideOpen={setGuideOpen}
-        isWorld={isWorld}
+        isWorld={true}
+        placeBGM={'museum'}
       />
     </main>
   );

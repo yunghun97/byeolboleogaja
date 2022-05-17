@@ -1,16 +1,22 @@
 import { Popover, Box, Stack, Slider } from '@mui/material';
 import { VolumeUp, VolumeDown } from '@mui/icons-material';
 import { useState } from 'react';
-const SoundDialog = ({ anchorEl, setAnchorEl, value, setValue }) => {
+const SoundDialog = ({
+  anchorEl,
+  setAnchorEl,
+  value,
+  setValue,
+  audioSetting,
+}) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    console.log(value);
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    audioSetting.volume = value;
   };
   return (
     <Popover

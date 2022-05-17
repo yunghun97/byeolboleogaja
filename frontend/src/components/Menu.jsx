@@ -1,12 +1,23 @@
 import { SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import { Logout, VolumeUp, Public, QuestionMark } from '@mui/icons-material';
 import SoundDialog from '@/components/SoundDialog';
+
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-const Menu = ({ isGuideDialog, isWorld, setGuideOpen, value, setValue }) => {
+import { useEffect, useState } from 'react';
+import { bgmInfo } from '@/constants';
+const Menu = ({ isGuideDialog, isWorld, setGuideOpen, placeBGM }) => {
   const navigate = useNavigate();
 
+  const [value, setValue] = useState(0.2);
   const [anchorEl, setAnchorEl] = useState(null);
+  const audioSetting = document.querySelector('audio');
+  useEffect(() => {
+    const audioSetting = document.querySelector('audio');
+    const nowPlaceBGM = bgmInfo.filter((item, idx) => item.place == placeBGM);
+    console.log(nowPlaceBGM);
+    audioSetting.src = nowPlaceBGM[0].bgm;
+    audioSetting.volume = 0.2;
+  }, []);
   const goMain = () => {
     navigate('/');
   };
@@ -20,6 +31,7 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, value, setValue }) => {
   const openGuide = () => {
     setGuideOpen(true);
   };
+
   const actionMenu = [
     { icon: <Logout />, name: '종료하기', move: goMain },
     { icon: <VolumeUp />, name: '배경음악 조절', move: controlSounds },
@@ -39,6 +51,13 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, value, setValue }) => {
 
   return (
     <>
+      <audio
+        id="soundVolume"
+        src="#"
+        volume={value}
+        autoPlay={true}
+        loop={true}
+      ></audio>
       <SpeedDial
         ariaLabel="Museum menu"
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
@@ -58,6 +77,7 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, value, setValue }) => {
         setAnchorEl={setAnchorEl}
         value={value}
         setValue={setValue}
+        audioSetting={audioSetting}
       />
     </>
   );
