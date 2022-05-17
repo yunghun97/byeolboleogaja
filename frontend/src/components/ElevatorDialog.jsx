@@ -19,7 +19,7 @@ const ElevatorDialog = ({
 }) => {
   const navigate = useNavigate();
   const handleLink = () => {
-    if (nowFloor != floor) {
+    if (nowFloor !== floor) {
       if (activeFloor === 0) {
         navigate('/museum');
       }
