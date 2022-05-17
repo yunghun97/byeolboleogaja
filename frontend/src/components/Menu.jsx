@@ -1,11 +1,11 @@
 import { SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import { Logout, VolumeUp, Public, QuestionMark } from '@mui/icons-material';
 import SoundDialog from '@/components/SoundDialog';
-import citykey from '@/assets/audio/bgm-citykey.mp3';
+
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-const Menu = ({ isGuideDialog, isWorld, setGuideOpen }) => {
+import { bgmInfo } from '@/constants';
+const Menu = ({ isGuideDialog, isWorld, setGuideOpen, placeBGM }) => {
   const navigate = useNavigate();
 
   const [value, setValue] = useState(0.2);
@@ -13,6 +13,9 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen }) => {
   const audioSetting = document.querySelector('audio');
   useEffect(() => {
     const audioSetting = document.querySelector('audio');
+    const nowPlaceBGM = bgmInfo.filter((item, idx) => item.place == placeBGM);
+    console.log(nowPlaceBGM);
+    audioSetting.src = nowPlaceBGM[0].bgm;
     audioSetting.volume = 0.2;
   }, []);
   const goMain = () => {
@@ -50,7 +53,7 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen }) => {
     <>
       <audio
         id="soundVolume"
-        src={citykey}
+        src="#"
         volume={value}
         autoPlay={true}
         loop={true}
