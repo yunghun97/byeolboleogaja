@@ -47,36 +47,36 @@ const WorldContainer = () => {
     const horoscopeNpcEl = sceneEl.querySelector('#horoscopeNpc-model');
 
     libraryEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     observatoryEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     spaceshipEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     satelliteEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     witchHouseEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     libraryNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     observatoryNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     museumNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     spaceshipNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     horoscopeNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
-  })
+  });
 
   useEffect(() => {
     // model-loaded 이벤트 3개가 1개로 처리되는 문제로 progress 값 6 이상으로 임의 설정
@@ -84,7 +84,7 @@ const WorldContainer = () => {
       setIsLoading(false);
       setGuideOpen(true);
     }
-  },[progress])
+  }, [progress]);
 
   const [open, setOpen] = useState(true);
   const [isopen, setOpened] = useState(false);
@@ -127,7 +127,7 @@ const WorldContainer = () => {
   });
   return (
     <>
-      {isLoading && <LoadingScene loadingTime={progress}/>}
+      {isLoading && <LoadingScene loadingTime={progress} />}
       <a-scene loading-screen="enabled: false" shadow="type: pcfsoft">
         <a-assets>
           <img id="sky" src={sky} />
@@ -149,6 +149,15 @@ const WorldContainer = () => {
         <a-entity
           position="0 400 25"
           light="type:point;
+          intensity: 1.5;
+          castShadow:true;
+          shadowCameraTop:    500;
+          shadowCameraRight:  500;
+          shadowCameraLeft:   -500"
+        ></a-entity>
+        <a-entity
+          position="0 400 25"
+          light="type:directional;
           intensity: 1.5;
           castShadow:true;
           shadowCameraTop:    500;
@@ -258,7 +267,7 @@ const WorldContainer = () => {
           position="-65 3 -345"
           rotation="0 0 0"
         />
-        <a-camera position="0 7 0">
+        <a-camera position="0 7 0" wasd-controls="acceleration:100">
           <a-entity
             position="0 -5 0"
             rotation="0 180 0"
@@ -274,7 +283,11 @@ const WorldContainer = () => {
           on: keydown:keyW"
         ></a-entity>
       </a-scene>
-      <GuideDialog guideInfos={worldGuideInfos} open={guideOpen} setOpen={setGuideOpen} />
+      <GuideDialog
+        guideInfos={worldGuideInfos}
+        open={guideOpen}
+        setOpen={setGuideOpen}
+      />
       <BuildingDialog
         buildingInfos={info}
         building={Building}
