@@ -105,7 +105,6 @@ const WorldContainer = () => {
       setOpened(true);
       setInfo(libraryIntro);
       setBuilding('library');
-      console.log('hi');
     });
     museum.addEventListener('click', function () {
       setOpened(true);
