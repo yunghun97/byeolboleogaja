@@ -20,6 +20,7 @@ const HoroscopeContainer = () => {
   const [horoIndex, setHoroIndex] = useState(0);
 
   useEffect(() => {
+    document.querySelector('html').className = '';
     initHoroscope();
   }, []);
 
