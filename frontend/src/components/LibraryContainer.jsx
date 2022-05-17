@@ -40,13 +40,20 @@ function LibraryContainer () {
   const [isSCSOpen, setIsSCSOpen] = useState(false);  // Space Common Sense
   const [isPlanetOpen, setIsPlanetOpen] = useState(false);  // Planet
   const [isAstOpen, setIsAstOpen] = useState(false);  // Astronaut
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+   if (isConsOpen || isSCSOpen || isPlanetOpen || isAstOpen) {
+     setIsOpen(true);
+   } 
+  }, [isConsOpen, isSCSOpen, isPlanetOpen, isAstOpen])
 
   const handleGoBack = () => {
     setIsConsOpen(false);
     setIsSCSOpen(false);
     setIsPlanetOpen(false);
     setIsAstOpen(false);
-    console.log(isConsOpen);
+    setIsOpen(false);
   }
 
   return (
@@ -54,7 +61,7 @@ function LibraryContainer () {
       <Background src={bg} alt="background" />
         <Layout>
           {
-            isConsOpen || isSCSOpen || isPlanetOpen || isAstOpen &&
+            isOpen &&
             <CloseLeafletButton
               variant="contained"
               onClick={handleGoBack}>
