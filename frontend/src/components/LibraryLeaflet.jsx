@@ -57,13 +57,15 @@ const CloseButton = styled(Button)`
   color: #fff;
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 0;
   backface-visibility: hidden;
+  // z-index: 100;
 `
 
 const BackButton = styled(Button)`
   display: inline-block;
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 30px;
+  // z-index: 100;
 `
 
 function LibraryLeaflet ({setIsOpen, category, title, color}) {
@@ -73,6 +75,7 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
   const [pageOne, setPageOne] = useState([]);
   const [pageTwo, setPageTwo] = useState([]);
   const [pageThree, setPageThree] = useState([]);
+  const [currentMenuItem, setCurrentMenuItem] = useState(null);
   const currentMenu = useRef({});
   let pageCount = 0;
 
@@ -96,6 +99,7 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
     // console.log('1', pageOne);
     // console.log('2', pageTwo);
     // console.log('3', pageThree);
+  // }, []);
   }, [bookInfo]);
 
   useEffect(() => {
@@ -124,8 +128,9 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
     leaflet.addEventListener('animationend', () => {
       leaflet.style.animation = 'none';
     })
-  })
+  }, [])
 
+  // get target by className
   const getTarget = (elem, className) => {
     while (!elem.classList.contains(className)) {
       elem = elem.parentNode;
@@ -155,6 +160,8 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
     const rect = elem.getBoundingClientRect();
     const dx = window.innerWidth/2 - (rect.x + rect.width/2);
     const dy = window.innerHeight/2 - (rect.y + rect.height/2);
+    // const dy = window.innerHeight/8;
+    console.log(window.innerHeight);
     let angle;
 
     switch (elem.parentNode.parentNode.parentNode.dataset.page*1) {
@@ -169,7 +176,8 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
         break;
     }
     document.body.classList.add('zoom-in');
-    leaflet.style.transform = `translate3d(${dx}px, ${dy}px, 50vw) rotateY(${angle}deg)`
+    leaflet.style.transform = `translate3d(${dx}px, -${dy}px, 50vw) rotateY(${angle}deg)`
+    // leaflet.style.transform = `translate3d(${dx}px, -30vh, 50vw) rotateY(${angle}deg)`
 
     currentMenu.current = elem;
     currentMenu.current.classList.add('current-menu');
@@ -190,6 +198,10 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
 
   const handleClose = () => {
     setIsOpen(false)
+  }
+
+  const handleMenuItem = (index) => {
+    setCurrentMenuItem(index)
   }
 
   return (
@@ -223,12 +235,26 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
             <div className="page-face">
               <ul className="menu-list">
                 {pageOne.map((item, index) => (
-                  <li className="menu-item" key={index}>
+                  // infinite rerendering error occurs
+                  <li className="menu-item" key={index} onClick={() => handleMenuItem(index)} >
+                  {/* <li className="menu-item" key={index}> */}
                     <div className="menu-item-info">
-                      <p className="member-name">{item.title}</p>
-                      { backBtnOpen && <p className="member-info">{item.content}</p> }
+                      <Typography
+                        sx={{
+                          fontSize: '1.5rem',
+                          fontWeight: 'bold',
+                        }}
+                      >{item.title}</Typography>
+                      { currentMenuItem === index &&
+                        <Typography
+                        sx={{
+                          fontSize: '0.1rem',
+                          fontWeight: 'light',
+                        }}
+                        >{item.content}</Typography>
+                      }
                     </div>
-                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
+                    { backBtnOpen && <BackButton onClick={zoomOut}>←</BackButton>}
                   </li>
                 ))}
               </ul>
@@ -238,17 +264,29 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
             <div className="page-face">
               <ul className="menu-list">
                 {pageTwo.map((item, index) => (
-                  <li className="menu-item" key={index}>
+                  <li className="menu-item" key={index} onClick={() => handleMenuItem(index)}>
                     <div className="menu-item-info">
-                      <p className="member-name">{item.title}</p>
-                      { backBtnOpen && <p className="member-info">{item.content}</p> }
+                      <Typography
+                        sx={{
+                          fontSize: '1.5rem',
+                          fontWeight: 'bold',
+                        }}
+                      >{item.title}</Typography>
+                      { currentMenuItem === index &&
+                        <Typography
+                        sx={{
+                          fontSize: '0.1rem',
+                          fontWeight: 'light',
+                        }}
+                        >{item.content}</Typography>
+                      }
                     </div>
-                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
+                    { backBtnOpen && <BackButton onClick={zoomOut}>←</BackButton>}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="page-face">2B</div>
+            <div className="page-face">아무도 못보는 리플릿 뒷면!</div>
           </div>
           <div className="page" data-page="3">
             <div className="page-face cover-page" style={{background: color}}>
@@ -263,12 +301,24 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
             <div className="page-face">
               <ul className="menu-list">
                 {pageThree.map((item, index) => (
-                  <li className="menu-item" key={index}>
+                  <li className="menu-item" key={index} onClick={() => handleMenuItem(index)}>
                     <div className="menu-item-info">
-                      <p className="member-name">{item.title}</p>
-                      { backBtnOpen && <p className="member-info">{item.content}</p> }
+                      <Typography
+                        sx={{
+                          fontSize: '1.5rem',
+                          fontWeight: 'bold',
+                        }}
+                      >{item.title}</Typography>
+                      { currentMenuItem === index &&
+                        <Typography
+                        sx={{
+                          fontSize: '0.1rem',
+                          fontWeight: 'light',
+                        }}
+                        >{item.content}</Typography>
+                      }
                     </div>
-                    { backBtnOpen && <BackButton onClick={zoomOut}>← Back</BackButton>}
+                    { backBtnOpen && <BackButton onClick={zoomOut}>←</BackButton>}
                   </li>
                 ))}
               </ul>
