@@ -1,27 +1,38 @@
 import { useEffect } from 'react';
-import { Container, Typography } from '@mui/material';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+} from '@mui/material';
 import { characterInfo } from '@/constants';
 
 const CharacterSelect = () => {
   return (
-    <Container
-      maxWidth="sm"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <Typography
-        sx={{
-          fontSize: '2rem',
-          fontWeight: 'bold',
-          textTransform: 'none',
-        }}
-      >
-        캐릭터 선택하기
-      </Typography>
-    </Container>
+    <>
+      <Card sx={{ minWidth: 275 }}>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            Word of the Day
+          </Typography>
+          <Typography variant="h5" component="div">
+            be
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            adjective
+          </Typography>
+          <Typography variant="body2">
+            well meaning and kindly.
+            <br />
+            {'"a benevolent smile"'}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Learn More</Button>
+        </CardActions>
+      </Card>
+    </>
   );
 };
 export default CharacterSelect;
