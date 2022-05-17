@@ -11,6 +11,8 @@ import horoscopeIntro from './horoscopeIntro';
 import moonInfos from './moonInfos';
 import quizDefault from './quizDefault';
 
+import elevatorIntro from './elevatorIntro';
+import bgmInfo from './bgmInfo';
 export {
   zodiac,
   horoscopeDefault,
@@ -24,4 +26,6 @@ export {
   horoscopeIntro,
   moonInfos,
   quizDefault,
+  elevatorIntro,
+  bgmInfo,
 };

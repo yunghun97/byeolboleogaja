@@ -15,12 +15,11 @@ import libraryNpc from '@/assets/model/world/mdl-npc-2.glb?url';
 import museumNpc from '@/assets/model/world/mdl-npc-3.glb?url';
 import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
-import questionmark from '@/assets/img/world/img-questionmark.png';
-import GuideDialog from '@/components/GuideDialog';
+
 import LoadingScene from '@/components/LoadingScene';
 import BuildingDialog from '@/components/BuildingDialog';
+
 import {
-  worldGuideInfos,
   observatoryIntro,
   libraryIntro,
   museumIntro,
@@ -29,7 +28,6 @@ import {
 } from '@/constants';
 
 const WorldContainer = () => {
-  const [guideOpen, setGuideOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
@@ -47,44 +45,43 @@ const WorldContainer = () => {
     const horoscopeNpcEl = sceneEl.querySelector('#horoscopeNpc-model');
 
     libraryEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     observatoryEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     spaceshipEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     satelliteEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     witchHouseEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     libraryNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     observatoryNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     museumNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     spaceshipNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
     horoscopeNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress+1);
+      setProgress(progress + 1);
     });
-  })
+  });
 
   useEffect(() => {
     // model-loaded 이벤트 3개가 1개로 처리되는 문제로 progress 값 6 이상으로 임의 설정
     if (progress >= 6) {
       setIsLoading(false);
-      setGuideOpen(true);
     }
-  },[progress])
+  }, [progress]);
 
   const [open, setOpen] = useState(true);
   const [isopen, setOpened] = useState(false);
@@ -127,8 +124,12 @@ const WorldContainer = () => {
   });
   return (
     <>
-      {isLoading && <LoadingScene loadingTime={progress}/>}
-      <a-scene loading-screen="enabled: false" shadow="type: pcfsoft">
+      {isLoading && <LoadingScene loadingTime={progress} />}
+      <a-scene
+        vr-mode-ui="enabled: false"
+        loading-screen="enabled: false"
+        shadow="type: pcfsoft"
+      >
         <a-assets>
           <img id="sky" src={sky} />
           <a-asset-item id="ground" src={ground}></a-asset-item>
@@ -149,6 +150,15 @@ const WorldContainer = () => {
         <a-entity
           position="0 400 25"
           light="type:point;
+          intensity: 1.5;
+          castShadow:true;
+          shadowCameraTop:    500;
+          shadowCameraRight:  500;
+          shadowCameraLeft:   -500"
+        ></a-entity>
+        <a-entity
+          position="0 400 25"
+          light="type:directional;
           intensity: 1.5;
           castShadow:true;
           shadowCameraTop:    500;
@@ -258,7 +268,7 @@ const WorldContainer = () => {
           position="-65 3 -345"
           rotation="0 0 0"
         />
-        <a-camera position="0 7 0">
+        <a-camera position="0 7 0" wasd-controls="acceleration:100">
           <a-entity
             position="0 -5 0"
             rotation="0 180 0"
@@ -274,26 +284,13 @@ const WorldContainer = () => {
           on: keydown:keyW"
         ></a-entity>
       </a-scene>
-      <GuideDialog guideInfos={worldGuideInfos} open={guideOpen} setOpen={setGuideOpen} />
+
       <BuildingDialog
         buildingInfos={info}
         building={Building}
         open={isopen}
         setOpen={setOpened}
       />
-      <Button
-        sx={{
-          position: 'absolute',
-          bottom: '1vh',
-          right: '1vw',
-          zIndex: 999,
-        }}
-        onClick={() => {
-          setGuideOpen(true);
-        }}
-      >
-        <img src={questionmark} alt="questionmark" />
-      </Button>
     </>
   );
 };
