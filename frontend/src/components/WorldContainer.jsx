@@ -15,12 +15,11 @@ import libraryNpc from '@/assets/model/world/mdl-npc-2.glb?url';
 import museumNpc from '@/assets/model/world/mdl-npc-3.glb?url';
 import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
-import questionmark from '@/assets/img/world/img-questionmark.png';
-import GuideDialog from '@/components/GuideDialog';
+
 import LoadingScene from '@/components/LoadingScene';
 import BuildingDialog from '@/components/BuildingDialog';
+
 import {
-  worldGuideInfos,
   observatoryIntro,
   libraryIntro,
   museumIntro,
@@ -29,7 +28,6 @@ import {
 } from '@/constants';
 
 const WorldContainer = () => {
-  const [guideOpen, setGuideOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
@@ -82,7 +80,6 @@ const WorldContainer = () => {
     // model-loaded 이벤트 3개가 1개로 처리되는 문제로 progress 값 6 이상으로 임의 설정
     if (progress >= 6) {
       setIsLoading(false);
-      setGuideOpen(true);
     }
   }, [progress]);
 
@@ -128,7 +125,11 @@ const WorldContainer = () => {
   return (
     <>
       {isLoading && <LoadingScene loadingTime={progress} />}
-      <a-scene loading-screen="enabled: false" shadow="type: pcfsoft">
+      <a-scene
+        vr-mode-ui="enabled: false"
+        loading-screen="enabled: false"
+        shadow="type: pcfsoft"
+      >
         <a-assets>
           <img id="sky" src={sky} />
           <a-asset-item id="ground" src={ground}></a-asset-item>
@@ -283,30 +284,13 @@ const WorldContainer = () => {
           on: keydown:keyW"
         ></a-entity>
       </a-scene>
-      <GuideDialog
-        guideInfos={worldGuideInfos}
-        open={guideOpen}
-        setOpen={setGuideOpen}
-      />
+
       <BuildingDialog
         buildingInfos={info}
         building={Building}
         open={isopen}
         setOpen={setOpened}
       />
-      <Button
-        sx={{
-          position: 'absolute',
-          bottom: '1vh',
-          right: '1vw',
-          zIndex: 999,
-        }}
-        onClick={() => {
-          setGuideOpen(true);
-        }}
-      >
-        <img src={questionmark} alt="questionmark" />
-      </Button>
     </>
   );
 };
