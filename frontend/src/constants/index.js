@@ -13,6 +13,7 @@ import quizDefault from './quizDefault';
 
 import elevatorIntro from './elevatorIntro';
 import bgmInfo from './bgmInfo';
+import characterInfo from './characterInfo';
 export {
   zodiac,
   horoscopeDefault,
@@ -28,4 +29,5 @@ export {
   quizDefault,
   elevatorIntro,
   bgmInfo,
+  characterInfo,
 };

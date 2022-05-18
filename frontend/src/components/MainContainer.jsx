@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import logoMain from '@/assets/img/common/logo-rmbg.png';
+import logoMain from '@/assets/img/common/logo.png';
 
 const MainContainer = () => {
   const navigate = useNavigate();
@@ -50,7 +50,8 @@ const MainContainer = () => {
       return;
     }
     $setNickname(nickname);
-    navigate('/worldmap');
+
+    navigate('/character');
   };
 
   const handleNicknameChange = (event) => {
@@ -98,9 +99,7 @@ const MainContainer = () => {
       <Dialog maxWidth="xs" open={open} onClose={handleClose}>
         <DialogTitle>닉네임 입력하기</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            멋진 닉네임으로 입장해주세요!
-          </DialogContentText>
+          <DialogContentText>멋진 닉네임으로 입장해주세요!</DialogContentText>
           <TextField
             autoFocus
             id="name"

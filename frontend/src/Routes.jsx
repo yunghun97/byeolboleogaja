@@ -10,6 +10,7 @@ import Horoscope from '@/pages/Horoscope';
 import SpaceTravelDialog from '@/components/SpaceTravelDialog';
 import Library from '@/pages/Library';
 import ImageGallery from '@/pages/MuseumGallery';
+import Character from '@/pages/Character';
 import Moon from '@/pages/Moon';
 import ObservationSpot from '@/pages/ObservationSpot';
 import StellarGuide from '@/pages/StellarGuide';
@@ -18,6 +19,7 @@ export default function Routes() {
   return (
     <ReactRouterRoutes>
       <Route path="/" element={<MainPage />} />
+      <Route path="/character" element={<Character />} />
       <Route path="/spaceship" element={<SpaceTravelDialog />} />
       <Route path="/library" element={<Library />} />
       <Route path="/moon" element={<Moon />} />
