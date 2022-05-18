@@ -3,11 +3,11 @@ import { useStore } from '@/store';
 import { Box, Container, LinearProgress, Typography } from '@mui/material';
 import LoadingBackground from '@/components/LoadingBackground';
 import { getCommonSence } from '@/api/loading';
-import bg from '@/assets/img/loading/bg-loading-1.jpg';
+import loadingBg from '@/assets/img/loading/bg-loading-1.jpg';
 
 const LoadingScene = ({ loadingTime }) => {
   const [progress, setProgress] = useState(0);
-  const loadingBg = useStore((state) => state.apodUrl);
+  const apodImg = useStore((state) => state.apodUrl);
   const [loadingMsg, setLoadingMsg] = useState('');
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const LoadingScene = ({ loadingTime }) => {
 
   return (
     <>
-      <LoadingBackground bgUrl={bg} />
+      <LoadingBackground bgUrl={loadingBg} />
       <Container
         maxWidth="lg"
         sx={{
@@ -54,7 +54,7 @@ const LoadingScene = ({ loadingTime }) => {
         </Typography>
         <Box
           component="img"
-          src={loadingBg}
+          src={apodImg}
           sx={{ mt: '1.5vh', height: '60vh' }}
         />
         <Typography
