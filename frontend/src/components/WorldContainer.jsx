@@ -153,22 +153,18 @@ const WorldContainer = () => {
         </a-assets>
         <a-sky src="#sky" />
         <a-entity
-          position="0 400 25"
+          position="0 600 0"
           light="type:point;
-          intensity: 1.5;
+          intensity: 1.3;
           castShadow:true;
-          shadowCameraTop:    500;
-          shadowCameraRight:  500;
-          shadowCameraLeft:   -500"
+          shadowCameraFar:800"
         ></a-entity>
         <a-entity
-          position="0 400 25"
-          light="type:directional;
-          intensity: 1.5;
+          position="0 600 -400"
+          light="type:point;
+          intensity: 1.3;
           castShadow:true;
-          shadowCameraTop:    500;
-          shadowCameraRight:  500;
-          shadowCameraLeft:   -500"
+          shadowCameraFar:800"
         ></a-entity>
         <a-gltf-model
           src="#ground"
@@ -263,6 +259,7 @@ const WorldContainer = () => {
           id="horoscopeNpc-model"
           class="clickable"
           src="#horoscopeNpc"
+          light="type:directional;"
           shadow="cast: true; receive: false"
           scale="15 15 15"
           position="-45 3 -156"
@@ -273,6 +270,7 @@ const WorldContainer = () => {
           id="exclamationMark1-model"
           src="#exclamationMark"
           scale="3 3 3"
+          shadow="cast: false; receive: false"
           position="40.691 6 -59.691"
           rotation="0 90 0"
         />
@@ -280,6 +278,7 @@ const WorldContainer = () => {
           id="exclamationMark2-model"
           src="#exclamationMark"
           scale="3 3 3"
+          shadow="cast: false; receive: false"
           position="45.986 5.901 -178.886"
           rotation="0 90 0"
         />
@@ -287,12 +286,14 @@ const WorldContainer = () => {
           id="exclamationMark3-model"
           src="#exclamationMark"
           scale="3 3 3"
+          shadow="cast: false; receive: false"
           position="-33.318 7.280 -67.5"
           rotation="0 90 0"
         />
         <a-gltf-model
           id="exclamationMark4-model"
           src="#exclamationMark"
+          shadow="cast: false; receive: false"
           scale="3 3 3"
           position="-43.330 7.374 -198.996"
           rotation="0 90 0"
@@ -300,6 +301,7 @@ const WorldContainer = () => {
         <a-gltf-model
           id="exclamationMark5-model"
           src="#exclamationMark"
+          shadow="cast: false; receive: false"
           scale="3 3 3"
           position="-41.555 7.820 -156.640"
           rotation="0 90 0"
