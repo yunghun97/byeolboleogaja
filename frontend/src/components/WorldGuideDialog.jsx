@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import {
   Button,
   Dialog,
@@ -8,12 +7,18 @@ import {
   DialogTitle,
   MobileStepper,
   Typography,
+  IconButton,
 } from '@mui/material';
+import styled from '@emotion/styled';
+import { Close as CloseIcon } from '@mui/icons-material';
 
-const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
-  const navigate = useNavigate();
+const GuideImg = styled.img`
+  width: 100%;
+`
+
+function WorldGuideDialog ({ guideInfos, open, setOpen }) {
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = buildingInfos.length;
+  const maxSteps = guideInfos.length;
 
   useEffect(() => {
     setActiveStep(0);
@@ -24,9 +29,6 @@ const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
   };
 
   const handleNext = () => {
-    if (activeStep === maxSteps - 1) {
-      navigate(`/${building}`);
-    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -35,8 +37,13 @@ const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
   };
 
   return (
-    <Dialog fullWidth maxWidth="md" open={open}>
-      <DialogTitle>
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
+      <DialogTitle
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
         <Typography
           sx={{
             fontSize: '1.5rem',
@@ -44,26 +51,30 @@ const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
             textTransform: 'none',
           }}
         >
-          {buildingInfos[activeStep].title}
+          {guideInfos[activeStep].title}
         </Typography>
+        <IconButton
+          onClick={handleClose}
+          >
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
+        <GuideImg src={guideInfos[activeStep].imgPath} alt="world guide image"/>
         <Typography
           sx={{
-            fontSize: '1.2rem',
-            fontWeight: 'bold',
-            textTransform: 'none',
+            height:  '40px',
           }}
         >
-          {buildingInfos[activeStep].description}
+          {guideInfos[activeStep].description}
         </Typography>
       </DialogContent>
       <MobileStepper
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
-        nextButton={<Button></Button>}
-        backButton={<Button></Button>}
+        nextButton={<Button disabled></Button>}
+        backButton={<Button disabled></Button>}
       />
       <DialogActions>
         <Button
@@ -79,13 +90,14 @@ const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
               textTransform: 'none',
             }}
           >
-            이전
+            이전 페이지
           </Typography>
         </Button>
         <Button
           variant="contained"
           sx={{ m: 1, width: '50%' }}
           onClick={handleNext}
+          disabled={activeStep === maxSteps - 1}
         >
           <Typography
             sx={{
@@ -94,18 +106,12 @@ const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
               textTransform: 'none',
             }}
           >
-            {activeStep === maxSteps - 1 ? '입장하기' : '다음'}
+            다음 페이지
           </Typography>
-        </Button>
-        <Button
-          sx={{ position: 'absolute', top: '8px', right: '8px' }}
-          onClick={handleClose}
-        >
-          SKIP
         </Button>
       </DialogActions>
     </Dialog>
-  );
-};
-
-export default BuildingDialog;
+    );
+  };
+  
+  export default WorldGuideDialog;

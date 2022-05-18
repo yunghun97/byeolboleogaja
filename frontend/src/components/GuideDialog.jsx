@@ -11,7 +11,6 @@ import {
 } from '@mui/material';
 
 const GuideDialog = ({ guideInfos, open, setOpen }) => {
-  // const [open, setOpen] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = guideInfos.length;
 

@@ -14,9 +14,10 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, placeBGM }) => {
   useEffect(() => {
     const audioSetting = document.querySelector('audio');
     const nowPlaceBGM = bgmInfo.filter((item, idx) => item.place == placeBGM);
-    console.log(nowPlaceBGM);
-    audioSetting.src = nowPlaceBGM[0].bgm;
-    audioSetting.volume = 0.2;
+    if (Object.keys(nowPlaceBGM).length != 0) {
+      audioSetting.src = nowPlaceBGM[0].bgm;
+      audioSetting.volume = 0.2;
+    }
   }, []);
   const goMain = () => {
     navigate('/');
@@ -45,7 +46,7 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, placeBGM }) => {
         }
       : {},
   ];
-  const NewactionMenu = actionMenu.filter(
+  const newActionMenu = actionMenu.filter(
     (element, i) => Object.keys(element).length != 0,
   );
 
@@ -63,7 +64,7 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, placeBGM }) => {
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
       >
-        {NewactionMenu.map((action) => (
+        {newActionMenu.map((action) => (
           <SpeedDialAction
             key={action.name}
             icon={action.icon}

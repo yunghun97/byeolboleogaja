@@ -20,6 +20,7 @@ const HoroscopeContainer = () => {
   const [horoIndex, setHoroIndex] = useState(0);
 
   useEffect(() => {
+    document.querySelector('html').className = '';
     initHoroscope();
   }, []);
 
@@ -48,7 +49,6 @@ const HoroscopeContainer = () => {
       sx={{
         display: 'flex',
         alignItems: 'center',
-        overflowY: 'auto',
       }}
     >
       <Box sx={{ m: 7, flexGrow: 1 }}>
