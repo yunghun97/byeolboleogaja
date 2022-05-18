@@ -5,20 +5,22 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  MobileStepper,
   Typography,
 } from '@mui/material';
-import { Close as CloseIcon } from '@mui/icons-material';
-import QuizDialog from '@/components/QuizDialog';
 
-const PlanetDialog = ({ planetInfos, open, setOpen }) => {
-  const [isopen, setOpened] = useState(false);
+const PlanetDialog = ({
+  planetInfos,
+  open,
+  setOpen,
+  quizOpen,
+  setQuizOpen,
+}) => {
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = planetInfos.length;
 
   useEffect(() => {
     setActiveStep(0);
-  }, [open]);
+  }, [quizOpen]);
 
   const handleClose = () => {
     setOpen(false);
@@ -27,7 +29,7 @@ const PlanetDialog = ({ planetInfos, open, setOpen }) => {
   const handleNext = () => {
     if (activeStep === maxSteps - 1) {
       setOpen(false);
-      setOpened(true);
+      setQuizOpen(true);
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
@@ -46,7 +48,6 @@ const PlanetDialog = ({ planetInfos, open, setOpen }) => {
       <Dialog fullWidth maxWidth="md" open={open}>
         <DialogTitle>
           <Typography
-            component="h1"
             sx={{
               fontSize: '1.5rem',
               fontWeight: 'bold',
@@ -58,7 +59,6 @@ const PlanetDialog = ({ planetInfos, open, setOpen }) => {
         </DialogTitle>
         <DialogContent>
           <Typography
-            component="body1"
             sx={{
               fontSize: '1.2rem',
               fontWeight: 'bold',
@@ -68,13 +68,6 @@ const PlanetDialog = ({ planetInfos, open, setOpen }) => {
             {planetInfos[activeStep].description}
           </Typography>
         </DialogContent>
-        <MobileStepper
-          steps={maxSteps}
-          position="static"
-          activeStep={activeStep}
-          nextButton={<Button></Button>}
-          backButton={<Button></Button>}
-        />
         <DialogActions>
           <Button
             variant="outlined"
@@ -115,7 +108,6 @@ const PlanetDialog = ({ planetInfos, open, setOpen }) => {
           </Button>
         </DialogActions>
       </Dialog>
-      <QuizDialog open={isopen} setOpen={setOpened} />
     </>
   );
 };

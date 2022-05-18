@@ -8,10 +8,14 @@ import PlanetDialog from '@/components/PlanetDialog';
 import { moonInfos } from '@/constants';
 import { useState, useEffect } from 'react';
 import { useStore } from '@/store';
+import QuizDialog from './QuizDialog';
+
 const MoonContainer = () => {
   const [open, setOpen] = useState(true);
   const [isopen, setOpened] = useState(false);
+  const [quizOpen, setQuizOpen] = useState(false);
   const chracterColor = useStore((state) => state.chracterColor);
+
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const rabbitNpcEl = sceneEl.querySelector('#rabbitNpc');
@@ -54,7 +58,14 @@ const MoonContainer = () => {
           </a-entity>
         </a-camera>
       </a-scene>
-      <PlanetDialog planetInfos={moonInfos} open={isopen} setOpen={setOpened} />
+      <PlanetDialog
+        planetInfos={moonInfos}
+        open={isopen}
+        setOpen={setOpened}
+        quizOpen={quizOpen}
+        setQuizOpen={setQuizOpen}
+      />
+      <QuizDialog open={quizOpen} setOpen={setQuizOpen} />
     </>
   );
 };
