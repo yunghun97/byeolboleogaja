@@ -7,6 +7,7 @@ import {
   DialogTitle,
   MobileStepper,
   Typography,
+  IconButton,
 } from '@mui/material';
 import styled from '@emotion/styled';
 import { Close as CloseIcon } from '@mui/icons-material';
@@ -52,12 +53,11 @@ function WorldGuideDialog ({ guideInfos, open, setOpen }) {
         >
           {guideInfos[activeStep].title}
         </Typography>
-        <Button
-          variant="contained"
+        <IconButton
           onClick={handleClose}
           >
           <CloseIcon />
-        </Button>
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <GuideImg src={guideInfos[activeStep].imgPath} alt="world guide image"/>
