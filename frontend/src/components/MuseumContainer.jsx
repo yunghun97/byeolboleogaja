@@ -2,7 +2,6 @@ import 'aframe';
 import 'aframe-extras';
 
 import sky from '@/assets/img/museum/bg-space.jpg?url';
-import amongUs from '@/assets/model/common/mdl-amongus.glb?url';
 import fence from '@/assets/model/museum/mdl-fence.glb?url';
 import jamesWebbSpaceTelescope from '@/assets/model/museum/mdl-james.glb?url';
 import hubbleSpaceTelescope from '@/assets/model/museum/mdl-hubble.glb?url';
@@ -16,13 +15,14 @@ import enterance from '@/assets/model/museum/mdl-enterance.glb?url';
 import exit from '@/assets/model/museum/mdl-exit.glb?url';
 import backimg from '@/assets/img/museum/img-backimg.png?url';
 import elevatorSound from '@/assets/audio/elevatortomove.wav?url';
-
+import { useStore } from '@/store';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getSatellite } from '@/api/satellite';
 import { elevatorIntro } from '@/constants';
 import ElevatorDialog from '@/components/ElevatorDialog';
 const MuseumContainer = ({ setOpen, setSatellite }) => {
+  const chracterColor = useStore((state) => state.chracterColor);
   const initSatellite = async (satelliteId) => {
     const res = await getSatellite(satelliteId);
     setSatellite(res.data);
@@ -589,7 +589,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
             look-controls="mouseEnabled:true"
           >
             <a-entity
-              gltf-model={amongUs}
+              gltf-model={chracterColor}
               cursor="rayOrigin: mouse"
               raycaster="objects: .clickable "
               scale="0.2 0.2 0.2"

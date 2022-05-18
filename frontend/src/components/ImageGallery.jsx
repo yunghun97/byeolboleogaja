@@ -2,7 +2,6 @@ import 'aframe';
 import 'aframe-extras';
 import sky from '@/assets/img/museum/bg-space.jpg?url';
 import gallery from '@/assets/model/museum/mdl-gallery.glb?url';
-import amongUs from '@/assets/model/common/mdl-amongus.glb?url';
 import eagleNebula from '@/assets/img/museum/img-EagleNebula.png?url';
 import GalaxyCluster from '@/assets/img/museum/img-GalaxyClusterSDSSJ1531+3414.jpg?url';
 import TheFishheadNebula from '@/assets/img/museum/img-TheFishheadNebula.jpg?url';
@@ -16,13 +15,14 @@ import rubinMdl from '@/assets/model/museum/mdl-rubin.glb?url';
 import spaceShip from '@/assets/model/museum/mdl-spaceship.glb?url';
 import Monocerotis from '@/assets/img/museum/img-V838 Monocerotis.jpg?url';
 import elevator from '@/assets/model/museum/mdl-elevator.glb?url';
-
+import { useStore } from '@/store';
 import { elevatorIntro } from '@/constants';
 import ElevatorDialog from '@/components/ElevatorDialog';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ImageGallery = () => {
+  const chracterColor = useStore((state) => state.chracterColor);
   const [elevatorIntoOpen, setElevatorIntoOpen] = useState(false);
   const [info, setInfo] = useState(elevatorIntro);
   const [nowFloor, setNowFloor] = useState('gallery');
@@ -315,7 +315,7 @@ const ImageGallery = () => {
             look-controls="mouseEnabled:true"
           >
             <a-entity
-              gltf-model={amongUs}
+              gltf-model={chracterColor}
               cursor="rayOrigin: mouse"
               raycaster="objects: .clickable "
               scale="0.2 0.2 0.2"
