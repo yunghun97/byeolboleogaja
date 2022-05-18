@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useStore } from '@/store';
 import {
   Button,
   Dialog,
@@ -14,17 +15,19 @@ import { Close as CloseIcon } from '@mui/icons-material';
 
 const GuideImg = styled.img`
   width: 100%;
-`
+`;
 
-function WorldGuideDialog ({ guideInfos, open, setOpen }) {
+function WorldGuideDialog({ guideInfos, open, setOpen }) {
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = guideInfos.length;
+  const $setFlag = useStore((state) => state.setFlag);
 
   useEffect(() => {
     setActiveStep(0);
   }, [open]);
 
-  const handleClose = () => {
+  const handleClose = async () => {
+    $setFlag(1);
     setOpen(false);
   };
 
@@ -53,17 +56,18 @@ function WorldGuideDialog ({ guideInfos, open, setOpen }) {
         >
           {guideInfos[activeStep].title}
         </Typography>
-        <IconButton
-          onClick={handleClose}
-          >
+        <IconButton onClick={handleClose}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        <GuideImg src={guideInfos[activeStep].imgPath} alt="world guide image"/>
+        <GuideImg
+          src={guideInfos[activeStep].imgPath}
+          alt="world guide image"
+        />
         <Typography
           sx={{
-            height:  '40px',
+            height: '40px',
           }}
         >
           {guideInfos[activeStep].description}
@@ -111,7 +115,7 @@ function WorldGuideDialog ({ guideInfos, open, setOpen }) {
         </Button>
       </DialogActions>
     </Dialog>
-    );
-  };
-  
-  export default WorldGuideDialog;
+  );
+}
+
+export default WorldGuideDialog;
