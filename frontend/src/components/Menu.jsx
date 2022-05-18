@@ -61,7 +61,7 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, placeBGM }) => {
       ></audio>
       <SpeedDial
         ariaLabel="Museum menu"
-        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
       >
         {newActionMenu.map((action) => (
