@@ -21,6 +21,8 @@ import { useNavigate } from 'react-router-dom';
 import { getSatellite } from '@/api/satellite';
 import { elevatorIntro } from '@/constants';
 import ElevatorDialog from '@/components/ElevatorDialog';
+import LoadingScene from '@/components/LoadingScene';
+
 const MuseumContainer = ({ setOpen, setSatellite }) => {
   const chracterColor = useStore((state) => state.chracterColor);
   const initSatellite = async (satelliteId) => {
@@ -34,6 +36,15 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
   const [controlFloor, setControlFloor] = useState(false);
   const [floor, setFloor] = useState('');
   const [activeFloor, setActiveFloor] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const LOADING_TIME = 5000;
+
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => setIsLoading(false), LOADING_TIME + 1000);
+    }
+  }, []);
+
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const telescopeHubble = sceneEl.querySelector('#hubble');
@@ -178,7 +189,11 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
 
   return (
     <div>
-      <a-scene>
+      <LoadingScene loadingTime={LOADING_TIME} />
+      <a-scene
+        vr-mode-ui="enabled: false"
+        loading-screen="enabled: false"
+      >
         <a-assets>
           <img
             id="groundTexture"
