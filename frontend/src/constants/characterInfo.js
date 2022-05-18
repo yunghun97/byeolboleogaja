@@ -55,14 +55,14 @@ const characterInfo = [
     imgPath: amongUsPinkImg,
   },
   {
-    title: '검은색 어몽이',
-    mdl: amongUsBlack,
-    imgPath: amongUsBlackImg,
-  },
-  {
     title: '흰색 어몽이',
     mdl: amongUsWhite,
     imgPath: amongUsWhiteImg,
+  },
+  {
+    title: '검은색 어몽이',
+    mdl: amongUsBlack,
+    imgPath: amongUsBlackImg,
   },
 ];
 

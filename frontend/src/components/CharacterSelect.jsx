@@ -20,18 +20,16 @@ const CharacterSelect = () => {
   const [info, setInfo] = useState(characterInfo);
   const $setCharacterColor = useStore((state) => state.setCharacterColor);
 
-  const theme = useTheme();
   const open = true;
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = characterInfo.length;
-  console.log(activeStep);
+
   useEffect(() => {
     setActiveStep(0);
   }, [open]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     $setCharacterColor(info[activeStep].mdl);
-    navigate('/worldmap');
+    navigate('/world');
   };
 
   return (
@@ -58,7 +56,7 @@ const CharacterSelect = () => {
       >
         <div>
           <IconButton
-            onclick={() => {
+            onClick={() => {
               setActiveStep(0);
             }}
           >
