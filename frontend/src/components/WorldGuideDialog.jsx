@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import styled from '@emotion/styled';
+import { Close as CloseIcon } from '@mui/icons-material';
 
 const GuideImg = styled.img`
   width: 100%;
@@ -35,8 +36,13 @@ function WorldGuideDialog ({ guideInfos, open, setOpen }) {
   };
 
   return (
-    <Dialog fullWidth maxWidth="xs" open={open} onClose={handleClose}>
-      <DialogTitle>
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
+      <DialogTitle
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
         <Typography
           sx={{
             fontSize: '1.5rem',
@@ -46,11 +52,19 @@ function WorldGuideDialog ({ guideInfos, open, setOpen }) {
         >
           {guideInfos[activeStep].title}
         </Typography>
+        <Button
+          variant="contained"
+          onClick={handleClose}
+          >
+          <CloseIcon />
+        </Button>
       </DialogTitle>
       <DialogContent>
-        {/* <Box component="img" maxWidth="xs" src={guideInfos[activeStep].imgPath} alt="world guide image" /> */}
         <GuideImg src={guideInfos[activeStep].imgPath} alt="world guide image"/>
         <Typography
+          sx={{
+            height:  '40px',
+          }}
         >
           {guideInfos[activeStep].description}
         </Typography>
@@ -95,14 +109,8 @@ function WorldGuideDialog ({ guideInfos, open, setOpen }) {
             다음 페이지
           </Typography>
         </Button>
-        <Button
-          sx={{ position: 'absolute', top: '8px', right: '8px' }}
-          onClick={handleClose}
-          >
-            SKIP
-          </Button>
-        </DialogActions>
-      </Dialog>
+      </DialogActions>
+    </Dialog>
     );
   };
   

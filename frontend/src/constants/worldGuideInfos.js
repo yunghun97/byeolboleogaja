@@ -1,10 +1,10 @@
 import movement from '@/assets/img/world/img-movement.png';
-import observatory from '@/assets/img/world/img-observatory.png';
-import library from '@/assets/img/world/img-library.png';
-import museum from '@/assets/img/world/img-museum.png';
-import spaceship from '@/assets/img/world/img-spaceship.png';
-import astrology from '@/assets/img/world/img-astrology.png';
-import guidecharacter from '@/assets/img/observatory/img-guidecharacter.png';
+import observatory from '@/assets/img/world/img-observatory.jpg';
+import library from '@/assets/img/world/img-library.jpg';
+import museum from '@/assets/img/world/img-museum.jpg';
+import spaceship from '@/assets/img/world/img-spaceship.jpg';
+import astrology from '@/assets/img/world/img-astrology.jpg';
+import guidecharacter from '@/assets/img/world/img-guidecharacter.png';
 
 const worldGuideInfos = [
   {
