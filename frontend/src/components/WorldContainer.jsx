@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import 'aframe';
-import { Button } from '@mui/material';
 import sky from '@/assets/img/world/bg-world.jpg?url';
 import ground from '@/assets/model/world/mdl-ground.glb?url';
 import library from '@/assets/model/world/mdl-library.glb?url';
@@ -175,7 +174,7 @@ const WorldContainer = () => {
           id="library-model"
           src="#library"
           shadow="cast: true; receive: false"
-          position="82.276 14.178 -204.775"
+          position="82.276 14.178 -183"
           rotation="0 90 0"
         />
         <a-gltf-model
@@ -191,7 +190,8 @@ const WorldContainer = () => {
           src="#spaceship"
           shadow="cast: true; receive: false"
           scale="100 100 100"
-          position="-60.211 -1.030 -262.203"
+          position="-85 -2 -200"
+          rotation="0 140 0"
         />
         <a-gltf-model
           id="museum-model"
@@ -213,8 +213,9 @@ const WorldContainer = () => {
           src="#witch-house"
           shadow="cast: true; receive: false"
           scale="0.3 0.3 0.3"
-          position="-83.652 15.925 -359.571"
-          rotation="179.947 0 -179.957"
+          position="-60 15.925 -140
+          "
+          rotation="180.947 90 -179.957"
         />
         <a-gltf-model
           id="observatoryNpc-model"
@@ -231,7 +232,7 @@ const WorldContainer = () => {
           src="#libraryNpc"
           shadow="cast: true; receive: false"
           scale="12 12 12"
-          position="50 2 -200"
+          position="49 1.8 -179"
           rotation="0 270 0"
         />
         <a-gltf-model
@@ -249,7 +250,7 @@ const WorldContainer = () => {
           src="#spaceshipNpc"
           shadow="cast: true; receive: false"
           scale="15 15 15"
-          position="-55 2.5 -200"
+          position="-45 2.5 -200"
           rotation="0 60 0"
         />
         <a-gltf-model
@@ -258,8 +259,8 @@ const WorldContainer = () => {
           src="#horoscopeNpc"
           shadow="cast: true; receive: false"
           scale="15 15 15"
-          position="-65 3 -345"
-          rotation="0 0 0"
+          position="-45 3 -156"
+          rotation="0 100 0"
         />
         <a-camera position="0 7 0" wasd-controls="acceleration:100">
           <a-entity
