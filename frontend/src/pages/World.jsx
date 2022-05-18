@@ -58,7 +58,7 @@ export default function World() {
         open={snackOpen}
         autoHideDuration={3000}
         onClose={handleClose}
-        message={`${nickname}` + ' 어서와~  우리 별보러 함께 모험을 떠나자!'}
+        message={`${nickname}` + '! 어서와~ 별보러 함께 모험을 떠나자!'}
         action={action}
       />
       <WorldGuideDialog
