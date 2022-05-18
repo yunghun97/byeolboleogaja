@@ -29,7 +29,7 @@ const CharacterSelect = () => {
 
   const handleSubmit = () => {
     $setCharacterColor(info[activeStep].mdl);
-    navigate('/worldmap');
+    navigate('/world');
   };
 
   return (
