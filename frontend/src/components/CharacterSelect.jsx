@@ -58,7 +58,7 @@ const CharacterSelect = () => {
       >
         <div>
           <IconButton
-            onclick={() => {
+            onClick={() => {
               setActiveStep(0);
             }}
           >
