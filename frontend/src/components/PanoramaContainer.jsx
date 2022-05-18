@@ -1,6 +1,6 @@
 import 'aframe';
 import imgAurora360 from '@/assets/img/observatory/img-aurora360-1.jpg'; // https://unsplash.com/photos/IuyhXAia8EA
-import imgStar360 from '@/assets/img/observatory/img-star360-2.jpg'; // https://unsplash.com/photos/sWEx-5CoVUM
+// import imgStar360 from '@/assets/img/observatory/img-star360-2.jpg'; // https://unsplash.com/photos/sWEx-5CoVUM
 
 const PanoramaContainer = () => {
   return (

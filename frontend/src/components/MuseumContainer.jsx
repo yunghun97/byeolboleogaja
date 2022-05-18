@@ -14,7 +14,7 @@ import carpet from '@/assets/model/museum/mdl-carpet.glb?url';
 import enterance from '@/assets/model/museum/mdl-enterance.glb?url';
 import exit from '@/assets/model/museum/mdl-exit.glb?url';
 import backimg from '@/assets/img/museum/img-backimg.png?url';
-import elevatorSound from '@/assets/audio/elevatortomove.wav?url';
+// import elevatorSound from '@/assets/audio/elevatortomove.wav?url';
 import { useStore } from '@/store';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
