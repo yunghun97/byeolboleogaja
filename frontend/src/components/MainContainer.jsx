@@ -19,10 +19,8 @@ import logoMain from '@/assets/img/common/logo-rmbg.png';
 const MainContainer = () => {
   const navigate = useNavigate();
   const $setNickname = useStore((state) => state.setNickname);
-
   const [open, setOpen] = useState(false);
   const [nickname, setNickname] = useState('');
-
   const [isNickname, setIsNickname] = useState(true);
 
   useEffect(() => {
@@ -51,9 +49,7 @@ const MainContainer = () => {
     if (!isNickname) {
       return;
     }
-
     $setNickname(nickname);
-
     navigate('/worldmap');
   };
 
@@ -88,7 +84,6 @@ const MainContainer = () => {
           height: '50vh',
         }}
       />
-
       <Button variant="contained" sx={{ mt: '5vh' }} onClick={handleClickOpen}>
         <Typography
           sx={{
@@ -125,7 +120,7 @@ const MainContainer = () => {
           <Button variant="contained" fullWidth onClick={handleJoinWorld}>
             입장하기
           </Button>
-          <Button variant="contained" fullWidth onClick={handleJoinWorld}>
+          <Button variant="contained" fullWidth onClick={handleClose}>
             돌아가기
           </Button>
         </DialogActions>
