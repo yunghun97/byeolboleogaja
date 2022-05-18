@@ -86,7 +86,6 @@ const MenuItemText = styled(Typography)`
   font-size: 3rem;
   font-family: 'Shining_star';
   cursor: pointer;
-  transition: 0.3s;
   &:hover{
     text-decoration: #137 wavy underline;
   }
