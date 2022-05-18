@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Button,
   Dialog,
@@ -19,9 +19,9 @@ function WorldGuideDialog ({ guideInfos, open, setOpen }) {
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = guideInfos.length;
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  useEffect(() => {
+    setActiveStep(0);
+  }, [open]);
 
   const handleClose = () => {
     setOpen(false);
