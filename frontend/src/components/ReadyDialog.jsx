@@ -7,6 +7,7 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 
 const ReadyDialog = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -77,7 +78,7 @@ const ReadyDialog = ({ open, setOpen }) => {
             sx={{ position: 'absolute', top: '8px', right: '8px' }}
             onClick={handleClose}
           >
-            닫기
+            <CloseIcon />
           </Button>
         </DialogActions>
       </Dialog>

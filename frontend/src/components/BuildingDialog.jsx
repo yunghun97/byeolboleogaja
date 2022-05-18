@@ -9,6 +9,7 @@ import {
   MobileStepper,
   Typography,
 } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 
 const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
   const navigate = useNavigate();
@@ -101,7 +102,7 @@ const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
           sx={{ position: 'absolute', top: '8px', right: '8px' }}
           onClick={handleClose}
         >
-          SKIP
+          <CloseIcon />
         </Button>
       </DialogActions>
     </Dialog>

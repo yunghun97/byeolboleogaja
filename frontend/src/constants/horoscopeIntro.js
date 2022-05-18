@@ -1,16 +1,17 @@
 const horoscopeIntro = [
   {
-    title: '수정구슬 NPC',
+    title: '권토끼',
     description:
-      '안녕하세요. 이곳은 오늘의 별자리 운세를 확인할 수 있는 곳이에요.',
+      '어이 거기. 오늘 운세가 심상치 않아... 운세 한번 확인하고 가! ',
   },
   {
-    title: '수정구슬 NPC',
-    description: '12가지 별자리의 운세를 확인 할 수 있어요.',
+    title: '권토끼',
+    description:
+      '여기에선 12가지 별자리의 운세를 확인 할 수 있어. 너의 생일에 맞는 별자리를 선택해봐!',
   },
   {
-    title: '수정구슬 NPC',
-    description: '그럼, 오늘의 운세를 확인하러 입장하시겠습니까?',
+    title: '권토끼',
+    description: '그럼, 오늘의 운세를 확인해볼래?',
   },
 ];
 
