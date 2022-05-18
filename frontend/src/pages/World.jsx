@@ -8,15 +8,15 @@ import { worldGuideInfos } from '@/constants';
 export default function World() {
   const [guideOpen, setGuideOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const flag = useStore((state) => state.flag);
-  console.log(flag);
+  const isSkip = useStore((state) => state.isSkip);
+
   useEffect(() => {
-    if (flag == 0) {
+    if (isSkip == 0) {
       setTimeout(function () {
         setOpen(true);
       }, 3000);
     }
-    if (flag === 1) {
+    if (isSkip === 1) {
       setOpen(false);
     }
   }, []);
