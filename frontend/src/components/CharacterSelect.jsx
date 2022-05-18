@@ -29,7 +29,7 @@ const CharacterSelect = () => {
     setActiveStep(0);
   }, [open]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     $setCharacterColor(info[activeStep].mdl);
     navigate('/worldmap');
   };
