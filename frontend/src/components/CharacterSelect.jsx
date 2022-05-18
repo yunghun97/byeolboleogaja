@@ -16,8 +16,9 @@ import {
 } from '@mui/material';
 const CharacterSelect = () => {
   const navigate = useNavigate();
+  const [info, setInfo] = useState(characterInfo);
   const $setCharacterColor = useStore((state) => state.setCharacterColor);
-  const [characterColor, setCharacterColor] = useState('');
+
   const theme = useTheme();
   const open = true;
   const [activeStep, setActiveStep] = useState(0);
@@ -25,7 +26,6 @@ const CharacterSelect = () => {
 
   useEffect(() => {
     setActiveStep(0);
-    setCharacterColor(characterInfo[activeStep].mdl);
   }, [open]);
 
   const handleNext = () => {
@@ -37,8 +37,8 @@ const CharacterSelect = () => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  const handleSubmit = () => {
-    $setCharacterColor(characterColor);
+  const handleSubmit = async () => {
+    $setCharacterColor(info[activeStep].mdl);
     navigate('/worldmap');
   };
   return (
@@ -64,7 +64,6 @@ const CharacterSelect = () => {
           }}
         >
           {characterInfo[activeStep].title}
-          {characterInfo[activeStep].mdl}
         </Typography>
       </DialogContent>
       <DialogContent>

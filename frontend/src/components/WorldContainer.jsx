@@ -10,7 +10,6 @@ import spaceship from '@/assets/model/world/mdl-spaceship.glb?url';
 import museum from '@/assets/model/world/mdl-museum.glb?url';
 import satellite from '@/assets/model/world/mdl-satellite.glb?url';
 import witchHouse from '@/assets/model/world/mdl-witchhouse.glb?url';
-import amongus from '@/assets/model/common/mdl-amongus.glb?url';
 import observatoryNpc from '@/assets/model/world/mdl-npc-1.glb?url';
 import libraryNpc from '@/assets/model/world/mdl-npc-2.glb?url';
 import museumNpc from '@/assets/model/world/mdl-npc-3.glb?url';
@@ -33,8 +32,8 @@ const WorldContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
-  const loadingCharacter = useStore((state) => state.characterColor);
-  console.log(loadingCharacter);
+  const chracterColor = useStore((state) => state.chracterColor);
+
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const libraryEl = sceneEl.querySelector('#library-model');
@@ -143,7 +142,7 @@ const WorldContainer = () => {
           <a-asset-item id="museum" src={museum}></a-asset-item>
           <a-asset-item id="satellite" src={satellite}></a-asset-item>
           <a-asset-item id="witch-house" src={witchHouse}></a-asset-item>
-          <a-asset-item id="amongus" src={loadingCharacter}></a-asset-item>
+          <a-asset-item id="amongus" src={chracterColor}></a-asset-item>
           <a-asset-item id="libraryNpc" src={libraryNpc}></a-asset-item>
           <a-asset-item id="observatoryNpc" src={observatoryNpc}></a-asset-item>
           <a-asset-item id="museumNpc" src={museumNpc}></a-asset-item>
