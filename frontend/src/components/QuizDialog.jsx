@@ -8,6 +8,7 @@ import {
   MobileStepper,
   Typography,
 } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 // import { getQuiz } from '@/api/quiz';
 import { quizDefault } from '@/constants';
 import ReadyDialog from '@/components/ReadyDialog';
@@ -127,7 +128,7 @@ const QuizDialog = ({ open, setOpen }) => {
                 sx={{ position: 'absolute', top: '8px', right: '8px' }}
                 onClick={handleClose}
               >
-                닫기
+                <CloseIcon />
               </Button>
             </DialogActions>
           </>
@@ -203,7 +204,7 @@ const QuizDialog = ({ open, setOpen }) => {
                 sx={{ position: 'absolute', top: '8px', right: '8px' }}
                 onClick={handleClose}
               >
-                닫기
+                <CloseIcon />
               </Button>
             </DialogActions>
           </>

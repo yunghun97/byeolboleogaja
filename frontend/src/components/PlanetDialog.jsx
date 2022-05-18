@@ -8,6 +8,7 @@ import {
   MobileStepper,
   Typography,
 } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 import QuizDialog from '@/components/QuizDialog';
 
 const PlanetDialog = ({ planetInfos, open, setOpen }) => {
@@ -110,7 +111,7 @@ const PlanetDialog = ({ planetInfos, open, setOpen }) => {
             sx={{ position: 'absolute', top: '8px', right: '8px' }}
             onClick={handleClose}
           >
-            닫기
+            <CloseIcon />
           </Button>
         </DialogActions>
       </Dialog>
