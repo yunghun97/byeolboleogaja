@@ -18,7 +18,6 @@ const ReadyDialog = ({ open, setOpen }) => {
       <Dialog fullWidth maxWidth="md" open={open}>
         <DialogTitle>
           <Typography
-            component="h1"
             sx={{
               fontSize: '1.5rem',
               fontWeight: 'bold',
@@ -30,7 +29,6 @@ const ReadyDialog = ({ open, setOpen }) => {
         </DialogTitle>
         <DialogContent>
           <Typography
-            component="body1"
             sx={{
               fontSize: '1.2rem',
               fontWeight: 'bold',
