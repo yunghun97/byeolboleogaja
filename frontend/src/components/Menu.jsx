@@ -46,7 +46,7 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, placeBGM }) => {
         }
       : {},
   ];
-  const NewactionMenu = actionMenu.filter(
+  const newActionMenu = actionMenu.filter(
     (element, i) => Object.keys(element).length != 0,
   );
 
@@ -64,7 +64,7 @@ const Menu = ({ isGuideDialog, isWorld, setGuideOpen, placeBGM }) => {
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
       >
-        {NewactionMenu.map((action) => (
+        {newActionMenu.map((action) => (
           <SpeedDialAction
             key={action.name}
             icon={action.icon}
