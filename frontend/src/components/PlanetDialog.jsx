@@ -7,6 +7,7 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
+import { Close as CloseIcon } from '@mui/icons-material';
 
 const PlanetDialog = ({
   planetInfos,
