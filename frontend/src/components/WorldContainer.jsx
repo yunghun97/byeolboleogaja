@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import 'aframe';
 import { Button } from '@mui/material';
 import sky from '@/assets/img/world/bg-world.jpg?url';
@@ -27,10 +28,13 @@ import {
   horoscopeIntro,
 } from '@/constants';
 
+import { useStore } from '@/store';
 const WorldContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
+  const loadingCharacter = useStore((state) => state.characterColor);
+  console.log(loadingCharacter);
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const libraryEl = sceneEl.querySelector('#library-model');
@@ -139,7 +143,7 @@ const WorldContainer = () => {
           <a-asset-item id="museum" src={museum}></a-asset-item>
           <a-asset-item id="satellite" src={satellite}></a-asset-item>
           <a-asset-item id="witch-house" src={witchHouse}></a-asset-item>
-          <a-asset-item id="amongus" src={amongus}></a-asset-item>
+          <a-asset-item id="amongus" src={loadingCharacter}></a-asset-item>
           <a-asset-item id="libraryNpc" src={libraryNpc}></a-asset-item>
           <a-asset-item id="observatoryNpc" src={observatoryNpc}></a-asset-item>
           <a-asset-item id="museumNpc" src={museumNpc}></a-asset-item>

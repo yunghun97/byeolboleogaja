@@ -54,7 +54,7 @@ const MainContainer = () => {
 
     $setNickname(nickname);
 
-    navigate('/worldmap');
+    navigate('/character');
   };
 
   const handleNicknameChange = (event) => {
