@@ -54,7 +54,6 @@ const CloseButton = styled(Button)`
   color: #fff;
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 0;
   backface-visibility: hidden;
-  // z-index: 100;
 `
 
 const MenuItem = styled.div`
@@ -81,7 +80,6 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
   const [pageThree, setPageThree] = useState([]);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [currentMenuItem, setCurrentMenuItem] = useState({});
-
   let pageCount = 0;
 
   useEffect(() => {
@@ -144,20 +142,8 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
 		}, 500);
   }
 
-  const handleClose = () => {
-    setIsOpen(false);
-  }
-
-  const handleOpenDetail = () => {
-    setIsDetailOpen(true);
-  }
-
-  const handleCloseDetail = () => {
-    setIsDetailOpen(false);
-  }
-
-  const handleMenuItem = (page, index) => {
-    setCurrentMenuItem({page, index});
+  const handleMenuItem = (item) => {
+    setCurrentMenuItem(item);
     setIsDetailOpen(true);
   }
 
@@ -186,16 +172,13 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
             <div className="page-face">
               <MenuList>
                 {pageOne.map((item, index) => (
-                  <MenuItem key={index} onClick={() => handleMenuItem(0, index)} >
+                  <MenuItem key={index} onClick={() => handleMenuItem(item)} >
                     <Typography
                       sx={{
                         fontSize: '1rem',
                         fontWeight: 'bold',
                       }}
                     >{item.title}</Typography>
-                    { currentMenuItem.page === 0 && currentMenuItem.index === index &&
-                      <LibraryDetailDialog title={item.title} open={isDetailOpen} content={item.content} setOpen={setIsDetailOpen} />
-                    }
                   </MenuItem>
                 ))}
               </MenuList>
@@ -205,16 +188,13 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
             <div className="page-face">
               <MenuList>
                 {pageTwo.map((item, index) => (
-                  <MenuItem key={index} onClick={() => handleMenuItem(1, index)}>
+                  <MenuItem key={index} onClick={() => handleMenuItem(item)}>
                     <Typography
                       sx={{
                         fontSize: '1rem',
                         fontWeight: 'bold',
                       }}
                     >{item.title}</Typography>
-                    { currentMenuItem.page === 1 && currentMenuItem.index === index &&
-                      <LibraryDetailDialog title={item.title} open={isDetailOpen} content={item.content} setOpen={setIsDetailOpen} />
-                    }
                   </MenuItem>
                 ))}
               </MenuList>
@@ -240,16 +220,13 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
             <div className="page-face">
               <MenuList>
                 {pageThree.map((item, index) => (
-                  <MenuItem key={index} onClick={() => handleMenuItem(2, index)}>
+                  <MenuItem key={index} onClick={() => handleMenuItem(item)}>
                     <Typography
                       sx={{
                         fontSize: '1rem',
                         fontWeight: 'bold',
                       }}
                     >{item.title}</Typography>
-                    { currentMenuItem.page === 2 && currentMenuItem.index === index &&
-                      <LibraryDetailDialog title={item.title} open={isDetailOpen} content={item.content} setOpen={setIsDetailOpen} />
-                    }
                   </MenuItem>
                 ))}
               </MenuList>
@@ -258,6 +235,7 @@ function LibraryLeaflet ({setIsOpen, category, title, color}) {
           </div>
         </Leaflet3D>
       </LeafletBox>
+      <LibraryDetailDialog detailInfo={currentMenuItem} open={isDetailOpen} setOpen={setIsDetailOpen} />
     </>
   );
 }
