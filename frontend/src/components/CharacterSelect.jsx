@@ -2,18 +2,21 @@ import { characterInfo } from '@/constants';
 import { useEffect, useState } from 'react';
 import { useStore } from '@/store';
 import { useNavigate } from 'react-router-dom';
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
+import {
+  Circle, Public as PublicIcon
+} from '@mui/icons-material';
 import {
   Box,
   Button,
+  IconButton,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  MobileStepper,
   Typography,
   useTheme,
 } from '@mui/material';
+
 const CharacterSelect = () => {
   const navigate = useNavigate();
   const [info, setInfo] = useState(characterInfo);
@@ -28,21 +31,13 @@ const CharacterSelect = () => {
     setActiveStep(0);
   }, [open]);
 
-  const handleNext = () => {
-    if (activeStep === maxSteps - 1) {
-    }
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
   const handleSubmit = async () => {
     $setCharacterColor(info[activeStep].mdl);
     navigate('/worldmap');
   };
+
   return (
-    <Dialog fullWidth maxWidth="md" open={open}>
+    <Dialog maxWidth="md" open={open}>
       <DialogTitle>
         <Typography
           component="h1"
@@ -55,69 +50,62 @@ const CharacterSelect = () => {
           캐릭터 선택하기
         </Typography>
       </DialogTitle>
-      <DialogContent>
-        <Typography
-          component="body1"
-          sx={{
-            fontSize: '1.2rem',
-            textTransform: 'none',
-          }}
-        >
-          {characterInfo[activeStep].title}
-        </Typography>
-      </DialogContent>
-      <DialogContent>
+      <DialogContent
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <div>
+          <IconButton>
+            <Circle sx={{ color: '#f50057' }} />
+          </IconButton>
+          <IconButton>
+            <Circle sx={{ color: '#ffc400' }} />
+          </IconButton>
+          <IconButton>
+            <Circle sx={{ color: '#ffee33' }} />
+          </IconButton>
+          <IconButton>
+            <Circle sx={{ color: '#8bc34a' }} />
+          </IconButton>
+          <IconButton>
+            <Circle sx={{ color: '#2979ff' }} />
+          </IconButton>
+          <IconButton>
+            <Circle sx={{ color: '#9c27b0' }} />
+          </IconButton>
+          <IconButton>
+            <Circle sx={{ color: '#dd33fa' }} />
+          </IconButton>
+          <IconButton>
+            <Circle
+              sx={{
+                color: '#FFFFFF',
+                border: '1px solid grey',
+                borderRadius : '50%',  
+              }} />
+          </IconButton>
+          <IconButton>
+            <Circle sx={{ color: '#0d0d0d' }} />
+          </IconButton>
+        </div>
         <Box
           component="img"
           src={characterInfo[activeStep].imgPath}
           sx={{
-            maxWidth: 'md',
-            ml: 2,
-            mr: 2,
+            width: '100%',
+            borderRadius: '5px',
           }}
         ></Box>
       </DialogContent>
-      <MobileStepper
-        variant="dots"
-        steps={characterInfo.length}
-        position="static"
-        activeStep={activeStep}
-        sx={{ flexGrow: 1 }}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === characterInfo.length - 1}
-          >
-            Next
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
-          </Button>
-        }
-      />
       <DialogActions>
-        <Button
-          sx={{
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            textTransform: 'none',
-          }}
-          onClick={handleSubmit}
-        >
-          선택
+        <Button variant="contained" onClick={handleSubmit}>
+          <Typography>
+            선택하기
+          </Typography>
         </Button>
       </DialogActions>
     </Dialog>
