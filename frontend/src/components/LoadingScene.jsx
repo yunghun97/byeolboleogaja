@@ -3,10 +3,11 @@ import { useStore } from '@/store';
 import { Box, Container, LinearProgress, Typography } from '@mui/material';
 import LoadingBackground from '@/components/LoadingBackground';
 import { getCommonSence } from '@/api/loading';
+import loadingBg from '@/assets/img/loading/bg-loading-1.jpg';
 
 const LoadingScene = ({ loadingTime }) => {
   const [progress, setProgress] = useState(0);
-  const loadingBg = useStore((state) => state.apodUrl);
+  const apodImg = useStore((state) => state.apodUrl);
   const [loadingMsg, setLoadingMsg] = useState('');
 
   useEffect(() => {
@@ -42,25 +43,41 @@ const LoadingScene = ({ loadingTime }) => {
       >
         <Typography
           sx={{
-            mt: '60vh',
+            mt: '5vh',
             color: '#ffffff',
-            fontSize: '5rem',
+            fontSize: '1.2rem',
             fontWeight: 'bold',
             textTransform: 'none',
           }}
         >
-          로 딩 중
+          Astronomy Picture of the Day
+        </Typography>
+        <Box
+          component="img"
+          src={apodImg}
+          sx={{ mt: '1.5vh', height: '60vh' }}
+        />
+        <Typography
+          sx={{
+            mt: '5vh',
+            color: '#ffffff',
+            fontSize: '2rem',
+            fontWeight: 'bold',
+            textTransform: 'none',
+          }}
+        >
+          알고계셨나요?
         </Typography>
         <Box sx={{ mt: '2vh', width: '100%' }}>
           <LinearProgress
             variant="determinate"
             value={progress}
-            sx={{ height: 15, borderRadius: 5 }}
+            sx={{ height: '2vh', borderRadius: 5 }}
           />
         </Box>
         <Typography
           sx={{
-            mt: '5vh',
+            mt: '3vh',
             color: '#ffffff',
             fontSize: '1.7rem',
             fontWeight: 'bold',
