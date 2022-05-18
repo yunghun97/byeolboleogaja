@@ -14,6 +14,7 @@ import libraryNpc from '@/assets/model/world/mdl-npc-2.glb?url';
 import museumNpc from '@/assets/model/world/mdl-npc-3.glb?url';
 import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
+import exclamationMark from '@/assets/model/world/mdl-exclamation-mark.glb?url';
 
 import LoadingScene from '@/components/LoadingScene';
 import BuildingDialog from '@/components/BuildingDialog';
@@ -27,6 +28,7 @@ import {
 } from '@/constants';
 
 import { useStore } from '@/store';
+
 const WorldContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -147,6 +149,7 @@ const WorldContainer = () => {
           <a-asset-item id="museumNpc" src={museumNpc}></a-asset-item>
           <a-asset-item id="spaceshipNpc" src={spaceshipNpc}></a-asset-item>
           <a-asset-item id="horoscopeNpc" src={horoscopeNpc}></a-asset-item>
+          <a-asset-item id="exclamationMark" src={exclamationMark}></a-asset-item>
         </a-assets>
         <a-sky src="#sky" />
         <a-entity
@@ -264,6 +267,42 @@ const WorldContainer = () => {
           scale="15 15 15"
           position="-45 3 -156"
           rotation="0 100 0"
+        />
+        {/* exclamation marks */}
+        <a-gltf-model
+          id="exclamationMark1-model"
+          src="#exclamationMark"
+          scale="3 3 3"
+          position="40.691 6 -59.691"
+          rotation="0 90 0"
+        />
+        <a-gltf-model
+          id="exclamationMark2-model"
+          src="#exclamationMark"
+          scale="3 3 3"
+          position="45.986 5.901 -178.886"
+          rotation="0 90 0"
+        />
+        <a-gltf-model
+          id="exclamationMark3-model"
+          src="#exclamationMark"
+          scale="3 3 3"
+          position="-33.318 7.280 -67.5"
+          rotation="0 90 0"
+        />
+        <a-gltf-model
+          id="exclamationMark4-model"
+          src="#exclamationMark"
+          scale="3 3 3"
+          position="-43.330 7.374 -198.996"
+          rotation="0 90 0"
+        />
+        <a-gltf-model
+          id="exclamationMark5-model"
+          src="#exclamationMark"
+          scale="3 3 3"
+          position="-41.555 7.820 -156.640"
+          rotation="0 90 0"
         />
         <a-camera position="0 7 0" wasd-controls="acceleration:100">
           <a-entity
