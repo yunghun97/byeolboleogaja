@@ -30,55 +30,16 @@ import {
 import { useStore } from '@/store';
 
 const WorldContainer = () => {
+  const LOADING_TIME = 5000;
   const [isLoading, setIsLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
-
-  const chracterColor = useStore((state) => state.chracterColor);
 
   useEffect(() => {
-    const sceneEl = document.querySelector('a-scene');
-    const libraryEl = sceneEl.querySelector('#library-model');
-    const observatoryEl = sceneEl.querySelector('#observatory-model');
-    const spaceshipEl = sceneEl.querySelector('#spaceship-model');
-    const satelliteEl = sceneEl.querySelector('#satellite-model');
-    const witchHouseEl = sceneEl.querySelector('#witch-house-model');
-    const libraryNpcEl = sceneEl.querySelector('#libraryNpc-model');
-    const observatoryNpcEl = sceneEl.querySelector('#observatoryNpc-model');
-    const museumNpcEl = sceneEl.querySelector('#museumNpc-model');
-    const spaceshipNpcEl = sceneEl.querySelector('#spaceshipNpc-model');
-    const horoscopeNpcEl = sceneEl.querySelector('#horoscopeNpc-model');
+    if (isLoading) {
+      setTimeout(() => setIsLoading(false), LOADING_TIME + 1000);
+    }
+  }, []);
 
-    libraryEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-    observatoryEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-    spaceshipEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-    satelliteEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-    witchHouseEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-    libraryNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-    observatoryNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-    museumNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-    spaceshipNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-    horoscopeNpcEl.addEventListener('model-loaded', function () {
-      setProgress(progress + 1);
-    });
-  });
+  const chracterColor = useStore((state) => state.chracterColor);
 
   document.addEventListener('keydown', function (event) {
     if (
@@ -97,13 +58,6 @@ const WorldContainer = () => {
   document.addEventListener('keyup', function () {
     player.setAttribute('animation-mixer', { clip: 'base' });
   });
-
-  useEffect(() => {
-    // model-loaded 이벤트 3개가 1개로 처리되는 문제로 progress 값 6 이상으로 임의 설정
-    if (progress >= 6) {
-      setIsLoading(false);
-    }
-  }, [progress]);
 
   const [open, setOpen] = useState(true);
   const [isopen, setOpened] = useState(false);
@@ -146,7 +100,7 @@ const WorldContainer = () => {
   });
   return (
     <>
-      {isLoading && <LoadingScene loadingTime={progress} />}
+      <LoadingScene loadingTime={LOADING_TIME} />
       <a-scene
         vr-mode-ui="enabled: false"
         loading-screen="enabled: false"
