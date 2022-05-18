@@ -1,9 +1,9 @@
-import WorldContainer from '@/components/WorldContainer';
-
-import GuideDialog from '@/components/GuideDialog';
-import Menu from '@/components/Menu';
-import { worldGuideInfos } from '@/constants';
 import { useState, useEffect } from 'react';
+import WorldGuideDialog from '@/components/WorldGuideDialog';
+import Menu from '@/components/Menu';
+import WorldContainer from '@/components/WorldContainer';
+import { worldGuideInfos } from '@/constants';
+
 export default function World() {
   const [guideOpen, setGuideOpen] = useState(false);
 
@@ -16,7 +16,7 @@ export default function World() {
   return (
     <main>
       <WorldContainer />
-      <GuideDialog
+      <WorldGuideDialog
         guideInfos={worldGuideInfos}
         open={guideOpen}
         setOpen={setGuideOpen}

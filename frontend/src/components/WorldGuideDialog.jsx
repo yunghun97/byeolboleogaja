@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
-  Box,
   Button,
   Dialog,
   DialogActions,
@@ -8,15 +7,22 @@ import {
   DialogTitle,
   MobileStepper,
   Typography,
+  IconButton,
 } from '@mui/material';
+import styled from '@emotion/styled';
+import { Close as CloseIcon } from '@mui/icons-material';
 
-const GuideDialog = ({ guideInfos, open, setOpen }) => {
+const GuideImg = styled.img`
+  width: 100%;
+`
+
+function WorldGuideDialog ({ guideInfos, open, setOpen }) {
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = guideInfos.length;
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  useEffect(() => {
+    setActiveStep(0);
+  }, [open]);
 
   const handleClose = () => {
     setOpen(false);
@@ -31,8 +37,13 @@ const GuideDialog = ({ guideInfos, open, setOpen }) => {
   };
 
   return (
-    <Dialog fullWidth maxWidth="md" open={open} onClose={handleClose}>
-      <DialogTitle>
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
+      <DialogTitle
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
         <Typography
           sx={{
             fontSize: '1.5rem',
@@ -42,27 +53,22 @@ const GuideDialog = ({ guideInfos, open, setOpen }) => {
         >
           {guideInfos[activeStep].title}
         </Typography>
+        <IconButton
+          onClick={handleClose}
+          >
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
-      <Box
-        component="img"
-        src={guideInfos[activeStep].imgPath}
-        sx={{
-          ml: 1,
-          mr: 1,
-        }}
-      ></Box>
-      <Typography
-        sx={{
-          mt: 1,
-          ml: 1,
-          mr: 1,
-          fontSize: '1.2rem',
-          fontWeight: 'bold',
-          textTransform: 'none',
-        }}
-      >
-        {guideInfos[activeStep].description}
-      </Typography>
+      <DialogContent>
+        <GuideImg src={guideInfos[activeStep].imgPath} alt="world guide image"/>
+        <Typography
+          sx={{
+            height:  '40px',
+          }}
+        >
+          {guideInfos[activeStep].description}
+        </Typography>
+      </DialogContent>
       <MobileStepper
         steps={maxSteps}
         position="static"
@@ -103,15 +109,9 @@ const GuideDialog = ({ guideInfos, open, setOpen }) => {
             다음 페이지
           </Typography>
         </Button>
-        <Button
-          sx={{ position: 'absolute', top: '8px', right: '8px' }}
-          onClick={handleClose}
-        >
-          SKIP
-        </Button>
       </DialogActions>
     </Dialog>
-  );
-};
-
-export default GuideDialog;
+    );
+  };
+  
+  export default WorldGuideDialog;

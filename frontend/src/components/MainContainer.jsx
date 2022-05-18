@@ -19,10 +19,8 @@ import logoMain from '@/assets/img/common/logo-rmbg.png';
 const MainContainer = () => {
   const navigate = useNavigate();
   const $setNickname = useStore((state) => state.setNickname);
-
   const [open, setOpen] = useState(false);
   const [nickname, setNickname] = useState('');
-
   const [isNickname, setIsNickname] = useState(true);
 
   useEffect(() => {
@@ -51,9 +49,7 @@ const MainContainer = () => {
     if (!isNickname) {
       return;
     }
-
     $setNickname(nickname);
-
     navigate('/worldmap');
   };
 
@@ -88,7 +84,6 @@ const MainContainer = () => {
           height: '50vh',
         }}
       />
-
       <Button variant="contained" sx={{ mt: '5vh' }} onClick={handleClickOpen}>
         <Typography
           sx={{
@@ -104,8 +99,7 @@ const MainContainer = () => {
         <DialogTitle>닉네임 입력하기</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            별보러가자에서는 입장 시 입력한 닉네임을 바탕으로 소통합니다! 멋진
-            닉네임으로 입장해주세요!
+            멋진 닉네임으로 입장해주세요!
           </DialogContentText>
           <TextField
             autoFocus
@@ -123,10 +117,10 @@ const MainContainer = () => {
           />
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" onClick={handleJoinWorld}>
+          <Button variant="contained" fullWidth onClick={handleJoinWorld}>
             입장하기
           </Button>
-          <Button variant="outlined" onClick={handleClose}>
+          <Button variant="contained" fullWidth onClick={handleClose}>
             돌아가기
           </Button>
         </DialogActions>
