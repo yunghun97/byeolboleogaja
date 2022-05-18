@@ -2,9 +2,7 @@ import { characterInfo } from '@/constants';
 import { useEffect, useState } from 'react';
 import { useStore } from '@/store';
 import { useNavigate } from 'react-router-dom';
-import {
-  Circle, Public as PublicIcon
-} from '@mui/icons-material';
+import { Circle, Public as PublicIcon } from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -26,7 +24,7 @@ const CharacterSelect = () => {
   const open = true;
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = characterInfo.length;
-
+  console.log(activeStep);
   useEffect(() => {
     setActiveStep(0);
   }, [open]);
@@ -59,36 +57,73 @@ const CharacterSelect = () => {
         }}
       >
         <div>
-          <IconButton>
+          <IconButton
+            onclick={() => {
+              setActiveStep(0);
+            }}
+          >
             <Circle sx={{ color: '#f50057' }} />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setActiveStep(1);
+            }}
+          >
             <Circle sx={{ color: '#ffc400' }} />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setActiveStep(2);
+            }}
+          >
             <Circle sx={{ color: '#ffee33' }} />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setActiveStep(3);
+            }}
+          >
             <Circle sx={{ color: '#8bc34a' }} />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setActiveStep(4);
+            }}
+          >
             <Circle sx={{ color: '#2979ff' }} />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setActiveStep(5);
+            }}
+          >
             <Circle sx={{ color: '#9c27b0' }} />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setActiveStep(6);
+            }}
+          >
             <Circle sx={{ color: '#dd33fa' }} />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setActiveStep(7);
+            }}
+          >
             <Circle
               sx={{
                 color: '#FFFFFF',
                 border: '1px solid grey',
-                borderRadius : '50%',  
-              }} />
+                borderRadius: '50%',
+              }}
+            />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setActiveStep(8);
+            }}
+          >
             <Circle sx={{ color: '#0d0d0d' }} />
           </IconButton>
         </div>
@@ -103,9 +138,7 @@ const CharacterSelect = () => {
       </DialogContent>
       <DialogActions>
         <Button variant="contained" onClick={handleSubmit}>
-          <Typography>
-            선택하기
-          </Typography>
+          <Typography>선택하기</Typography>
         </Button>
       </DialogActions>
     </Dialog>
