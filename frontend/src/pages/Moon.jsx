@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import LoadingScene from '@/components/LoadingScene';
 import MoonContainer from '@/components/MoonContainer';
-import bgm from '@/assets/audio/bgm-loveme.mp3';
+
+import Menu from '@/components/Menu';
 
 export default function Moon() {
   const LOADING_TIME = 2000;
 
   const [isLoading, setIsLoading] = useState(true);
-
+  const [guideOpen, setGuideOpen] = useState(false);
   useEffect(() => {
     if (isLoading) {
       setTimeout(() => setIsLoading(false), LOADING_TIME + 1000);
@@ -19,10 +20,15 @@ export default function Moon() {
         <LoadingScene loadingTime={LOADING_TIME} />
       ) : (
         <>
-          <audio src={bgm} autoPlay={true} loop={true}></audio>
           <MoonContainer />
         </>
       )}
+      <Menu
+        isGuideDialog={false}
+        setGuideOpen={setGuideOpen}
+        isWorld={true}
+        placeBGM={'moon'}
+      />
     </>
   );
 }

@@ -1,9 +1,17 @@
 import LibraryContainer from '@/components/LibraryContainer';
-
-function Library () {
+import Menu from '@/components/Menu';
+import { useState } from 'react';
+function Library() {
+  const [guideOpen, setGuideOpen] = useState(false);
   return (
     <main style={{ padding: '1rem 0' }}>
-      <LibraryContainer />  
+      <LibraryContainer />
+      <Menu
+        isGuideDialog={false}
+        setGuideOpen={setGuideOpen}
+        isWorld={true}
+        placeBGM={'library'}
+      />
     </main>
   );
 }

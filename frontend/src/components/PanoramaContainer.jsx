@@ -4,7 +4,7 @@ import imgStar360 from '@/assets/img/observatory/img-star360-2.jpg'; // https://
 
 const PanoramaContainer = () => {
   return (
-    <a-scene>
+    <a-scene vr-mode-ui="enabled: false">
       <a-sky src={imgAurora360}></a-sky>
       <a-text
         font="kelsonsans"
