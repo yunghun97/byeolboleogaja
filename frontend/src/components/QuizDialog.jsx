@@ -29,11 +29,8 @@ const QuizDialog = ({ open, setOpen }) => {
   };
 
   useEffect(() => {
-    initQuiz();
-  }, []);
-
-  useEffect(() => {
     setActiveStep(0);
+    initQuiz();
   }, [open]);
 
   const handleClose = () => {
