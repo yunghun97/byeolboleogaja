@@ -116,11 +116,11 @@ const MainContainer = () => {
           />
         </DialogContent>
         <DialogActions>
+          <Button variant="outlined" fullWidth onClick={handleClose}>
+            돌아가기
+          </Button>
           <Button variant="contained" fullWidth onClick={handleJoinWorld}>
             입장하기
-          </Button>
-          <Button variant="contained" fullWidth onClick={handleClose}>
-            돌아가기
           </Button>
         </DialogActions>
       </Dialog>

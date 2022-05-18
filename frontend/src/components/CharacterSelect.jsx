@@ -102,9 +102,9 @@ const CharacterSelect = () => {
         ></Box>
       </DialogContent>
       <DialogActions>
-        <Button variant="contained" startIcon={<PublicIcon />} onClick={handleSubmit}>
+        <Button variant="contained" onClick={handleSubmit}>
           <Typography>
-            별 보러 가기
+            선택하기
           </Typography>
         </Button>
       </DialogActions>
