@@ -31,17 +31,17 @@ const PageFace = styled.div`
   }
 `
 
+const TitleText = styled(Typography)`
+  font-family: 'Shining_star';
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+`
+
 function LibraryBookCard ({color, text}) {
   return (
     <PageFace style={{backgroundColor: color}}>
-      <Typography
-        variant="h2"
-        sx={{
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
-          color: 'white',
-        }}
-      >{text}</Typography>
+      <TitleText>{text}</TitleText>
     </PageFace>
   );
 }
