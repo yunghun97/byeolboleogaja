@@ -20,7 +20,7 @@ const ChatWindow = () => {
   useEffect(()=>{    
     console.log("찍힘");
     setWebSocket(websocket =>{
-      websocket = new WebSocket("ws://localhost:9998/my-chat");
+      websocket = new WebSocket("ws://k6b1021.p.ssafy.io:9998/my-chat");
       websocket.onmessage = onMessage;
       websocket.onopen = onOpen;
       return websocket;
@@ -54,7 +54,7 @@ const ChatWindow = () => {
   };
 
   const api = axios.create({
-    baseURL: `http://localhost:9998`,
+    baseURL: `http://k6b1021.p.ssafy.io:9998`,
     headers: {
       'Content-Type': 'application/json',
     },
