@@ -6,7 +6,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  MobileStepper,
   Typography,
 } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
@@ -61,13 +60,6 @@ const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
           {buildingInfos[activeStep].description}
         </Typography>
       </DialogContent>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={<Button></Button>}
-        backButton={<Button></Button>}
-      />
       <DialogActions>
         <Button
           variant="outlined"
