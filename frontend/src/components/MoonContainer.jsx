@@ -11,8 +11,7 @@ import { useStore } from '@/store';
 import QuizDialog from './QuizDialog';
 
 const MoonContainer = () => {
-  const [open, setOpen] = useState(true);
-  const [isopen, setOpened] = useState(false);
+  const [open, setOpen] = useState(false);
   const [quizOpen, setQuizOpen] = useState(false);
   const chracterColor = useStore((state) => state.chracterColor);
 
@@ -21,7 +20,7 @@ const MoonContainer = () => {
     const rabbitNpcEl = sceneEl.querySelector('#rabbitNpc');
 
     rabbitNpcEl.addEventListener('click', function () {
-      setOpened(true);
+      setOpen(true);
     });
   });
 
@@ -60,9 +59,8 @@ const MoonContainer = () => {
       </a-scene>
       <PlanetDialog
         planetInfos={moonInfos}
-        open={isopen}
-        setOpen={setOpened}
-        quizOpen={quizOpen}
+        open={open}
+        setOpen={setOpen}
         setQuizOpen={setQuizOpen}
       />
       <QuizDialog open={quizOpen} setOpen={setQuizOpen} />
