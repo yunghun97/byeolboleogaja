@@ -23,7 +23,9 @@ function WorldGuideDialog({ guideInfos, open, setOpen }) {
   const $setisSkip = useStore((state) => state.setisSkip);
 
   useEffect(() => {
-    setActiveStep(0);
+    if (open) {
+      setActiveStep(0);
+    }
   }, [open]);
 
   const handleClose = async () => {
