@@ -6,6 +6,7 @@ import {
   AddCircleOutline as AddIcon,
   RemoveCircleOutline as RemoveIcon,
 } from '@mui/icons-material';
+import { sendChat } from '@/api/chat';
 
 const ChatWindow = () => {
   const msgBoxRef = useRef(null);
@@ -13,10 +14,38 @@ const ChatWindow = () => {
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState('');
   const [open, setOpen] = useState(false);
+  const [websocket, setWebSocket] = useState(null);
+  const [server, setServer] = useState(1);
+
+  useEffect(() => {
+    setWebSocket((websocket) => {
+      websocket = new WebSocket('ws://k6b1021.p.ssafy.io:9998/my-chat');
+      websocket.onmessage = onMessage;
+      websocket.onopen = onOpen;
+      return websocket;
+    });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (websocket) {
+        websocket.close();
+      }
+    };
+  }, [websocket]);
 
   useEffect(() => {
     scrollToBottom();
   }, [messages, open]);
+
+  const onMessage = (message) => {
+    const newMessage = JSON.parse(message.data);
+    setMessages((msgs) => msgs.concat(newMessage));
+  };
+
+  const onOpen = () => {
+    console.log('웹소켓 연결!');
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -36,10 +65,16 @@ const ChatWindow = () => {
     setMsg(e.target.value);
   };
 
-  const handleSendMsg = (e) => {
-    //TODO: 소켓통신 send message
-    setMessages(messages.concat({ nickname, msg }));
+  const handleSendMsg = () => {
+    if (msg === '') return;
+    const data = {
+      server: server,
+      author: nickname,
+      content: msg,
+    };
+    sendChat(data);
     setMsg('');
+    // websocket.send(JSON.stringify(json));
   };
 
   return (
@@ -62,7 +97,7 @@ const ChatWindow = () => {
                 fontWeight: 'bold',
                 color: '#ffffff',
               }}
-            >{`${m.nickname}: ${m.msg}`}</Box>
+            >{`${m.author}: ${m.content}`}</Box>
           ))}
         </Box>
       ) : (
@@ -81,8 +116,8 @@ const ChatWindow = () => {
             }}
           >
             {messages.length
-              ? `${messages.slice(-1)[0].nickname}: ${
-                  messages.slice(-1)[0].msg
+              ? `${messages.slice(-1)[0].author}: ${
+                  messages.slice(-1)[0].content
                 }`
               : ``}
           </Box>
