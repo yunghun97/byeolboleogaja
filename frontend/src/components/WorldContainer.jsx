@@ -16,7 +16,7 @@ import spaceshipNpc from '@/assets/model/world/mdl-npc-4.glb?url';
 import horoscopeNpc from '@/assets/model/world/mdl-npc-5.glb?url';
 import exclamationMark from '@/assets/model/world/mdl-exclamation-mark.glb?url';
 
-import LoadingScene from '@/components/LoadingScene';
+import ChatWindow from '@/components/ChatWindow';
 import BuildingDialog from '@/components/BuildingDialog';
 
 import {
@@ -28,6 +28,7 @@ import {
 } from '@/constants';
 
 import { useStore } from '@/store';
+import { Box } from '@mui/material';
 
 const WorldContainer = () => {
   const LOADING_TIME = 5000;
@@ -303,13 +304,23 @@ const WorldContainer = () => {
           on: keydown:keyW"
         ></a-entity>
       </a-scene>
-
       <BuildingDialog
         buildingInfos={info}
         building={Building}
         open={isopen}
         setOpen={setOpened}
       />
+      <Box
+        sx={{
+          width: 'min(730px, 75%)',
+          position: 'fixed',
+          left: '1vw',
+          bottom: '1vh',
+          zIndex: 999,
+        }}
+      >
+        <ChatWindow />
+      </Box>
     </>
   );
 };
