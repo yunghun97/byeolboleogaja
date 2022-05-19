@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const Main = styled.div`
-  position: absolute;
+  position: fixed;
   display: block;
   width: 100%;
   height: 100%;
@@ -19,7 +19,7 @@ const StarField = styled.div`
 `;
 
 const Star = styled.span`
-  position: absolute;
+  position: fixed;
   top: -450%;
   left: 0;
   height: 1000%;
