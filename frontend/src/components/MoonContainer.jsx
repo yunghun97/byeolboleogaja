@@ -18,6 +18,33 @@ const MoonContainer = () => {
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const rabbitNpcEl = sceneEl.querySelector('#rabbitNpc');
+    const player = sceneEl.querySelector('#player');
+
+    document.addEventListener('keydown', function (event) {
+      if (
+        event.key === 'ArrowUp' ||
+        event.key === 'ArrowDown' ||
+        event.key === 'ArrowRight' ||
+        event.key === 'ArrowLeft' ||
+        event.key === 'w' ||
+        event.key === 'W' ||
+        event.key === 'a' ||
+        event.key === 'A' ||
+        event.key === 's' ||
+        event.key === 'S' ||
+        event.key === 'd' ||
+        event.key === 'D'
+      ) {
+        player.setAttribute('animation-mixer', {
+          clip: 'walk',
+          timeScale: 0.15,
+        });
+      }
+    });
+
+    document.addEventListener('keyup', function () {
+      player.setAttribute('animation-mixer', { clip: 'base', timeScale: 0.15 });
+    });
 
     rabbitNpcEl.addEventListener('click', function () {
       setOpen(true);
@@ -48,10 +75,13 @@ const MoonContainer = () => {
 
         <a-camera position="0 7 0">
           <a-entity
-            position="0 -5 0"
+            id="player"
+            scale="1.1 1.25 1.1"
+            position="0 -8 -5"
             rotation="0 180 0"
             cursor="rayOrigin: mouse;"
             raycaster="objects: .clickable"
+            animation-mixer="clip: base; timeScale: 0.15"
           >
             <a-gltf-model src="#amongus" />
           </a-entity>

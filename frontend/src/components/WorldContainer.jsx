@@ -33,28 +33,6 @@ import { Box } from '@mui/material';
 const WorldContainer = () => {
   const chracterColor = useStore((state) => state.chracterColor);
 
-  document.addEventListener('keydown', function (event) {
-    if (
-      event.key === 'ArrowUp' ||
-      event.key === 'ArrowDown' ||
-      event.key === 'ArrowRight' ||
-      event.key === 'ArrowLeft' ||
-      event.key === 'w' ||
-      event.key === 'W' ||
-      event.key === 'a' ||
-      event.key === 'A' ||
-      event.key === 's' ||
-      event.key === 'S' ||
-      event.key === 'd' ||
-      event.key === 'D'
-    ) {
-      player.setAttribute('animation-mixer', { clip: 'walk' });
-    }
-  });
-  document.addEventListener('keyup', function () {
-    player.setAttribute('animation-mixer', { clip: 'base' });
-  });
-
   const [open, setOpen] = useState(true);
   const [isopen, setOpened] = useState(false);
   const [info, setInfo] = useState(observatoryIntro);
@@ -67,11 +45,35 @@ const WorldContainer = () => {
     const museum = sceneEl.querySelector('#museumNpc-model');
     const spaceship = sceneEl.querySelector('#spaceshipNpc-model');
     const horoscope = sceneEl.querySelector('#horoscopeNpc-model');
+    const player = sceneEl.querySelector('#player');
 
     document.addEventListener('DOMContentLoaded', function () {
       sceneEl.addEventListener('loaded', function () {
         console.log('로딩됨!');
       });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (
+        event.key === 'ArrowUp' ||
+        event.key === 'ArrowDown' ||
+        event.key === 'ArrowRight' ||
+        event.key === 'ArrowLeft' ||
+        event.key === 'w' ||
+        event.key === 'W' ||
+        event.key === 'a' ||
+        event.key === 'A' ||
+        event.key === 's' ||
+        event.key === 'S' ||
+        event.key === 'd' ||
+        event.key === 'D'
+      ) {
+        player.setAttribute('animation-mixer', { clip: 'walk' });
+      }
+    });
+
+    document.addEventListener('keyup', function () {
+      player.setAttribute('animation-mixer', { clip: 'base' });
     });
 
     observatory.addEventListener('click', function () {
