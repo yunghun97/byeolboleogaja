@@ -14,4 +14,11 @@ const nasaApi = axios.create({
   },
 });
 
-export { api, nasaApi };
+const chatApi = axios.create({
+  baseURL: 'http://k6b1021.p.ssafy.io:9998',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export { api, nasaApi, chatApi };

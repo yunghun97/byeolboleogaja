@@ -6,7 +6,8 @@ import {
   AddCircleOutline as AddIcon,
   RemoveCircleOutline as RemoveIcon,
 } from '@mui/icons-material';
-import axios from 'axios';
+import { sendChat } from '@/api/chat';
+
 const ChatWindow = () => {
   const msgBoxRef = useRef(null);
   const nickname = useStore((state) => state.nickname);
@@ -14,27 +15,38 @@ const ChatWindow = () => {
   const [msg, setMsg] = useState('');
   const [open, setOpen] = useState(false);
   const [websocket, setWebSocket] = useState(null);
+  const [server, setServer] = useState(1);
+
   useEffect(() => {
-    scrollToBottom();
-  }, [messages, open]);
-  useEffect(()=>{    
-    console.log("찍힘");
-    setWebSocket(websocket =>{
-      websocket = new WebSocket("ws://k6b1021.p.ssafy.io:9998/my-chat");
+    setWebSocket((websocket) => {
+      websocket = new WebSocket('ws://k6b1021.p.ssafy.io:9998/my-chat');
       websocket.onmessage = onMessage;
       websocket.onopen = onOpen;
       return websocket;
     });
-  }, [])
-  function onMessage(message){
-    console.log(message.data);    
-    console.log("메시지 도착! :  ",message);
-  }
-  console.log(websocket,"function 밖");
-  function onOpen(){
-    console.log("웹소켓 연결!");
-  } 
-  
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (websocket) {
+        websocket.close();
+      }
+    };
+  }, [websocket]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, open]);
+
+  const onMessage = (message) => {
+    const newMessage = JSON.parse(message.data);
+    setMessages((msgs) => msgs.concat(newMessage));
+  };
+
+  const onOpen = () => {
+    console.log('웹소켓 연결!');
+  };
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -53,24 +65,17 @@ const ChatWindow = () => {
     setMsg(e.target.value);
   };
 
-  const api = axios.create({
-    baseURL: `http://k6b1021.p.ssafy.io:9998`,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-  
-  const handleSendMsg = (e) => {
-    console.log(websocket);
-    console.log("enter입력!");
-    let data = {
-      server:"server",
-      author:"gwon",
-      content:"내용 테스트"
-    };    
-    api.post('/kafka/publish',JSON.stringify(data));;
-    // websocket.send(JSON.stringify(json));      
-  }
+  const handleSendMsg = () => {
+    if (msg === '') return;
+    const data = {
+      server: server,
+      author: nickname,
+      content: msg,
+    };
+    sendChat(data);
+    setMsg('');
+    // websocket.send(JSON.stringify(json));
+  };
 
   return (
     <Paper sx={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
@@ -92,7 +97,7 @@ const ChatWindow = () => {
                 fontWeight: 'bold',
                 color: '#ffffff',
               }}
-            >{`${m.nickname}: ${m.msg}`}</Box>
+            >{`${m.author}: ${m.content}`}</Box>
           ))}
         </Box>
       ) : (
@@ -111,8 +116,8 @@ const ChatWindow = () => {
             }}
           >
             {messages.length
-              ? `${messages.slice(-1)[0].nickname}: ${
-                  messages.slice(-1)[0].msg
+              ? `${messages.slice(-1)[0].author}: ${
+                  messages.slice(-1)[0].content
                 }`
               : ``}
           </Box>
