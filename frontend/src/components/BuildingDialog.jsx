@@ -17,7 +17,9 @@ const BuildingDialog = ({ buildingInfos, building, open, setOpen }) => {
   const maxSteps = buildingInfos.length;
 
   useEffect(() => {
-    setActiveStep(0);
+    if (open) {
+      setActiveStep(0);
+    }
   }, [open]);
 
   const handleClose = () => {

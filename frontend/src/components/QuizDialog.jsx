@@ -30,8 +30,10 @@ const QuizDialog = ({ open, setOpen }) => {
   };
 
   useEffect(() => {
-    setActiveStep(0);
-    initQuiz();
+    if (open) {
+      setActiveStep(0);
+      initQuiz();
+    }
   }, [open]);
 
   const handleClose = () => {

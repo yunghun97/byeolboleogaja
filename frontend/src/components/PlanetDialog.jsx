@@ -9,19 +9,15 @@ import {
 } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 
-const PlanetDialog = ({
-  planetInfos,
-  open,
-  setOpen,
-  quizOpen,
-  setQuizOpen,
-}) => {
+const PlanetDialog = ({ planetInfos, open, setOpen, setQuizOpen }) => {
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = planetInfos.length;
 
   useEffect(() => {
-    setActiveStep(0);
-  }, [quizOpen]);
+    if (open) {
+      setActiveStep(0);
+    }
+  }, [open]);
 
   const handleClose = () => {
     setOpen(false);
