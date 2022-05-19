@@ -41,51 +41,57 @@ const LoadingScene = ({ loadingTime }) => {
           alignItems: 'center',
         }}
       >
-        <Typography
-          sx={{
-            mt: '5vh',
-            color: '#ffffff',
-            fontSize: '1.2rem',
-            fontWeight: 'bold',
-            textTransform: 'none',
-          }}
-        >
-          Astronomy Picture of the Day
-        </Typography>
+        <Box sx={{ zIndex: 2000 }}>
+          <Typography
+            sx={{
+              mt: '5vh',
+              color: '#ffffff',
+              fontSize: '1.2rem',
+              fontWeight: 'bold',
+              textTransform: 'none',
+            }}
+          >
+            Astronomy Picture of the Day
+          </Typography>
+        </Box>
         <Box
           component="img"
           src={apodImg}
-          sx={{ mt: '1.5vh', height: '60vh' }}
+          sx={{ mt: '1.5vh', height: '60vh', zIndex: 2000 }}
         />
-        <Typography
-          sx={{
-            mt: '5vh',
-            color: '#ffffff',
-            fontSize: '2rem',
-            fontWeight: 'bold',
-            textTransform: 'none',
-          }}
-        >
-          알고계셨나요?
-        </Typography>
+        <Box sx={{ zIndex: 2000 }}>
+          <Typography
+            sx={{
+              mt: '5vh',
+              color: '#ffffff',
+              fontSize: '2rem',
+              fontWeight: 'bold',
+              textTransform: 'none',
+            }}
+          >
+            알고계셨나요?
+          </Typography>
+        </Box>
         <Box sx={{ mt: '2vh', width: '100%' }}>
           <LinearProgress
             variant="determinate"
             value={progress}
-            sx={{ height: '2vh', borderRadius: 5 }}
+            sx={{ height: '2vh', borderRadius: 5, zIndex: 2000 }}
           />
         </Box>
-        <Typography
-          sx={{
-            mt: '3vh',
-            color: '#ffffff',
-            fontSize: '1.7rem',
-            fontWeight: 'bold',
-            textTransform: 'none',
-          }}
-        >
-          {loadingMsg}
-        </Typography>
+        <Box sx={{ zIndex: 2000 }}>
+          <Typography
+            sx={{
+              mt: '3vh',
+              color: '#ffffff',
+              fontSize: '1.7rem',
+              fontWeight: 'bold',
+              textTransform: 'none',
+            }}
+          >
+            {loadingMsg}
+          </Typography>
+        </Box>
       </Container>
     </>
   );
