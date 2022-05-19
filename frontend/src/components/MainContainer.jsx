@@ -19,6 +19,7 @@ import logoMain from '@/assets/img/common/logo.png';
 const MainContainer = () => {
   const navigate = useNavigate();
   const $setNickname = useStore((state) => state.setNickname);
+  const $setIsSkip = useStore((state) => state.setisSkip);
   const [open, setOpen] = useState(false);
   const [nickname, setNickname] = useState('');
   const [isNickname, setIsNickname] = useState(true);
@@ -50,6 +51,7 @@ const MainContainer = () => {
       return;
     }
     $setNickname(nickname);
+    $setIsSkip(0);
 
     navigate('/character');
   };

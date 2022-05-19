@@ -93,7 +93,7 @@ const ImageGallery = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <a-scene>
         <a-entity id="scene1" visible="true">
           <a-gltf-model id="gallery" rotation="0 90 0" src={gallery} />
@@ -337,7 +337,7 @@ const ImageGallery = () => {
         floor={floor}
         setControlFloor={setControlFloor}
       />
-    </>
+    </div>
   );
 };
 export default ImageGallery;

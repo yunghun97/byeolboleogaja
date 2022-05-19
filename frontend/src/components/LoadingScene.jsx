@@ -3,9 +3,9 @@ import { useStore } from '@/store';
 import { Box, Container, LinearProgress, Typography } from '@mui/material';
 import LoadingBackground from '@/components/LoadingBackground';
 import { getCommonSence } from '@/api/loading';
-import loadingBg from '@/assets/img/loading/bg-loading-1.jpg';
+import defaultBg from '@/assets/img/loading/bg-loading-1.jpg';
 
-const LoadingScene = ({ loadingTime }) => {
+const LoadingScene = ({ loadingTime, loadingBg }) => {
   const [progress, setProgress] = useState(0);
   const apodImg = useStore((state) => state.apodUrl);
   const [loadingMsg, setLoadingMsg] = useState('');
@@ -32,7 +32,7 @@ const LoadingScene = ({ loadingTime }) => {
 
   return (
     <>
-      <LoadingBackground bgUrl={loadingBg} />
+      <LoadingBackground bgUrl={loadingBg ? loadingBg : defaultBg} />
       <Container
         maxWidth="lg"
         sx={{
@@ -41,7 +41,7 @@ const LoadingScene = ({ loadingTime }) => {
           alignItems: 'center',
         }}
       >
-        <Box sx={{ zIndex: 2000 }}>
+        <Box sx={{ zIndex: 10000 }}>
           <Typography
             sx={{
               mt: '5vh',
@@ -57,9 +57,9 @@ const LoadingScene = ({ loadingTime }) => {
         <Box
           component="img"
           src={apodImg}
-          sx={{ mt: '1.5vh', height: '60vh', zIndex: 2000 }}
+          sx={{ mt: '1.5vh', height: '60vh', zIndex: 10000 }}
         />
-        <Box sx={{ zIndex: 2000 }}>
+        <Box sx={{ zIndex: 10000 }}>
           <Typography
             sx={{
               mt: '5vh',
@@ -76,10 +76,10 @@ const LoadingScene = ({ loadingTime }) => {
           <LinearProgress
             variant="determinate"
             value={progress}
-            sx={{ height: '2vh', borderRadius: 5, zIndex: 2000 }}
+            sx={{ height: '2vh', borderRadius: 5, zIndex: 10000 }}
           />
         </Box>
-        <Box sx={{ zIndex: 2000 }}>
+        <Box sx={{ zIndex: 10000 }}>
           <Typography
             sx={{
               mt: '3vh',
