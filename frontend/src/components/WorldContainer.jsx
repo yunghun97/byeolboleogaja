@@ -100,10 +100,11 @@ const WorldContainer = () => {
   });
   return (
     <>
-      <LoadingScene loadingTime={LOADING_TIME} />
+      {/* <LoadingScene loadingTime={LOADING_TIME} />w */}
       <a-scene
+        preloader
         vr-mode-ui="enabled: false"
-        loading-screen="enabled: false"
+        loading-screen="dotsColor: white; backgroundColor: black"
         shadow="type: pcfsoft"
       >
         <a-assets>
