@@ -6,18 +6,35 @@ import {
   AddCircleOutline as AddIcon,
   RemoveCircleOutline as RemoveIcon,
 } from '@mui/icons-material';
-
+import axios from 'axios';
 const ChatWindow = () => {
   const msgBoxRef = useRef(null);
   const nickname = useStore((state) => state.nickname);
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState('');
   const [open, setOpen] = useState(false);
-
+  const [websocket, setWebSocket] = useState(null);
   useEffect(() => {
     scrollToBottom();
   }, [messages, open]);
-
+  useEffect(()=>{    
+    console.log("찍힘");
+    setWebSocket(websocket =>{
+      websocket = new WebSocket("ws://localhost:9998/my-chat");
+      websocket.onmessage = onMessage;
+      websocket.onopen = onOpen;
+      return websocket;
+    });
+  }, [])
+  function onMessage(message){
+    console.log(message.data);    
+    console.log("메시지 도착! :  ",message);
+  }
+  console.log(websocket,"function 밖");
+  function onOpen(){
+    console.log("웹소켓 연결!");
+  } 
+  
   const handleOpen = () => {
     setOpen(true);
   };
@@ -36,11 +53,24 @@ const ChatWindow = () => {
     setMsg(e.target.value);
   };
 
+  const api = axios.create({
+    baseURL: `http://localhost:9998`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  
   const handleSendMsg = (e) => {
-    //TODO: 소켓통신 send message
-    setMessages(messages.concat({ nickname, msg }));
-    setMsg('');
-  };
+    console.log(websocket);
+    console.log("enter입력!");
+    let data = {
+      server:"server",
+      author:"gwon",
+      content:"내용 테스트"
+    };    
+    api.post('/kafka/publish',JSON.stringify(data));;
+    // websocket.send(JSON.stringify(json));      
+  }
 
   return (
     <Paper sx={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
