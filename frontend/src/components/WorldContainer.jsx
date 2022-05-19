@@ -282,14 +282,14 @@ const WorldContainer = () => {
           position="-41.555 5 -156.6"
           rotation="0 100 0"
         />
-        <a-camera position="0 2 0" wasd-controls="acceleration:100">
+        <a-camera position="0 4 0" wasd-controls="acceleration:100">
           <a-entity
             gltf-model={chracterColor}
             cursor="rayOrigin: mouse"
             raycaster="objects: .clickable "
-            scale="0.2 0.2 0.2"
+            scale="0.2 0.3 0.2"
             height="0.5"
-            position="0 -1.35 -0.5"
+            position="0 -1.8 -0.5"
             rotation="0 180 0"
             id="player"
             animation-mixer="clip: base"
