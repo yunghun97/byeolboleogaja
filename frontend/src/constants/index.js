@@ -10,10 +10,12 @@ import spaceshipIntro from './spaceshipIntro';
 import horoscopeIntro from './horoscopeIntro';
 import moonInfos from './moonInfos';
 import quizDefault from './quizDefault';
+import goHomeInfos from './goHomeInfos';
 
 import elevatorIntro from './elevatorIntro';
 import bgmInfo from './bgmInfo';
 import characterInfo from './characterInfo';
+
 export {
   zodiac,
   horoscopeDefault,
@@ -27,6 +29,7 @@ export {
   horoscopeIntro,
   moonInfos,
   quizDefault,
+  goHomeInfos,
   elevatorIntro,
   bgmInfo,
   characterInfo,
