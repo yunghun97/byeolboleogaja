@@ -18,8 +18,12 @@ const ChatWindow = () => {
   const [server, setServer] = useState(1);
 
   useEffect(() => {
-    setWebSocket((websocket) => {
-      websocket = new WebSocket('ws://k6b1021.p.ssafy.io:9998/my-chat');
+    scrollToBottom();
+  }, [messages, open]);
+  useEffect(()=>{    
+    console.log("찍힘");
+    setWebSocket(websocket =>{
+      websocket = new WebSocket("wss://k6b1021.p.ssafy.io:9998/my-chat");
       websocket.onmessage = onMessage;
       websocket.onopen = onOpen;
       return websocket;
