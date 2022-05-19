@@ -21,9 +21,9 @@ import { useNavigate } from 'react-router-dom';
 import { getSatellite } from '@/api/satellite';
 import { elevatorIntro } from '@/constants';
 import ElevatorDialog from '@/components/ElevatorDialog';
-import LoadingScene from '@/components/LoadingScene';
+// import LoadingScene from '@/components/LoadingScene';
 
-const MuseumContainer = ({ setOpen, setSatellite }) => {
+const MuseumContainer = ({ setIsLoading, setOpen, setSatellite }) => {
   const chracterColor = useStore((state) => state.chracterColor);
   const initSatellite = async (satelliteId) => {
     const res = await getSatellite(satelliteId);
@@ -36,14 +36,6 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
   const [controlFloor, setControlFloor] = useState(false);
   const [floor, setFloor] = useState('');
   const [activeFloor, setActiveFloor] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const LOADING_TIME = 5000;
-
-  useEffect(() => {
-    if (isLoading) {
-      setTimeout(() => setIsLoading(false), LOADING_TIME + 1000);
-    }
-  }, []);
 
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
@@ -66,6 +58,12 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const elevator2FButton = sceneEl.querySelector('#elevator2FButton');
     const enterance = sceneEl.querySelector('#enterance');
     const outDoor = sceneEl.querySelector('#outDoor');
+
+    document.addEventListener('DOMContentLoaded', function () {
+      sceneEl.addEventListener('loaded', function (e) {
+        setIsLoading(false);
+      });
+    });
 
     document.addEventListener('keydown', function (event) {
       if (
@@ -189,11 +187,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
 
   return (
     <div>
-      <LoadingScene loadingTime={LOADING_TIME} />
-      <a-scene
-        vr-mode-ui="enabled: false"
-        loading-screen="enabled: false"
-      >
+      <a-scene vr-mode-ui="enabled: false" loading-screen="enabled: false">
         <a-assets>
           <img
             id="groundTexture"
@@ -617,7 +611,6 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
           </a-entity>
         </a-entity>
       </a-scene>
-
       <ElevatorDialog
         info={info}
         elevatorIntoOpen={elevatorIntoOpen}
