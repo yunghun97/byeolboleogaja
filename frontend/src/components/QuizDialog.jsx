@@ -11,11 +11,12 @@ import { Close as CloseIcon } from '@mui/icons-material';
 import { getQuiz } from '@/api/quiz';
 import { quizDefault } from '@/constants';
 import ReadyDialog from '@/components/ReadyDialog';
+import FlaggingDialog from './FlaggingDialog';
 
 const QuizDialog = ({ open, setOpen }) => {
   const [isopen, setOpened] = useState(false);
   const [quiz, setQuiz] = useState(quizDefault);
-  const [reply, setReply] = useState('false');
+  const [reply, setReply] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [count, setCount] = useState(0);
   const maxSteps = quiz.length * 2;
@@ -24,6 +25,7 @@ const QuizDialog = ({ open, setOpen }) => {
     try {
       const res = await getQuiz();
       setQuiz(res.data);
+      setCount(0);
     } catch (error) {
       console.error(error);
     }
@@ -38,23 +40,25 @@ const QuizDialog = ({ open, setOpen }) => {
 
   const handleClose = () => {
     setOpen(false);
-    console.log(count);
   };
 
   const handleNext = () => {
-    if (reply === quiz[Math.floor(activeStep / 2)].answer) {
-      setCount((count) => count + 1);
-    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleClickYes = () => {
-    setReply('true');
+    setReply(true);
+    if (quiz[Math.floor(activeStep / 2)].answer === true) {
+      setCount((count) => count + 1);
+    }
     handleNext();
   };
 
   const handleClickNo = () => {
-    setReply('false');
+    setReply(false);
+    if (quiz[Math.floor(activeStep / 2)].answer === false) {
+      setCount((count) => count + 1);
+    }
     handleNext();
   };
 
@@ -80,7 +84,7 @@ const QuizDialog = ({ open, setOpen }) => {
                   textTransform: 'none',
                 }}
               >
-                OX Quiz
+                OX Quiz {count}
               </Typography>
             </DialogTitle>
             <DialogContent>
@@ -143,7 +147,7 @@ const QuizDialog = ({ open, setOpen }) => {
                   textTransform: 'none',
                 }}
               >
-                {reply === `${quiz[Math.floor(activeStep / 2)].answer}`
+                {reply === quiz[Math.floor(activeStep / 2)].answer
                   ? '정답!'
                   : '오답!'}
               </Typography>
@@ -156,7 +160,7 @@ const QuizDialog = ({ open, setOpen }) => {
                   textTransform: 'none',
                 }}
               >
-                {reply === `${quiz[Math.floor(activeStep / 2)].answer}`
+                {reply === quiz[Math.floor(activeStep / 2)].answer
                   ? '정답이야!'
                   : '틀렸어!'}
                 &nbsp;
@@ -204,7 +208,8 @@ const QuizDialog = ({ open, setOpen }) => {
           </>
         )}
       </Dialog>
-      <ReadyDialog open={isopen} setOpen={setOpened} />
+      {/* <ReadyDialog open={isopen} setOpen={setOpened} /> */}
+      <FlaggingDialog open={isopen} setOpen={setOpened} count={count} />
     </>
   );
 };

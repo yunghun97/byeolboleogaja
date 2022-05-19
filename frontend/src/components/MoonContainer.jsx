@@ -11,6 +11,8 @@ import BuildingDialog from '@/components/BuildingDialog';
 import { moonInfos, goHomeInfos } from '@/constants';
 import { useState, useEffect } from 'react';
 import { useStore } from '@/store';
+import { getFlags } from '@/api/flag';
+import FlagInfoDialog from '@/components/FlagInfoDialog';
 
 const MoonContainer = () => {
   const [open, setOpen] = useState(false);
@@ -19,6 +21,27 @@ const MoonContainer = () => {
   const [info, setInfo] = useState(moonInfos);
   const [building, setBuilding] = useState('');
   const chracterColor = useStore((state) => state.chracterColor);
+
+  const [flags, setFlags] = useState([]);
+  const [flagOpen, setFlagOpen] = useState(false);
+  const [flagInfo, setFlagInfo] = useState({
+    nickname: '',
+    content: '',
+    createdDate: [],
+  });
+
+  const initFlags = async () => {
+    try {
+      const res = await getFlags('all');
+      setFlags(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    initFlags();
+  }, []);
 
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
@@ -62,6 +85,14 @@ const MoonContainer = () => {
       setInfo(goHomeInfos);
       setBuilding('world');
     });
+
+    flags.forEach((flag, index) => {
+      const flagEl = document.querySelector(`#flag${index}`);
+      flagEl.addEventListener('click', function () {
+        setFlagOpen(true);
+        setFlagInfo(flag);
+      });
+    });
   });
 
   return (
@@ -78,7 +109,18 @@ const MoonContainer = () => {
         </a-assets>
         <a-sky src="#sky" />
         <a-gltf-model src="#ground" position="0 -5 0" rotation="0 -2 0" />
-        <a-gltf-model src="#flag" position="5 -7 -27" scale="5 5 5" />
+        {flags.map((flag, index) => (
+          <a-gltf-model
+            key={index}
+            id={`flag${index}`}
+            class="clickable"
+            src={`#flag`}
+            position={`${15 * (index % 10) - 75} -13 ${
+              -37 - 10 * Math.floor(index / 10)
+            }`}
+            scale="5 8 5"
+          />
+        ))}
         <a-gltf-model
           id="rabbitNpc"
           class="clickable"
@@ -133,6 +175,7 @@ const MoonContainer = () => {
         open={buildingOpen}
         setOpen={setBuildingOpen}
       />
+      <FlagInfoDialog open={flagOpen} setOpen={setFlagOpen} info={flagInfo} />
     </div>
   );
 };
