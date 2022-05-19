@@ -3,11 +3,12 @@ import MuseumDialog from '@/components/MuseumDialog';
 import Menu from '@/components/Menu';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+
 export default function Museum() {
   const [isOpen, setOpen] = useState(false);
   const [satellite, setSatellite] = useState({});
-
   const [guideOpen, setGuideOpen] = useState(false);
+
   MuseumDialog.propTypes = {
     name: PropTypes.string,
     desc: PropTypes.string,
