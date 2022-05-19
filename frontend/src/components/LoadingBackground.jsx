@@ -11,7 +11,7 @@ const LoadingBackground = ({ bgUrl }) => {
         height: '100%',
         objectFit: 'cover',
         position: 'fixed',
-        zIndex: '1000',
+        zIndex: '9999',
       }}
     />
   );
