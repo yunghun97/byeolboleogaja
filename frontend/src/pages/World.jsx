@@ -6,34 +6,24 @@ import WorldContainer from '@/components/WorldContainer';
 import { worldGuideInfos } from '@/constants';
 import { Snackbar, IconButton } from '@mui/material';
 import { Close } from '@mui/icons-material';
+
 export default function World() {
-  const [guideOpen, setGuideOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [snackOpenCheck, setSnackOpenCheck] = useState(false);
   const [snackOpen, setSnackOpen] = useState(false);
   const isSkip = useStore((state) => state.isSkip);
   const nickname = useStore((state) => state.nickname);
-  useEffect(() => {
-    if (isSkip == 0) {
-      setTimeout(function () {
-        setOpen(true);
 
-        setSnackOpen(true);
-      }, 3000);
-    }
-    if (isSkip === 1) {
-      setSnackOpenCheck(true);
-      setOpen(false);
+  useEffect(() => {
+    if (isSkip === 0) {
+      setOpen(true);
+      setSnackOpen(true);
     }
   }, []);
-  useEffect(() => {
-    if (snackOpenCheck == true) {
-      setSnackOpen(false);
-    }
-  });
+
   const handleClose = () => {
     setSnackOpen(false);
   };
+
   const action = (
     <>
       <IconButton
@@ -48,7 +38,7 @@ export default function World() {
   );
 
   return (
-    <main>
+    <>
       <WorldContainer />
       <Snackbar
         anchorOrigin={{
@@ -58,7 +48,7 @@ export default function World() {
         open={snackOpen}
         autoHideDuration={3000}
         onClose={handleClose}
-        message={`${nickname}` + '! 어서와~ 별보러 함께 모험을 떠나자!'}
+        message={`${nickname} 님! 별보러가자와 함께 즐거운 우주 여행되세요!`}
         action={action}
       />
       <WorldGuideDialog
@@ -68,10 +58,10 @@ export default function World() {
       />
       <Menu
         isGuideDialog={true}
-        setGuideOpen={setGuideOpen}
+        setGuideOpen={setOpen}
         isWorld={false}
         placeBGM={'world'}
       />
-    </main>
+    </>
   );
 }
