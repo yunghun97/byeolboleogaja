@@ -10,12 +10,12 @@ export default function Museum() {
   const [satellite, setSatellite] = useState({});
   const [guideOpen, setGuideOpen] = useState(false);
 
-  const LOADING_TIME = 500;
+  const LOADING_TIME = 2000;
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (isLoading) {
-      setTimeout(() => setIsLoading(false), LOADING_TIME + 1000);
+      setTimeout(() => setIsLoading(false), LOADING_TIME + 2000);
     }
   }, []);
 
@@ -26,24 +26,25 @@ export default function Museum() {
   };
   return (
     <>
-      {isLoading ? <LoadingScene loadingTime={LOADING_TIME} /> : <></>}
-      <MuseumContainer
-        setIsLoading={setIsLoading}
-        setOpen={setOpen}
-        setSatellite={setSatellite}
-      />
-      <MuseumDialog
-        path="/react-prop-types"
-        isOpen={isOpen}
-        setOpen={setOpen}
-        satellite={satellite}
-      />
-      <Menu
-        isGuideDialog={false}
-        setGuideOpen={setGuideOpen}
-        isWorld={true}
-        placeBGM={'museum'}
-      />
+      <MuseumContainer setOpen={setOpen} setSatellite={setSatellite} />
+      {isLoading ? (
+        <LoadingScene loadingTime={LOADING_TIME} />
+      ) : (
+        <>
+          <MuseumDialog
+            path="/react-prop-types"
+            isOpen={isOpen}
+            setOpen={setOpen}
+            satellite={satellite}
+          />
+          <Menu
+            isGuideDialog={false}
+            setGuideOpen={setGuideOpen}
+            isWorld={true}
+            placeBGM={'museum'}
+          />
+        </>
+      )}
     </>
   );
 }

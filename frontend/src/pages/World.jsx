@@ -23,7 +23,7 @@ export default function World() {
       setSnackOpen(true);
     }
     if (isLoading) {
-      setTimeout(() => setIsLoading(false), LOADING_TIME + 1000);
+      setTimeout(() => setIsLoading(false), LOADING_TIME + 2000);
     }
   }, []);
 
@@ -46,11 +46,11 @@ export default function World() {
 
   return (
     <>
+      <WorldContainer />
       {isLoading ? (
         <LoadingScene loadingTime={LOADING_TIME} />
       ) : (
         <>
-          <WorldContainer />
           <Snackbar
             anchorOrigin={{
               vertical: 'bottom',

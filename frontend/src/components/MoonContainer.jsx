@@ -25,7 +25,7 @@ const MoonContainer = () => {
   });
 
   return (
-    <>
+    <div>
       <a-scene vr-mode-ui="enabled: false">
         <a-assets>
           <img id="sky" src={sky} />
@@ -64,7 +64,7 @@ const MoonContainer = () => {
         setQuizOpen={setQuizOpen}
       />
       <QuizDialog open={quizOpen} setOpen={setQuizOpen} />
-    </>
+    </div>
   );
 };
 

@@ -31,15 +31,6 @@ import { useStore } from '@/store';
 import { Box } from '@mui/material';
 
 const WorldContainer = () => {
-  const LOADING_TIME = 5000;
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (isLoading) {
-      setTimeout(() => setIsLoading(false), LOADING_TIME + 1000);
-    }
-  }, []);
-
   const chracterColor = useStore((state) => state.chracterColor);
 
   document.addEventListener('keydown', function (event) {
@@ -49,9 +40,13 @@ const WorldContainer = () => {
       event.key === 'ArrowRight' ||
       event.key === 'ArrowLeft' ||
       event.key === 'w' ||
+      event.key === 'W' ||
       event.key === 'a' ||
+      event.key === 'A' ||
       event.key === 's' ||
-      event.key === 'd'
+      event.key === 'S' ||
+      event.key === 'd' ||
+      event.key === 'D'
     ) {
       player.setAttribute('animation-mixer', { clip: 'walk' });
     }
@@ -72,6 +67,12 @@ const WorldContainer = () => {
     const museum = sceneEl.querySelector('#museumNpc-model');
     const spaceship = sceneEl.querySelector('#spaceshipNpc-model');
     const horoscope = sceneEl.querySelector('#horoscopeNpc-model');
+
+    document.addEventListener('DOMContentLoaded', function () {
+      sceneEl.addEventListener('loaded', function () {
+        console.log('로딩됨!');
+      });
+    });
 
     observatory.addEventListener('click', function () {
       setOpened(true);
@@ -100,12 +101,10 @@ const WorldContainer = () => {
     });
   });
   return (
-    <>
-      {/* <LoadingScene loadingTime={LOADING_TIME} />w */}
+    <div>
       <a-scene
-        preloader
         vr-mode-ui="enabled: false"
-        loading-screen="dotsColor: white; backgroundColor: black"
+        loading-screen="enabled: false"
         shadow="type: pcfsoft"
       >
         <a-assets>
@@ -321,7 +320,7 @@ const WorldContainer = () => {
       >
         <ChatWindow />
       </Box>
-    </>
+    </div>
   );
 };
 

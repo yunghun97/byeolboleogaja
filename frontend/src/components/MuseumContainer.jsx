@@ -23,7 +23,7 @@ import { elevatorIntro } from '@/constants';
 import ElevatorDialog from '@/components/ElevatorDialog';
 // import LoadingScene from '@/components/LoadingScene';
 
-const MuseumContainer = ({ setIsLoading, setOpen, setSatellite }) => {
+const MuseumContainer = ({ setOpen, setSatellite }) => {
   const chracterColor = useStore((state) => state.chracterColor);
   const initSatellite = async (satelliteId) => {
     const res = await getSatellite(satelliteId);
@@ -61,7 +61,7 @@ const MuseumContainer = ({ setIsLoading, setOpen, setSatellite }) => {
 
     document.addEventListener('DOMContentLoaded', function () {
       sceneEl.addEventListener('loaded', function (e) {
-        setIsLoading(false);
+        console.log('로딩됨!');
       });
     });
 
@@ -72,9 +72,13 @@ const MuseumContainer = ({ setIsLoading, setOpen, setSatellite }) => {
         event.key === 'ArrowRight' ||
         event.key === 'ArrowLeft' ||
         event.key === 'w' ||
+        event.key === 'W' ||
         event.key === 'a' ||
+        event.key === 'A' ||
         event.key === 's' ||
-        event.key === 'd'
+        event.key === 'S' ||
+        event.key === 'd' ||
+        event.key === 'D'
       ) {
         player.setAttribute('animation-mixer', { clip: 'walk' });
       }
