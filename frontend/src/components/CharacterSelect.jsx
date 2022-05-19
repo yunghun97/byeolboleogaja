@@ -36,7 +36,6 @@ const CharacterSelect = () => {
     <Dialog maxWidth="md" open={open}>
       <DialogTitle>
         <Typography
-          component="h1"
           sx={{
             fontSize: '1.5rem',
             fontWeight: 'bold',
