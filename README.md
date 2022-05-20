@@ -114,7 +114,8 @@ vite는 esbuild 기반으로 webpack보다 100배 정도 빠른 빌드 툴이다
 ![아키텍처](README.assets/아키텍처.jpg)
 
 
-
+### 2. 시연 영상
+https://clipchamp.com/watch/NiLrmS6fPMp
 
 
 
