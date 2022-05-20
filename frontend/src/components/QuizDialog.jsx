@@ -84,7 +84,7 @@ const QuizDialog = ({ open, setOpen }) => {
                   textTransform: 'none',
                 }}
               >
-                OX Quiz {count}
+                OX Quiz
               </Typography>
             </DialogTitle>
             <DialogContent>
