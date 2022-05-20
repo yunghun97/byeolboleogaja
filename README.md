@@ -5,14 +5,14 @@
 ## <center>별 보러 가자</center>
 
 <center>메타버스 천문 체험 플랫폼</center>
-
+<br>
 <center><a href="https://www.notion.so/haeinpark/SSAFY-be109d4349604666b99b90c74158cd8e">팀 노션</a>　|　<a href="https://www.figma.com/file/gT8h8FPEXTNB7b1F1sRqHK/%EB%B3%84%EB%B3%B4%EB%9F%AC%EA%B0%80%EC%9E%90?node-id=0%3A1"> FIGMA </a>　|　<a href="https://docs.google.com/spreadsheets/d/1pjDT7OodQxBNo8Usj1N_JDam9GTGSz1guHb6KDOD1Sw/edit#gid=0"> 백 로그</a></center>
 
 
 
 ## <center>기술 스택</center>
 
-<center>**Backend**</center>
+<center><b>Backend</b></center>
 
 <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white">    
 <img src="https://img.shields.io/badge/Apach Kafka-231F20?style=for-the-badge&logo=Apache Kafka&logoColor=white">
@@ -21,7 +21,7 @@
 
 
 
-<center>**Frontend**</center>
+<center><b>Frontend</b></center>
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"> 
 <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white"> 
