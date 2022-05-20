@@ -191,7 +191,10 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
 
   return (
     <div>
-      <a-scene vr-mode-ui="enabled: false" loading-screen="enabled: false">
+      <a-scene
+        vr-mode-ui="enabled: false"
+        loading-screen="dotsColor: white; backgroundColor: black"
+      >
         <a-assets>
           <img
             id="groundTexture"
