@@ -13,7 +13,7 @@
 ## <center>기술 스택</center>
 
 <center><b>Backend</b></center>
-
+<br>
 <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white">    
 <img src="https://img.shields.io/badge/Apach Kafka-231F20?style=for-the-badge&logo=Apache Kafka&logoColor=white">
 <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white">
@@ -22,7 +22,7 @@
 
 
 <center><b>Frontend</b></center>
-
+<br>
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"> 
 <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white"> 
 <img src="https://img.shields.io/badge/AFrame-EF2D5E?style=for-the-badge&logo=A-Frame&logoColor=white"> 
@@ -31,7 +31,7 @@
 
 
 <b><center>Tools</b></center>
-
+<br>
 <img src="https://img.shields.io/badge/Notion-001234?style=for-the-badge&logo=Notion&logoColor=white">
 <img src="https://img.shields.io/badge/MatterMost-0058CC?style=for-the-badge&logo=MatterMost&logoColor=white">
 <img src="https://img.shields.io/badge/Gitlab-FC6D26?style=for-the-badge&logo=Gitlab&logoColor=white">
