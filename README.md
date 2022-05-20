@@ -1,14 +1,12 @@
 ![logo](README.assets/logo.png)
 
+<center>
+
 ## 별 보러 가자
 
 메타버스 천문 체험 플랫폼
 
-<a href="https://www.notion.so/haeinpark/SSAFY-be109d4349604666b99b90c74158cd8e">팀 노션</a>　|　
-
-<a href="https://www.figma.com/file/gT8h8FPEXTNB7b1F1sRqHK/%EB%B3%84%EB%B3%B4%EB%9F%AC%EA%B0%80%EC%9E%90?node-id=0%3A1"> FIGMA </a>　|　
-
-<a href="https://docs.google.com/spreadsheets/d/1pjDT7OodQxBNo8Usj1N_JDam9GTGSz1guHb6KDOD1Sw/edit#gid=0"> 백 로그</a>
+<a href="https://www.notion.so/haeinpark/SSAFY-be109d4349604666b99b90c74158cd8e">팀 노션</a>　|　<a href="https://www.figma.com/file/gT8h8FPEXTNB7b1F1sRqHK/%EB%B3%84%EB%B3%B4%EB%9F%AC%EA%B0%80%EC%9E%90?node-id=0%3A1"> FIGMA </a>　|　<a href="https://docs.google.com/spreadsheets/d/1pjDT7OodQxBNo8Usj1N_JDam9GTGSz1guHb6KDOD1Sw/edit#gid=0"> 백 로그</a>
 
 
 
@@ -83,22 +81,6 @@
 
  
 
-### 3. 서비스 메인화면
-
-
-
- 
-
-
-
-### 4. 시연 영상
-
- 🎞 시연 영상 유튜브 🎞🎞
-
- https://www.youtube.com/watch?v=3itie8Ch4S0
-
- 
-
 ---
 
 
@@ -157,7 +139,7 @@ Git-flow로 개발을 진행했습니다. 자세한 Git 규칙은 [링크](https
 
 매일 아침 조례 후 데일리 스크럼을 진행하여 진행상황을 공유하고 협업이 필요한 내용을 아침에 미리 공유할 수 있도록 했습니다. 회의 이후에는 회의록을 작성하여 기획 내용을 문서화하였습니다. 팀원 모두가 공유해야하는 자료 및 링크는 노션의 기술조사에 정리하여 공유했습니다.
 
-![image-20220520112632447](README.assets/image-20220520112632447.png)
+![image-20220520115201489](README.assets/image-20220520115201489.png)
 
 
 
@@ -182,3 +164,7 @@ Git-flow로 개발을 진행했습니다. 자세한 Git 규칙은 [링크](https
 ### 7. API
 
 ![image-20220520114102369](README.assets/image-20220520114102369.png)
+
+
+
+</center>
