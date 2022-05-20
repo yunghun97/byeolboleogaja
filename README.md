@@ -20,7 +20,7 @@
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
 
 
-
+<br>
 <center><b>Frontend</b></center>
 <br>
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"> 
@@ -30,7 +30,7 @@
 
 
 
-<b><center>Tools</b></center>
+<center><b>Tools</b></center>
 <br>
 <img src="https://img.shields.io/badge/Notion-001234?style=for-the-badge&logo=Notion&logoColor=white">
 <img src="https://img.shields.io/badge/MatterMost-0058CC?style=for-the-badge&logo=MatterMost&logoColor=white">
