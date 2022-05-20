@@ -94,7 +94,10 @@ const ImageGallery = () => {
 
   return (
     <div>
-      <a-scene>
+      <a-scene
+        vr-mode-ui="enabled: false"
+        loading-screen="dotsColor: white; backgroundColor: black"
+      >
         <a-entity id="scene1" visible="true">
           <a-gltf-model id="gallery" rotation="0 90 0" src={gallery} />
           <a-gltf-model

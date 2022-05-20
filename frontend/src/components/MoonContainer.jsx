@@ -97,7 +97,10 @@ const MoonContainer = () => {
 
   return (
     <div>
-      <a-scene vr-mode-ui="enabled: false">
+      <a-scene
+        vr-mode-ui="enabled: false"
+        loading-screen="dotsColor: white; backgroundColor: black"
+      >
         <a-assets>
           <img id="sky" src={sky} />
           <a-asset-item id="ground" src={ground}></a-asset-item>

@@ -106,7 +106,7 @@ const WorldContainer = () => {
     <div>
       <a-scene
         vr-mode-ui="enabled: false"
-        loading-screen="enabled: false"
+        loading-screen="dotsColor: white; backgroundColor: black"
         shadow="type: pcfsoft"
       >
         <a-assets>
