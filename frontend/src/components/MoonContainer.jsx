@@ -48,31 +48,39 @@ const MoonContainer = () => {
     const rabbitNpcEl = sceneEl.querySelector('#rabbitNpc');
     const spaceshipNpcEl = sceneEl.querySelector('#spaceshipNpc-model');
     const player = sceneEl.querySelector('#player');
+    const keys = [];
 
-    document.addEventListener('keydown', function (event) {
+    const walk = () => {
       if (
-        event.key === 'ArrowUp' ||
-        event.key === 'ArrowDown' ||
-        event.key === 'ArrowRight' ||
-        event.key === 'ArrowLeft' ||
-        event.key === 'w' ||
-        event.key === 'W' ||
-        event.key === 'a' ||
-        event.key === 'A' ||
-        event.key === 's' ||
-        event.key === 'S' ||
-        event.key === 'd' ||
-        event.key === 'D'
+        keys['ArrowUp'] ||
+        keys['ArrowDown'] ||
+        keys['ArrowRight'] ||
+        keys['ArrowLeft'] ||
+        keys['KeyW'] ||
+        keys['KeyS'] ||
+        keys['KeyA'] ||
+        keys['KeyD']
       ) {
         player.setAttribute('animation-mixer', {
           clip: 'walk',
           timeScale: 0.15,
         });
+      } else {
+        player.setAttribute('animation-mixer', {
+          clip: 'base',
+          timeScale: 0.15,
+        });
       }
+    };
+
+    document.addEventListener('keydown', function (e) {
+      keys[e.code] = true;
+      walk();
     });
 
-    document.addEventListener('keyup', function () {
-      player.setAttribute('animation-mixer', { clip: 'base', timeScale: 0.15 });
+    document.addEventListener('keyup', function (e) {
+      delete keys[e.code];
+      walk();
     });
 
     rabbitNpcEl.addEventListener('click', function () {

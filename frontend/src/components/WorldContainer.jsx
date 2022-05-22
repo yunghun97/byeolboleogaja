@@ -46,6 +46,7 @@ const WorldContainer = () => {
     const spaceship = sceneEl.querySelector('#spaceshipNpc-model');
     const horoscope = sceneEl.querySelector('#horoscopeNpc-model');
     const player = sceneEl.querySelector('#player');
+    const keys = [];
 
     document.addEventListener('DOMContentLoaded', function () {
       sceneEl.addEventListener('loaded', function () {
@@ -53,27 +54,31 @@ const WorldContainer = () => {
       });
     });
 
-    document.addEventListener('keydown', function (event) {
+    const walk = () => {
       if (
-        event.key === 'ArrowUp' ||
-        event.key === 'ArrowDown' ||
-        event.key === 'ArrowRight' ||
-        event.key === 'ArrowLeft' ||
-        event.key === 'w' ||
-        event.key === 'W' ||
-        event.key === 'a' ||
-        event.key === 'A' ||
-        event.key === 's' ||
-        event.key === 'S' ||
-        event.key === 'd' ||
-        event.key === 'D'
+        keys['ArrowUp'] ||
+        keys['ArrowDown'] ||
+        keys['ArrowRight'] ||
+        keys['ArrowLeft'] ||
+        keys['KeyW'] ||
+        keys['KeyS'] ||
+        keys['KeyA'] ||
+        keys['KeyD']
       ) {
         player.setAttribute('animation-mixer', { clip: 'walk' });
+      } else {
+        player.setAttribute('animation-mixer', { clip: 'base' });
       }
+    };
+
+    document.addEventListener('keydown', function (e) {
+      keys[e.code] = true;
+      walk();
     });
 
-    document.addEventListener('keyup', function () {
-      player.setAttribute('animation-mixer', { clip: 'base' });
+    document.addEventListener('keyup', function (e) {
+      delete keys[e.code];
+      walk();
     });
 
     observatory.addEventListener('click', function () {
@@ -102,6 +107,7 @@ const WorldContainer = () => {
       setBuilding('horoscope');
     });
   });
+
   return (
     <div>
       <a-scene

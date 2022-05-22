@@ -53,6 +53,7 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
     const textJames = sceneEl.querySelector('#text-james');
     const camera = document.querySelector('#camera');
     const player = sceneEl.querySelector('#player');
+    const keys = [];
     const elevatorButton = sceneEl.querySelector('#elevatorButton');
     const elevator1FButton = sceneEl.querySelector('#elevator1FButton');
     const elevator2FButton = sceneEl.querySelector('#elevator2FButton');
@@ -65,27 +66,33 @@ const MuseumContainer = ({ setOpen, setSatellite }) => {
       });
     });
 
-    document.addEventListener('keydown', function (event) {
+    const walk = () => {
       if (
-        event.key === 'ArrowUp' ||
-        event.key === 'ArrowDown' ||
-        event.key === 'ArrowRight' ||
-        event.key === 'ArrowLeft' ||
-        event.key === 'w' ||
-        event.key === 'W' ||
-        event.key === 'a' ||
-        event.key === 'A' ||
-        event.key === 's' ||
-        event.key === 'S' ||
-        event.key === 'd' ||
-        event.key === 'D'
+        keys['ArrowUp'] ||
+        keys['ArrowDown'] ||
+        keys['ArrowRight'] ||
+        keys['ArrowLeft'] ||
+        keys['KeyW'] ||
+        keys['KeyS'] ||
+        keys['KeyA'] ||
+        keys['KeyD']
       ) {
         player.setAttribute('animation-mixer', { clip: 'walk' });
+      } else {
+        player.setAttribute('animation-mixer', { clip: 'base' });
       }
+    };
+
+    document.addEventListener('keydown', function (e) {
+      keys[e.code] = true;
+      walk();
     });
-    document.addEventListener('keyup', function () {
-      player.setAttribute('animation-mixer', { clip: 'base' });
+
+    document.addEventListener('keyup', function (e) {
+      delete keys[e.code];
+      walk();
     });
+
     enterance.addEventListener('click', (e) => {
       navigate('/world');
     });
