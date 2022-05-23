@@ -13,7 +13,7 @@ import { quizDefault } from '@/constants';
 import ReadyDialog from '@/components/ReadyDialog';
 import FlaggingDialog from './FlaggingDialog';
 
-const QuizDialog = ({ open, setOpen }) => {
+const QuizDialog = ({ open, setOpen, initFlags }) => {
   const [isopen, setOpened] = useState(false);
   const [quiz, setQuiz] = useState(quizDefault);
   const [reply, setReply] = useState(false);
@@ -209,7 +209,12 @@ const QuizDialog = ({ open, setOpen }) => {
         )}
       </Dialog>
       {/* <ReadyDialog open={isopen} setOpen={setOpened} /> */}
-      <FlaggingDialog open={isopen} setOpen={setOpened} count={count} />
+      <FlaggingDialog
+        open={isopen}
+        setOpen={setOpened}
+        count={count}
+        initFlags={initFlags}
+      />
     </>
   );
 };

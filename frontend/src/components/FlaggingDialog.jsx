@@ -14,7 +14,7 @@ import { Close as CloseIcon } from '@mui/icons-material';
 import { addFlag } from '@/api/flag';
 import SimpleDialog from '@/components/SimpleDialog';
 
-const FlaggingDialog = ({ open, setOpen, count }) => {
+const FlaggingDialog = ({ open, setOpen, count, initFlags }) => {
   const $nickname = useStore((state) => state.nickname);
   const [msg, setMsg] = useState('');
 
@@ -33,6 +33,7 @@ const FlaggingDialog = ({ open, setOpen, count }) => {
       };
       const res = await addFlag(flagInfo);
       setSimpleOpen(true);
+      await initFlags();
     } catch (error) {
       console.error(error);
     }
@@ -175,7 +176,7 @@ const FlaggingDialog = ({ open, setOpen, count }) => {
         setOpen={setSimpleOpen}
         who={'달토끼'}
         message={
-          '오!! 정말 멋진 글귀인걸?! 글귀는 잘 받았으니, 내가 정리해서 뒤에 꽂아 둘게!!'
+          '오!! 정말 멋진 글귀인걸?! 내가 바로 정리해서 뒤에 꽂아 뒀어!! 맨 왼쪽 깃발을 확인하면 너의 글귀를 볼 수 있을거야!!'
         }
       />
     </>

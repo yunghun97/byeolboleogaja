@@ -179,7 +179,7 @@ const MoonContainer = () => {
         setOpen={setOpen}
         setQuizOpen={setQuizOpen}
       />
-      <QuizDialog open={quizOpen} setOpen={setQuizOpen} />
+      <QuizDialog open={quizOpen} setOpen={setQuizOpen} initFlags={initFlags} />
       <BuildingDialog
         buildingInfos={info}
         building={building}
