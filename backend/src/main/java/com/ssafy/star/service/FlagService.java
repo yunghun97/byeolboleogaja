@@ -40,7 +40,7 @@ public class FlagService {
 
     public ResponseEntity<?> getFlags(String sortOption) {
         try {
-            List<Flag> flagList = ("all".equals(sortOption.toLowerCase())) ? flagRepository.findAll() : flagRepository.findTop10ByOrderByCreatedDate();
+            List<Flag> flagList = ("all".equals(sortOption.toLowerCase())) ? flagRepository.findAllByOrderByCreatedDateDesc() : flagRepository.findTop10ByOrderByCreatedDate();
             List<FlagDto> flagDtoList = new ArrayList<>();
 
             for (Flag flag : flagList) {
