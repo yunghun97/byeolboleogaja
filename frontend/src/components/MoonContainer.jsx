@@ -120,6 +120,15 @@ const MoonContainer = () => {
         </a-assets>
         <a-sky src="#sky" />
         <a-gltf-model src="#ground" position="0 -5 0" rotation="0 -2 0" />
+        <a-text
+          value="V"
+          position="-74 36 -36.5"
+          color="#ca2b29"
+          align="center"
+          scale="20 20 20"
+          shader="msdf"
+          font="https://raw.githubusercontent.com/myso-kr/aframe-fonts-korean/master/fonts/ofl/nanumpenscript/NanumPenScript-Regular.json"
+        ></a-text>
         {flags.map((flag, index) => (
           <a-gltf-model
             key={index}
