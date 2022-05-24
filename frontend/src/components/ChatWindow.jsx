@@ -13,6 +13,7 @@ import {
   AddCircleOutline as AddIcon,
   RemoveCircleOutline as RemoveIcon,
   Person as PersonIcon,
+  Circle as CircleIcon,
 } from '@mui/icons-material';
 import { sendChat, setChatSession, getChatUserList } from '@/api/chat';
 
@@ -23,6 +24,7 @@ const ChatWindow = ({ serverName }) => {
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState('');
   const [open, setOpen] = useState(false);
+  const [userListOpen, setUserListOpen] = useState(false);
   const [websocket, setWebSocket] = useState(null);
 
   useEffect(() => {
@@ -115,6 +117,10 @@ const ChatWindow = ({ serverName }) => {
     setOpen(false);
   };
 
+  const handleUserListOpen = () => {
+    setUserListOpen(!userListOpen);
+  };
+
   const scrollToBottom = () => {
     if (msgBoxRef.current) {
       msgBoxRef.current.scrollTop = msgBoxRef.current.scrollHeight;
@@ -155,7 +161,7 @@ const ChatWindow = ({ serverName }) => {
             backgroundColor: 'rgba(0, 0, 0, 0.3)',
           }}
         >
-          <IconButton sx={{ color: '#ffffff' }}>
+          <IconButton sx={{ color: '#ffffff' }} onClick={handleUserListOpen}>
             <PersonIcon />
           </IconButton>
           <Typography
@@ -168,6 +174,39 @@ const ChatWindow = ({ serverName }) => {
             {` 현재 접속자 수 : ${userList.length}`}
           </Typography>
         </Paper>
+        {userListOpen ? (
+          <>
+            <Divider />
+            <Paper
+              sx={{
+                height: '10rem',
+                overflowY: 'auto',
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              }}
+            >
+              {userList.map((user, index) => {
+                return (
+                  <Box key={index} sx={{ display: 'flex' }}>
+                    <CircleIcon
+                      sx={{ m: '0.5rem', fontSize: '1rem', color: 'green' }}
+                    />
+                    <Typography
+                      sx={{
+                        m: '0.25rem',
+                        fontSize: '1rem',
+                        color: '#ffffff',
+                      }}
+                    >
+                      {`${user.author}`}
+                    </Typography>
+                  </Box>
+                );
+              })}
+            </Paper>
+          </>
+        ) : (
+          <></>
+        )}
       </Box>
       <Box
         sx={{
