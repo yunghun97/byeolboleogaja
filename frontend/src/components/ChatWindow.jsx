@@ -16,6 +16,7 @@ import {
   Circle as CircleIcon,
 } from '@mui/icons-material';
 import { sendChat, setChatSession, getChatUserList } from '@/api/chat';
+import PrivateMsgDialog from './PrivateMsgDialog';
 
 const ChatWindow = ({ serverName }) => {
   const msgBoxRef = useRef(null);
@@ -23,8 +24,11 @@ const ChatWindow = ({ serverName }) => {
   const [userList, setUserList] = useState([]);
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState('');
+  const [privateTo, setPrivateTo] = useState({});
+  const [mySessionId, setMySessionId] = useState('');
   const [open, setOpen] = useState(false);
   const [userListOpen, setUserListOpen] = useState(false);
+  const [privateMsgOpen, setPrivateMsgOpen] = useState(false);
   const [websocket, setWebSocket] = useState(null);
 
   useEffect(() => {
@@ -53,13 +57,15 @@ const ChatWindow = ({ serverName }) => {
     if (newMessage.type === 'message') {
       const newMsg = {
         content: `${newMessage.author}: ${newMessage.content}`,
-        color: '#ffffff',
+        color: newMessage.sessionId === 'all' ? '#ffffff' : '#ff9800',
       };
+      console.log(newMessage);
       setMessages((msgs) => msgs.concat(newMsg));
     } else if (newMessage.type === 'connect') {
       // 해당 세션과 연결되었을 때 userId와 Session값을 다시 넘겨준다.
       console.log(newMessage, '최초연결');
       setSession(newMessage.sessionId);
+      setMySessionId(newMessage.sessionId);
     } else if (newMessage.type === 'join') {
       const newMsg = {
         content: `[알림] ${newMessage.author} 님이 입장하셨습니다.`,
@@ -143,6 +149,26 @@ const ChatWindow = ({ serverName }) => {
     // websocket.send(JSON.stringify(json));
   };
 
+  const handleSendPrivateMsg = (privateMsg) => {
+    const data = {
+      sessionId: privateTo.sessionId,
+      author: `(귓속말) ${nickname}`,
+      content: privateMsg,
+    };
+    sendChat(data);
+
+    const newMsg = {
+      content: `${data.author}: ${data.content}`,
+      color: '#ff9800',
+    };
+    setMessages((msgs) => msgs.concat(newMsg));
+  };
+
+  const handlePrivateMsg = (user) => {
+    setPrivateTo(user);
+    setPrivateMsgOpen(true);
+  };
+
   return (
     <>
       <Box
@@ -184,24 +210,40 @@ const ChatWindow = ({ serverName }) => {
                 backgroundColor: 'rgba(0, 0, 0, 0.3)',
               }}
             >
-              {userList.map((user, index) => {
-                return (
-                  <Box key={index} sx={{ display: 'flex' }}>
+              {userList.map((user, index) => (
+                <Box key={index} sx={{ display: 'flex' }}>
+                  {user.sessionId === mySessionId ? (
                     <CircleIcon
-                      sx={{ m: '0.5rem', fontSize: '1rem', color: 'green' }}
-                    />
-                    <Typography
                       sx={{
-                        m: '0.25rem',
+                        m: '0.5rem',
                         fontSize: '1rem',
-                        color: '#ffffff',
+                        color: 'blue',
                       }}
-                    >
-                      {`${user.author}`}
-                    </Typography>
-                  </Box>
-                );
-              })}
+                    />
+                  ) : (
+                    <CircleIcon
+                      sx={{
+                        m: '0.5rem',
+                        fontSize: '1rem',
+                        color: 'green',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() => handlePrivateMsg(user)}
+                    />
+                  )}
+                  <Typography
+                    sx={{
+                      m: '0.25rem',
+                      fontSize: '1rem',
+                      color: '#ffffff',
+                    }}
+                  >
+                    {`${user.author} ${
+                      user.sessionId === mySessionId ? '(Me)' : ''
+                    }`}
+                  </Typography>
+                </Box>
+              ))}
             </Paper>
           </>
         ) : (
@@ -301,6 +343,12 @@ const ChatWindow = ({ serverName }) => {
           </Paper>
         </Paper>
       </Box>
+      <PrivateMsgDialog
+        open={privateMsgOpen}
+        setOpen={setPrivateMsgOpen}
+        author={privateTo.author}
+        handleSendPrivateMsg={handleSendPrivateMsg}
+      />
     </>
   );
 };
