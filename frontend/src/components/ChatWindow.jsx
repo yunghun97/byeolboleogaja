@@ -55,61 +55,61 @@ const ChatWindow = ({ serverName }) => {
   const onMessage = (message) => {
     const newMessage = JSON.parse(message.data);
     if (newMessage.type === 'message') {
+      // console.log(newMessage);
       const newMsg = {
         content: `${newMessage.author}: ${newMessage.content}`,
         color: newMessage.sessionId === 'all' ? '#ffffff' : '#ff9800',
       };
-      console.log(newMessage);
       setMessages((msgs) => msgs.concat(newMsg));
     } else if (newMessage.type === 'connect') {
       // 해당 세션과 연결되었을 때 userId와 Session값을 다시 넘겨준다.
-      console.log(newMessage, '최초연결');
+      // console.log(newMessage, '최초연결');
       setSession(newMessage.sessionId);
       setMySessionId(newMessage.sessionId);
     } else if (newMessage.type === 'join') {
+      // console.log('사람 들어옴!', newMessage);
       const newMsg = {
         content: `[알림] ${newMessage.author} 님이 입장하셨습니다.`,
         color: '#4caf50',
       };
       setMessages((msgs) => msgs.concat(newMsg));
-      console.log('사람 들어옴!', newMessage);
       getUserList();
     } else if (newMessage.type === 'leave') {
+      // console.log('사람 나감 ㅜ', newMessage);
       const newMsg = {
         content: `[알림] ${newMessage.author} 님이 퇴장하셨습니다.`,
         color: '#ef5350',
       };
       setMessages((msgs) => msgs.concat(newMsg));
-      console.log('사람 나감 ㅜ', newMessage);
       getUserList();
     }
   };
 
   const setSession = (sessionId) => {
-    console.log('최초연결2');
+    // console.log('최초연결2');
     const data = {
       sessionId: sessionId,
       author: nickname,
     };
-    console.log(nickname);
-    console.log(data);
+    // console.log(nickname);
+    // console.log(data);
     setChatSession(data) // sessionMap에 UserId와 sessionId 저장하기 위한 코드
       .then((response) => {
-        console.log('세션 설정 성공', response);
+        // console.log('세션 설정 성공', response);
       }) //
       .catch((error) => {
-        console.log('세션 설정 실패', error);
+        console.error('세션 설정 실패', error);
       });
   };
 
   const getUserList = () => {
     getChatUserList()
       .then((response) => {
-        console.log('UserList 가져옴 !', response);
+        // console.log('UserList 가져옴 !', response);
         setUserList(response.data);
       })
       .catch((error) => {
-        console.log('UserList 가져오기 실패 ㅜㅜ', error);
+        console.error('UserList 가져오기 실패 ㅜㅜ', error);
       });
   };
 
