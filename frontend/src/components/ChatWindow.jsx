@@ -1,17 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import { useStore } from '@/store';
-import { Box, Divider, IconButton, InputBase, Paper } from '@mui/material';
+import {
+  Box,
+  Divider,
+  IconButton,
+  InputBase,
+  Paper,
+  Typography,
+} from '@mui/material';
 import {
   Send as SendIcon,
   AddCircleOutline as AddIcon,
   RemoveCircleOutline as RemoveIcon,
-  ConstructionOutlined,
+  Person as PersonIcon,
 } from '@mui/icons-material';
 import { sendChat, setChatSession, getChatUserList } from '@/api/chat';
 
 const ChatWindow = ({ serverName }) => {
   const msgBoxRef = useRef(null);
   const nickname = useStore((state) => state.nickname);
+  const [userList, setUserList] = useState([]);
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState('');
   const [open, setOpen] = useState(false);
@@ -90,6 +98,7 @@ const ChatWindow = ({ serverName }) => {
     getChatUserList()
       .then((response) => {
         console.log('UserList 가져옴 !', response);
+        setUserList(response.data);
       })
       .catch((error) => {
         console.log('UserList 가져오기 실패 ㅜㅜ', error);
@@ -130,6 +139,36 @@ const ChatWindow = ({ serverName }) => {
 
   return (
     <>
+      <Box
+        sx={{
+          width: 'min(280px, 75%)',
+          position: 'fixed',
+          top: '1vh',
+          left: '1vw',
+          zIndex: 998,
+        }}
+      >
+        <Paper
+          sx={{
+            height: '2.5rem',
+            display: 'flex',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          }}
+        >
+          <IconButton sx={{ color: '#ffffff' }}>
+            <PersonIcon />
+          </IconButton>
+          <Typography
+            sx={{
+              m: '0.5rem',
+              fontSize: '1rem',
+              color: '#ffffff',
+            }}
+          >
+            {` 현재 접속자 수 : ${userList.length}`}
+          </Typography>
+        </Paper>
+      </Box>
       <Box
         sx={{
           width: 'min(730px, 75%)',
