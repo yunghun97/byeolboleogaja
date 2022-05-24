@@ -42,16 +42,29 @@ const ChatWindow = () => {
   const onMessage = (message) => {
     const newMessage = JSON.parse(message.data);
     if (newMessage.type === 'message') {
-      setMessages((msgs) => msgs.concat(newMessage));
+      const newMsg = {
+        content: `${newMessage.author}: ${newMessage.content}`,
+        color: '#ffffff',
+      };
+      setMessages((msgs) => msgs.concat(newMsg));
     } else if (newMessage.type === 'connect') {
       // 해당 세션과 연결되었을 때 userId와 Session값을 다시 넘겨준다.
-      const json = JSON.parse(message.data);
-      console.log(json, '최초연결');
-      setSession(json.sessionId);
+      console.log(newMessage, '최초연결');
+      setSession(newMessage.sessionId);
     } else if (newMessage.type === 'join') {
+      const newMsg = {
+        content: `[알림] ${newMessage.author} 님이 입장하셨습니다.`,
+        color: '#4caf50',
+      };
+      setMessages((msgs) => msgs.concat(newMsg));
       console.log('사람 들어옴!', newMessage);
       getUserList();
     } else if (newMessage.type === 'leave') {
+      const newMsg = {
+        content: `[알림] ${newMessage.author} 님이 퇴장하셨습니다.`,
+        color: '#ef5350',
+      };
+      setMessages((msgs) => msgs.concat(newMsg));
       console.log('사람 나감 ㅜ', newMessage);
       getUserList();
     }
@@ -134,9 +147,9 @@ const ChatWindow = () => {
                 mt: '0.25rem',
                 fontSize: '1rem',
                 fontWeight: 'bold',
-                color: '#ffffff',
+                color: `${m.color}`,
               }}
-            >{`${m.author}: ${m.content}`}</Box>
+            >{`${m.content}`}</Box>
           ))}
         </Box>
       ) : (
@@ -146,20 +159,20 @@ const ChatWindow = () => {
             overflowY: 'auto',
           }}
         >
-          <Box
-            sx={{
-              m: '0.5rem',
-              fontSize: '1rem',
-              fontWeight: 'bold',
-              color: '#ffffff',
-            }}
-          >
-            {messages.length
-              ? `${messages.slice(-1)[0].author}: ${
-                  messages.slice(-1)[0].content
-                }`
-              : ``}
-          </Box>
+          {messages.length ? (
+            <Box
+              sx={{
+                m: '0.5rem',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                color: `${messages.slice(-1)[0].color}`,
+              }}
+            >
+              {`${messages.slice(-1)[0].content}`}
+            </Box>
+          ) : (
+            <></>
+          )}
         </Box>
       )}
       <Divider />
