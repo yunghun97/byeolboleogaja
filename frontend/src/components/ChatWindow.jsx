@@ -9,14 +9,13 @@ import {
 } from '@mui/icons-material';
 import { sendChat, setChatSession, getChatUserList } from '@/api/chat';
 
-const ChatWindow = () => {
+const ChatWindow = ({ serverName }) => {
   const msgBoxRef = useRef(null);
   const nickname = useStore((state) => state.nickname);
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState('');
   const [open, setOpen] = useState(false);
   const [websocket, setWebSocket] = useState(null);
-  const [server, setServer] = useState(1);
 
   useEffect(() => {
     setWebSocket((websocket) => {
@@ -130,89 +129,101 @@ const ChatWindow = () => {
   };
 
   return (
-    <Paper sx={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
-      {open ? (
-        <Box
-          ref={msgBoxRef}
-          sx={{
-            m: '0.5rem',
-            height: '20rem',
-            overflowY: 'auto',
-          }}
-        >
-          {messages.map((m, index) => (
-            <Box
-              key={index}
-              sx={{
-                mt: '0.25rem',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                color: `${m.color}`,
-              }}
-            >{`${m.content}`}</Box>
-          ))}
-        </Box>
-      ) : (
-        <Box
-          sx={{
-            height: '2.5rem',
-            overflowY: 'auto',
-          }}
-        >
-          {messages.length ? (
-            <Box
-              sx={{
-                m: '0.5rem',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                color: `${messages.slice(-1)[0].color}`,
-              }}
-            >
-              {`${messages.slice(-1)[0].content}`}
-            </Box>
-          ) : (
-            <></>
-          )}
-        </Box>
-      )}
-      <Divider />
-      <Paper
+    <>
+      <Box
         sx={{
-          height: '2.5rem',
-          display: 'flex',
-          backgroundColor: 'rgba(90, 90, 90, 0.87)',
+          width: 'min(730px, 75%)',
+          position: 'fixed',
+          left: '1vw',
+          bottom: '1vh',
+          zIndex: 999,
         }}
       >
-        <InputBase
-          value={msg}
-          onChange={handleOnChange}
-          onKeyUp={(e) => {
-            if (e.key === 'Enter') {
-              handleSendMsg(e);
-            }
-          }}
-          sx={{
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            ml: 1,
-            flex: 1,
-            color: '#ffffff',
-          }}
-        />
-        <IconButton onClick={handleSendMsg}>
-          <SendIcon />
-        </IconButton>
-        {open ? (
-          <IconButton onClick={handleClose}>
-            <RemoveIcon />
-          </IconButton>
-        ) : (
-          <IconButton onClick={handleOpen}>
-            <AddIcon />
-          </IconButton>
-        )}
-      </Paper>
-    </Paper>
+        <Paper sx={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
+          {open ? (
+            <Box
+              ref={msgBoxRef}
+              sx={{
+                m: '0.5rem',
+                height: '20rem',
+                overflowY: 'auto',
+              }}
+            >
+              {messages.map((m, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    mt: '0.25rem',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    color: `${m.color}`,
+                  }}
+                >{`${m.content}`}</Box>
+              ))}
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                height: '2.5rem',
+                overflowY: 'auto',
+              }}
+            >
+              {messages.length ? (
+                <Box
+                  sx={{
+                    m: '0.5rem',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    color: `${messages.slice(-1)[0].color}`,
+                  }}
+                >
+                  {`${messages.slice(-1)[0].content}`}
+                </Box>
+              ) : (
+                <></>
+              )}
+            </Box>
+          )}
+          <Divider />
+          <Paper
+            sx={{
+              height: '2.5rem',
+              display: 'flex',
+              backgroundColor: 'rgba(90, 90, 90, 0.87)',
+            }}
+          >
+            <InputBase
+              value={msg}
+              onChange={handleOnChange}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  handleSendMsg(e);
+                }
+              }}
+              sx={{
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                ml: 1,
+                flex: 1,
+                color: '#ffffff',
+              }}
+            />
+            <IconButton onClick={handleSendMsg}>
+              <SendIcon />
+            </IconButton>
+            {open ? (
+              <IconButton onClick={handleClose}>
+                <RemoveIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={handleOpen}>
+                <AddIcon />
+              </IconButton>
+            )}
+          </Paper>
+        </Paper>
+      </Box>
+    </>
   );
 };
 
