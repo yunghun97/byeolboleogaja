@@ -50,8 +50,10 @@ const ChatWindow = () => {
       console.log(json, "최초연결");      
       setSession(json.sessionId);
     } else if (newMessage.type==="join") {
+      console.log("사람 들어옴!",newMessage);
       getUserList();
     } else if (newMessage.type==="leave") {
+      console.log("사람 나감 ㅜ",newMessage);
       getUserList();
     }
   };
