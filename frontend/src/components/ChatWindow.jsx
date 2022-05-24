@@ -7,12 +7,11 @@ import {
   RemoveCircleOutline as RemoveIcon,
   ConstructionOutlined,
 } from '@mui/icons-material';
-import { sendChat } from '@/api/chat';
-import axios from 'axios';
+import { sendChat, setChatSession, getChatUserList } from '@/api/chat';
 
 const ChatWindow = () => {
   const msgBoxRef = useRef(null);
-  const nickname = useStore((state) => state.nickname);  
+  const nickname = useStore((state) => state.nickname);
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState('');
   const [open, setOpen] = useState(false);
@@ -40,50 +39,52 @@ const ChatWindow = () => {
     scrollToBottom();
   }, [messages, open]);
 
-
   const onMessage = (message) => {
     const newMessage = JSON.parse(message.data);
-    if (newMessage.type === "message") {
+    if (newMessage.type === 'message') {
       setMessages((msgs) => msgs.concat(newMessage));
-    } else if (newMessage.type==="connect") { // 해당 세션과 연결되었을 때 userId와 Session값을 다시 넘겨준다.
+    } else if (newMessage.type === 'connect') {
+      // 해당 세션과 연결되었을 때 userId와 Session값을 다시 넘겨준다.
       const json = JSON.parse(message.data);
-      console.log(json, "최초연결");      
+      console.log(json, '최초연결');
       setSession(json.sessionId);
-    } else if (newMessage.type==="join") {
-      console.log("사람 들어옴!",newMessage);
+    } else if (newMessage.type === 'join') {
+      console.log('사람 들어옴!', newMessage);
       getUserList();
-    } else if (newMessage.type==="leave") {
-      console.log("사람 나감 ㅜ",newMessage);
+    } else if (newMessage.type === 'leave') {
+      console.log('사람 나감 ㅜ', newMessage);
       getUserList();
     }
   };
-  const setSession = (sessionId) =>{
-    console.log("최초연결2");
+
+  const setSession = (sessionId) => {
+    console.log('최초연결2');
     const data = {
-      "sessionId": sessionId,
-      author: nickname
+      sessionId: sessionId,
+      author: nickname,
     };
     console.log(nickname);
     console.log(data);
-    axios.post(`https://k6b1021.p.ssafy.io:9998/session/set`, data) // sessionMap에 UserId와 sessionId 저장하기 위한 코드
+    setChatSession(data) // sessionMap에 UserId와 sessionId 저장하기 위한 코드
       .then((response) => {
-        console.log("세션 설정 성공", response);
-      }) // 
+        console.log('세션 설정 성공', response);
+      }) //
       .catch((error) => {
-      console.log("세션 설정 실패", error);
-    })
-  } 
-  const getUserList = () =>{
-    axios.get("https://k6b1021.p.ssafy.io:9998/user/list")
-    .then((response) => {
-      console.log("UserList 가져옴 !", response);
-    })
-    .catch((error) => {
-      console.log("UserList 가져오기 실패 ㅜㅜ", error);
-    })
-  }  
-  const onOpen = () => {        
+        console.log('세션 설정 실패', error);
+      });
   };
+
+  const getUserList = () => {
+    getChatUserList()
+      .then((response) => {
+        console.log('UserList 가져옴 !', response);
+      })
+      .catch((error) => {
+        console.log('UserList 가져오기 실패 ㅜㅜ', error);
+      });
+  };
+
+  const onOpen = () => {};
 
   const handleOpen = () => {
     setOpen(true);
@@ -106,11 +107,11 @@ const ChatWindow = () => {
   const handleSendMsg = () => {
     if (msg === '') return;
     const data = {
-      sessionId: "all", // all이면 모든 소켓에 메시지 특정 sessionId 작성시 귓속말
+      sessionId: 'all', // all이면 모든 소켓에 메시지 특정 sessionId 작성시 귓속말
       author: nickname,
       content: msg,
     };
-    sendChat(data);    
+    sendChat(data);
     setMsg('');
     // websocket.send(JSON.stringify(json));
   };
@@ -154,8 +155,9 @@ const ChatWindow = () => {
             }}
           >
             {messages.length
-              ? `${messages.slice(-1)[0].author}: ${messages.slice(-1)[0].content
-              }`
+              ? `${messages.slice(-1)[0].author}: ${
+                  messages.slice(-1)[0].content
+                }`
               : ``}
           </Box>
         </Box>
