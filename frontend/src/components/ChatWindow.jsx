@@ -68,11 +68,9 @@ const ChatWindow = () => {
     axios.post(`https://k6b1021.p.ssafy.io:9998/session/set`, data) // sessionMap에 UserId와 sessionId 저장하기 위한 코드
       .then((response) => {
         console.log("세션 설정 성공", response);
-        return;
       }) // 
       .catch((error) => {
       console.log("세션 설정 실패", error);
-      return;
     })
   } 
   const getUserList = () =>{
