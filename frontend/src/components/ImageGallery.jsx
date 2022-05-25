@@ -29,6 +29,7 @@ const ImageGallery = () => {
   const [controlFloor, setControlFloor] = useState(false);
   const [floor, setFloor] = useState('');
   const [activeFloor, setActiveFloor] = useState(0);
+
   useEffect(() => {
     const sceneEl = document.querySelector('a-scene');
     const scene1 = sceneEl.querySelector('#scene1');
@@ -38,9 +39,38 @@ const ImageGallery = () => {
     const scene2 = sceneEl.querySelector('#scene2');
     const camera = document.querySelector('#camera');
     const player = sceneEl.querySelector('#player');
+    const keys = [];
     const elevatorButton = sceneEl.querySelector('#elevatorButton');
     const elevator1FButton = sceneEl.querySelector('#elevator1FButton');
     const elevator2FButton = sceneEl.querySelector('#elevator2FButton');
+
+    const walk = () => {
+      if (
+        keys['ArrowUp'] ||
+        keys['ArrowDown'] ||
+        keys['ArrowRight'] ||
+        keys['ArrowLeft'] ||
+        keys['KeyW'] ||
+        keys['KeyS'] ||
+        keys['KeyA'] ||
+        keys['KeyD']
+      ) {
+        player.setAttribute('animation-mixer', { clip: 'walk' });
+      } else {
+        player.setAttribute('animation-mixer', { clip: 'base' });
+      }
+    };
+
+    document.addEventListener('keydown', function (e) {
+      keys[e.code] = true;
+      walk();
+    });
+
+    document.addEventListener('keyup', function (e) {
+      delete keys[e.code];
+      walk();
+    });
+
     backtoGallery.addEventListener('click', function (event) {
       let rotation = camera.getAttribute('rotation');
       camera.setAttribute('position', { x: 0, y: 2, z: 4 });
@@ -94,7 +124,10 @@ const ImageGallery = () => {
 
   return (
     <div>
-      <a-scene>
+      <a-scene
+        vr-mode-ui="enabled: false"
+        loading-screen="dotsColor: white; backgroundColor: black"
+      >
         <a-entity id="scene1" visible="true">
           <a-gltf-model id="gallery" rotation="0 90 0" src={gallery} />
           <a-gltf-model

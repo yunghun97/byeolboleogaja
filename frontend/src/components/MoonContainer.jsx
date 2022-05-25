@@ -48,31 +48,39 @@ const MoonContainer = () => {
     const rabbitNpcEl = sceneEl.querySelector('#rabbitNpc');
     const spaceshipNpcEl = sceneEl.querySelector('#spaceshipNpc-model');
     const player = sceneEl.querySelector('#player');
+    const keys = [];
 
-    document.addEventListener('keydown', function (event) {
+    const walk = () => {
       if (
-        event.key === 'ArrowUp' ||
-        event.key === 'ArrowDown' ||
-        event.key === 'ArrowRight' ||
-        event.key === 'ArrowLeft' ||
-        event.key === 'w' ||
-        event.key === 'W' ||
-        event.key === 'a' ||
-        event.key === 'A' ||
-        event.key === 's' ||
-        event.key === 'S' ||
-        event.key === 'd' ||
-        event.key === 'D'
+        keys['ArrowUp'] ||
+        keys['ArrowDown'] ||
+        keys['ArrowRight'] ||
+        keys['ArrowLeft'] ||
+        keys['KeyW'] ||
+        keys['KeyS'] ||
+        keys['KeyA'] ||
+        keys['KeyD']
       ) {
         player.setAttribute('animation-mixer', {
           clip: 'walk',
           timeScale: 0.15,
         });
+      } else {
+        player.setAttribute('animation-mixer', {
+          clip: 'base',
+          timeScale: 0.15,
+        });
       }
+    };
+
+    document.addEventListener('keydown', function (e) {
+      keys[e.code] = true;
+      walk();
     });
 
-    document.addEventListener('keyup', function () {
-      player.setAttribute('animation-mixer', { clip: 'base', timeScale: 0.15 });
+    document.addEventListener('keyup', function (e) {
+      delete keys[e.code];
+      walk();
     });
 
     rabbitNpcEl.addEventListener('click', function () {
@@ -97,7 +105,10 @@ const MoonContainer = () => {
 
   return (
     <div>
-      <a-scene vr-mode-ui="enabled: false">
+      <a-scene
+        vr-mode-ui="enabled: false"
+        loading-screen="dotsColor: white; backgroundColor: black"
+      >
         <a-assets>
           <img id="sky" src={sky} />
           <a-asset-item id="ground" src={ground}></a-asset-item>
@@ -109,6 +120,15 @@ const MoonContainer = () => {
         </a-assets>
         <a-sky src="#sky" />
         <a-gltf-model src="#ground" position="0 -5 0" rotation="0 -2 0" />
+        <a-text
+          value="V"
+          position="-74 36 -36.5"
+          color="#ca2b29"
+          align="center"
+          scale="20 20 20"
+          shader="msdf"
+          font="https://raw.githubusercontent.com/myso-kr/aframe-fonts-korean/master/fonts/ofl/nanumpenscript/NanumPenScript-Regular.json"
+        ></a-text>
         {flags.map((flag, index) => (
           <a-gltf-model
             key={index}
@@ -168,7 +188,7 @@ const MoonContainer = () => {
         setOpen={setOpen}
         setQuizOpen={setQuizOpen}
       />
-      <QuizDialog open={quizOpen} setOpen={setQuizOpen} />
+      <QuizDialog open={quizOpen} setOpen={setQuizOpen} initFlags={initFlags} />
       <BuildingDialog
         buildingInfos={info}
         building={building}
