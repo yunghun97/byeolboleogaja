@@ -317,17 +317,7 @@ const WorldContainer = () => {
         open={isopen}
         setOpen={setOpened}
       />
-      <Box
-        sx={{
-          width: 'min(730px, 75%)',
-          position: 'fixed',
-          left: '1vw',
-          bottom: '1vh',
-          zIndex: 999,
-        }}
-      >
-        <ChatWindow />
-      </Box>
+      <ChatWindow serverName={'world'} />
     </div>
   );
 };
