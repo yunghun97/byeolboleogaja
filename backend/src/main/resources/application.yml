@@ -7,7 +7,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       username: imlah
-      password: imlah
+      password: DB해당 계정 비밀번호
 
   jpa:
     hibernate:
@@ -25,7 +25,7 @@ spring:
   redis:
     host: k6b102.p.ssafy.io
     port: 6380
-    password: imlah
+    password: Redis DB 비밀번호
 
   profiles:
     include: API-KEY, credentials
